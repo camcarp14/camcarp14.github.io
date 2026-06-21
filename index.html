@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clarify Paid Search — Google Ads Management & Audits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --bg: #f8f8f6;
+      --ink: #0f0f0e;
+      --ink2: #3a3a37;
+      --mid: #7a7a75;
+      --rule: #e6e6e2;
+      --accent: #1640d6;
+      --accent-light: #eef1fd;
+      --accent-hover: #1235b0;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-placeholder { width: 120px; height: 36px; background: #efefed; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #9b9b96; text-transform: uppercase; border: 1.5px dashed #ccccc8; }
+    .nav-logo-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 600;
+      color: white !important;
+      background: var(--accent);
+      padding: 9px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--accent-hover) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 130px 48px 90px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge span { color: var(--accent); }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink2);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      width: fit-content;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .hero-trust {
+      font-size: 13px;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-trust::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* HERO CARD */
+    .hero-card {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .hero-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .symptom-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .symptom-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.5;
+    }
+
+    .symptom-icon {
+      width: 22px;
+      height: 22px;
+      background: #fee2e2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .hero-card-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0 0 24px;
+    }
+
+    .hero-card-result {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--green);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .result-icon {
+      width: 22px;
+      height: 22px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── LOGO BAR ── */
+    .logo-bar {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 28px 48px;
+      text-align: center;
+    }
+
+    .logo-bar p {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .logo-bar-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .logo-bar-item {
+      font-size: 14px;
+      font-weight: 600;
+      color: #b0b0aa;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── SECTIONS SHARED ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 48px;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .step {
+      background: var(--white);
+      padding: 36px 28px;
+      position: relative;
+    }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .step-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ── SERVICES / PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .pricing-card {
+      border: 1.5px solid var(--rule);
+      border-radius: 12px;
+      padding: 36px;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(22,64,214,0.08);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #fafbff 0%, #f0f3ff 100%);
+    }
+
+    .pricing-card.featured .featured-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-card-header {
+      margin-bottom: 24px;
+    }
+
+    .pricing-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .tagline {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .pricing-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin: 20px 0 4px;
+    }
+
+    .pricing-dollar {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .pricing-num {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .pricing-period {
+      font-size: 14px;
+      color: var(--mid);
+      font-weight: 400;
+    }
+
+    .pricing-note {
+      font-size: 12px;
+      color: var(--mid);
+      margin-bottom: 24px;
+    }
+
+    .pricing-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 24px 0;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.5;
+    }
+
+    .check {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      padding: 13px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .pricing-cta-outline {
+      border: 1.5px solid var(--rule);
+      color: var(--ink);
+    }
+
+    .pricing-cta-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pricing-cta-filled {
+      background: var(--accent);
+      color: white;
+    }
+
+    .pricing-cta-filled:hover {
+      background: var(--accent-hover);
+    }
+
+    /* ── WHY ── */
+    .why-bg {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .why-item {}
+
+    .why-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .why-item h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .why-item p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* ── WHAT YOU GET ── */
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .deliverable {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+
+    .deliverable:hover {
+      border-color: var(--accent);
+    }
+
+    .deliverable-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .deliverable h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .deliverable p {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-grid h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .about-grid p {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-stat {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .about-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .about-stat-label {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--rule);
+      cursor: pointer;
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--ink);
+      padding: 96px 48px;
+    }
+
+    .cta-band-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      color: white;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .cta-band p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    .cta-band-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn-white:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .cta-band-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a09;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 15px;
+      color: white;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { grid-template-columns: 1fr; gap: 48px; padding: 110px 24px 60px; }
+      .hero-card { display: none; }
+      .logo-bar { padding: 24px; }
+      .section { padding: 64px 24px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 32px; }
+      .deliverables-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cta-band { padding: 64px 24px; }
+      .cta-band-inner { grid-template-columns: 1fr; gap: 36px; }
+      .cta-band-actions { align-items: flex-start; }
+      footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (max-width: 560px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-placeholder">Logo</span>
+      Clarify Paid Search
+    </a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="mailto:clarifypaidsearch@gmail.com" class="nav-cta">Get a Free Audit</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-badge">Google Ads · Paid Search · Performance</div>
+      <h1>Your Google Ads account is probably <em>losing money</em> right now.</h1>
+      <p class="hero-sub">Most small business Google Ads accounts are built once and never properly maintained. Bad keyword targeting, broken conversion tracking, and wasted budget quietly drain results month after month. Clarify finds it, fixes it, and keeps it working.</p>
+      <div class="hero-actions">
+        <a href="mailto:clarifypaidsearch@gmail.com" class="btn-primary">Get a Free Account Review →</a>
+        <span class="hero-trust">No retainer required. Response within 24 hours.</span>
+        <span class="hero-trust">Agency-trained. No junior staff, no handoffs.</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p class="hero-card-label">Common account issues</p>
+      <ul class="symptom-list">
+        <li>
+          <span class="symptom-icon">✗</span>
+          Spending on irrelevant search terms that will never convert
+        </li>
+        <li>
+          <span class="symptom-icon">✗</span>
+          Conversion tracking that's broken, duplicated, or unmeasured
+        </li>
+        <li>
+          <span class="symptom-icon">✗</span>
+          Campaigns built years ago that nobody fully understands anymore
+        </li>
+        <li>
+          <span class="symptom-icon">✗</span>
+          Bidding strategies fighting against each other
+        </li>
+        <li>
+          <span class="symptom-icon">✗</span>
+          No real visibility into what's actually driving results
+        </li>
+      </ul>
+      <hr class="hero-card-divider" />
+      <div class="hero-card-result">
+        <span class="result-icon">✓</span>
+        Clarify identifies exactly what's wrong and fixes it — with clear documentation so you always understand your own account.
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO BAR -->
+  <div class="logo-bar">
+    <p>Works with accounts running on</p>
+    <div class="logo-bar-items">
+      <span class="logo-bar-item">Google Search</span>
+      <span class="logo-bar-item">Google Shopping</span>
+      <span class="logo-bar-item">Performance Max</span>
+      <span class="logo-bar-item">Display & Remarketing</span>
+      <span class="logo-bar-item">Local Campaigns</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div id="how">
+    <div class="section">
+      <div class="section-header">
+        <p class="section-eyebrow">The Process</p>
+        <h2 class="section-title">Simple, transparent, and fast.</h2>
+        <p class="section-sub">No lengthy onboarding, no discovery calls that go nowhere. You get real work done in the first week.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <p class="step-num">01</p>
+          <div class="step-icon">📬</div>
+          <h3>You reach out</h3>
+          <p>Email with a quick description of your account and what's not working. No forms, no scheduling software required.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">02</p>
+          <div class="step-icon">🔍</div>
+          <h3>I audit the account</h3>
+          <p>You share read-only access. I dig into structure, keywords, bidding, tracking, and spend within 48 hours.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">03</p>
+          <div class="step-icon">📋</div>
+          <h3>You get a clear report</h3>
+          <p>A written breakdown of every issue found, ranked by impact, with specific recommendations for each one.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">04</p>
+          <div class="step-icon">⚡</div>
+          <h3>We fix it</h3>
+          <p>Either you implement the fixes yourself, or I do it for you. No lock-in. You own the account and always will.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" style="background: var(--bg); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+    <div class="section">
+      <div class="section-header">
+        <p class="section-eyebrow">Services & Pricing</p>
+        <h2 class="section-title">Straightforward pricing. No retainer traps.</h2>
+        <p class="section-sub">Every engagement is scoped clearly upfront. You know exactly what you're getting and what it costs before anything starts.</p>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Account Audit</h3>
+            <p class="tagline">A full diagnostic of your Google Ads account with a written findings report and prioritized action list.</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-num">299</span>
+          </div>
+          <p class="pricing-note">One-time · Delivered in 48 hours</p>
+          <hr class="pricing-divider" />
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Campaign & ad group structure review</li>
+            <li><span class="check">✓</span> Keyword & match type analysis</li>
+            <li><span class="check">✓</span> Conversion tracking audit</li>
+            <li><span class="check">✓</span> Bidding strategy assessment</li>
+            <li><span class="check">✓</span> Wasted spend identification</li>
+            <li><span class="check">✓</span> Written report with priority action list</li>
+            <li><span class="check">✓</span> 30-min walkthrough call included</li>
+          </ul>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Start with an audit →</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <span class="featured-badge">Most Popular</span>
+          <div class="pricing-card-header">
+            <h3>Audit + Full Cleanup</h3>
+            <p class="tagline">Everything in the audit, plus hands-on implementation of all recommended fixes — done for you.</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-num">599</span>
+          </div>
+          <p class="pricing-note">One-time · Completed within 5 business days</p>
+          <hr class="pricing-divider" />
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Everything in the Audit</li>
+            <li><span class="check">✓</span> Negative keyword list build</li>
+            <li><span class="check">✓</span> Match type restructuring</li>
+            <li><span class="check">✓</span> Conversion tracking fixes</li>
+            <li><span class="check">✓</span> Campaign consolidation & cleanup</li>
+            <li><span class="check">✓</span> Bidding strategy alignment</li>
+            <li><span class="check">✓</span> Documentation of all changes made</li>
+          </ul>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-filled">Get the full cleanup →</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Monthly Management</h3>
+            <p class="tagline">Ongoing optimization and management for accounts that need consistent expert attention.</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-num">750</span>
+            <span class="pricing-period">/month</span>
+          </div>
+          <p class="pricing-note">Month-to-month · No long-term contract</p>
+          <hr class="pricing-divider" />
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Weekly bid & budget optimizations</li>
+            <li><span class="check">✓</span> Search term monitoring & negatives</li>
+            <li><span class="check">✓</span> Ad copy testing & rotation</li>
+            <li><span class="check">✓</span> Monthly performance report</li>
+            <li><span class="check">✓</span> Direct email access — no ticketing system</li>
+            <li><span class="check">✓</span> Monthly strategy call</li>
+          </ul>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Inquire about management →</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Reporting Dashboard</h3>
+            <p class="tagline">A live Google Sheets dashboard connected directly to your Google Ads data. No third-party tools required.</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-num">299</span>
+          </div>
+          <p class="pricing-note">One-time setup · Refreshes automatically daily</p>
+          <hr class="pricing-divider" />
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Built with Google Apps Script — no add-ons</li>
+            <li><span class="check">✓</span> Campaign, ad group & keyword views</li>
+            <li><span class="check">✓</span> Spend pacing & budget tracking</li>
+            <li><span class="check">✓</span> Conversion & cost-per-conversion trends</li>
+            <li><span class="check">✓</span> Automated daily data refresh</li>
+            <li><span class="check">✓</span> You own it completely — no dependency on me</li>
+          </ul>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Set up my dashboard →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY CLARIFY -->
+  <div class="why-bg">
+    <div class="section">
+      <div class="section-header">
+        <p class="section-eyebrow">Why Clarify</p>
+        <h2 class="section-title">Not an agency. Not a freelancer who dabbles.</h2>
+        <p class="section-sub">There's a gap between expensive full-service agencies and generalist freelancers who do a bit of everything. Clarify is built to fill it.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon">🏢</div>
+          <h3>Agency-trained expertise</h3>
+          <p>Trained managing multi-account healthcare portfolios at a performance marketing agency. The rigor without the overhead.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🎯</div>
+          <h3>Paid search only</h3>
+          <p>No SEO, no social, no web design. Google Ads is all Clarify does. Specialists consistently outperform generalists in paid search.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📞</div>
+          <h3>You work with me directly</h3>
+          <p>No account managers, no junior staff doing the actual work. Every audit, every optimization, every email comes from the same person.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🔓</div>
+          <h3>You own everything</h3>
+          <p>Your account, your data, your campaigns. Nothing is locked to Clarify's tools or access. You can walk away with everything intact at any time.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📄</div>
+          <h3>Full transparency</h3>
+          <p>Every change documented. Every recommendation explained. You'll always know what's happening in your account and why.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">⚡</div>
+          <h3>Fast turnaround</h3>
+          <p>Audits delivered in 48 hours. Cleanups completed in under a week. No multi-month onboarding before any real work gets done.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU GET -->
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Deliverables</p>
+      <h2 class="section-title">Concrete outputs, not vague strategy decks.</h2>
+      <p class="section-sub">Every engagement produces something tangible you can act on — whether or not you continue working with Clarify.</p>
+    </div>
+    <div class="deliverables-grid">
+      <div class="deliverable">
+        <span class="deliverable-icon">📊</span>
+        <div>
+          <h4>Written Audit Report</h4>
+          <p>A detailed document covering every issue found in your account, ranked by estimated impact, with specific fixes for each one.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-icon">🚫</span>
+        <div>
+          <h4>Negative Keyword List</h4>
+          <p>A complete list of terms your ads should never appear for — built specifically around your account's search term history.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-icon">📈</span>
+        <div>
+          <h4>Live Reporting Dashboard</h4>
+          <p>A Google Sheets dashboard that pulls your account data automatically every day. No add-ons, no Supermetrics, no extra cost.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-icon">📝</span>
+        <div>
+          <h4>Change Documentation</h4>
+          <p>A log of every change made to the account, what it was, why it was made, and what the expected outcome is.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-icon">🎯</span>
+        <div>
+          <h4>Tracking Verification</h4>
+          <p>Confirmation that conversion tracking is firing correctly, attributed properly, and measuring the things that actually matter to your business.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-icon">🗺️</span>
+        <div>
+          <h4>90-Day Roadmap</h4>
+          <p>A prioritized list of what to tackle next — so you always know what the most impactful move is, even between engagements.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" style="background: var(--bg); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+    <div class="section">
+      <div class="section-header">
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">Built by someone who's been inside the accounts.</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Clarify Paid Search was built because there's a real gap in the market. Full-service agencies charge $2,000–$5,000/month, require long contracts, and often have a junior analyst actually running your account. Freelance generalists dabble in paid search between social posts and web projects.</p>
+          <p>Neither gives a small business what they actually need — deep Google Ads expertise, direct access to the person doing the work, and pricing that reflects the scope of what's actually being done.</p>
+          <p>I'm a senior paid search analyst with agency experience managing multi-account healthcare portfolios. I know what a high-performing account looks like, I know what breaks, and I know how to fix it clearly and quickly.</p>
+          <p>Clarify takes on a small number of clients at a time so the work stays at a high standard. If you're looking for a big team or a full-service agency experience, I'm not the right fit. If you want focused expertise and fast results, let's talk.</p>
+          <div class="about-pills">
+            <span class="pill">Google Ads</span>
+            <span class="pill">Search Campaigns</span>
+            <span class="pill">Performance Max</span>
+            <span class="pill">Shopping</span>
+            <span class="pill">Conversion Tracking</span>
+            <span class="pill">Google Analytics</span>
+            <span class="pill">Reporting Automation</span>
+          </div>
+        </div>
+        <div class="about-sidebar">
+          <div class="about-stat">
+            <div class="about-stat-num">Agency</div>
+            <div class="about-stat-label">Trained managing complex multi-account paid search portfolios at a performance marketing firm</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">48 hrs</div>
+            <div class="about-stat-label">Standard audit turnaround from account access to written report in hand</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">Direct</div>
+            <div class="about-stat-label">Every email, every deliverable, every optimization comes from one person — not a team</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">Chicago</div>
+            <div class="about-stat-label">Based in Chicago. Available to clients anywhere in the US.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">FAQ</p>
+      <h2 class="section-title">Common questions.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-q">Do I need to sign a contract or commit to a retainer?</p>
+        <p class="faq-a">No. Audits and cleanups are flat-fee, one-time engagements. Monthly management is month-to-month with no minimum commitment. You can stop at any time.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What access do you need to my Google Ads account?</p>
+        <p class="faq-a">Read-only access for audits, standard admin access for cleanup and management. You remain the account owner at all times and can revoke access instantly.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How is this different from hiring a marketing agency?</p>
+        <p class="faq-a">Agencies typically charge $1,500–$5,000/month, require 3–6 month contracts, and have a junior analyst managing your account day-to-day. With Clarify you get senior-level work, direct communication, and pricing based on what your account actually needs.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">My account is a mess. Where do we even start?</p>
+        <p class="faq-a">Start with an audit. It costs $299 and tells you exactly what's wrong in priority order. From there you decide whether to fix it yourself or have Clarify handle it — no pressure either way.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What industries do you work with?</p>
+        <p class="faq-a">Any business running Google Ads. Background is in healthcare, but the fundamentals of account structure, keyword strategy, and conversion tracking apply across every vertical.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What if I just want someone to look at my account for free?</p>
+        <p class="faq-a">Send an email. I'll take a quick look and tell you the top three issues I see at no charge. If it makes sense to work together from there, great. If not, you've got three things to fix.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Get a free look at your account. No strings attached.</h2>
+        <p>Send access and I'll come back within 48 hours with the top issues I find — no charge, no sales call required. If what I find is useful, we go from there.</p>
+      </div>
+      <div class="cta-band-actions">
+        <a href="mailto:clarifypaidsearch@gmail.com" class="btn-white">Email Clarify →</a>
+        <span class="cta-band-note">clarifypaidsearch@gmail.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Clarify Paid Search</span>
+    <div class="footer-links">
+      <a href="#how">How It Works</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="mailto:clarifypaidsearch@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 Clarify Paid Search</p>
+  </footer>
+
+</body>
+</html>
