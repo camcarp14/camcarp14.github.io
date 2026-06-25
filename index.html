@@ -6,33 +6,50 @@
   <title>Clarify Paid Search — Google Ads Management & Audits</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white: #ffffff;
-      --bg: #f8f8f6;
-      --ink: #0f0f0e;
-      --ink2: #3a3a37;
-      --mid: #7a7a75;
-      --rule: #e6e6e2;
-      --accent: #1640d6;
-      --accent-light: #eef1fd;
-      --accent-hover: #1235b0;
-      --green: #16a34a;
-      --green-light: #f0fdf4;
+      --bg:           #0a0a0f;
+      --surface:      #111118;
+      --surface2:     #17171f;
+      --border:       #1e1e2a;
+      --border-hi:    #2e2e42;
+      --ink:          #f0f0ec;
+      --ink2:         #9090a8;
+      --ink3:         #55556a;
+      --accent:       #4f6ef7;
+      --accent-dim:   rgba(79,110,247,0.12);
+      --accent-glow:  rgba(79,110,247,0.25);
+      --gold:         #c9a84c;
+      --gold-dim:     rgba(201,168,76,0.12);
+      --gold-glow:    rgba(201,168,76,0.2);
+      --green:        #3ecf8e;
+      --green-dim:    rgba(62,207,142,0.1);
+      --red-dim:      rgba(239,68,68,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--white);
+      background: var(--bg);
       color: var(--ink);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
     }
 
     /* ── NAV ── */
@@ -40,9 +57,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
       padding: 0 48px;
       height: 64px;
       display: flex;
@@ -51,22 +68,27 @@
     }
 
     .nav-logo {
+      font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: 16px;
-      letter-spacing: -0.02em;
+      font-size: 17px;
+      letter-spacing: -0.01em;
       color: var(--ink);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .nav-logo-placeholder { width: 120px; height: 36px; background: #efefed; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #9b9b96; text-transform: uppercase; border: 1.5px dashed #ccccc8; }
-    .nav-logo-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-mark svg {
+      width: 100%;
+      height: 100%;
     }
 
     .nav-links {
@@ -76,83 +98,119 @@
     }
 
     .nav-links a {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--ink2);
       text-decoration: none;
+      letter-spacing: 0.01em;
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--ink); }
 
     .nav-cta {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      color: white !important;
+      color: var(--ink) !important;
       background: var(--accent);
-      padding: 9px 22px;
+      padding: 9px 20px;
       border-radius: 6px;
       text-decoration: none;
-      transition: background 0.2s;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 var(--accent-glow);
     }
 
-    .nav-cta:hover { background: var(--accent-hover) !important; }
+    .nav-cta:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
 
     /* ── HERO ── */
     .hero {
-      padding: 130px 48px 90px;
+      padding: 140px 48px 100px;
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 80px;
+      grid-template-columns: 1fr 460px;
+      gap: 60px;
       align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* subtle radial glow behind hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: -100px;
+      width: 600px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(79,110,247,0.07) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      background: var(--accent-light);
+      background: var(--accent-dim);
+      border: 1px solid rgba(79,110,247,0.2);
       padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 24px;
+      border-radius: 4px;
+      margin-bottom: 28px;
     }
 
-    .hero-badge span { color: var(--accent); }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
 
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 4.5vw, 58px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(38px, 4.8vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
       color: var(--ink);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      font-weight: 800;
     }
 
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
+    .hero h1 .gradient-word {
+      background: linear-gradient(135deg, #7b9bff 0%, #4f6ef7 40%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero-sub {
       font-size: 17px;
       font-weight: 400;
       color: var(--ink2);
-      line-height: 1.75;
-      margin-bottom: 40px;
-      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 44px;
+      max-width: 460px;
     }
 
     .hero-actions {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .btn-primary {
@@ -167,21 +225,23 @@
       padding: 16px 32px;
       border-radius: 8px;
       text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
+      transition: all 0.2s;
       width: fit-content;
+      box-shadow: 0 4px 24px var(--accent-glow);
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
+      opacity: 0.9;
       transform: translateY(-1px);
+      box-shadow: 0 8px 32px var(--accent-glow);
     }
 
     .hero-trust {
       font-size: 13px;
-      color: var(--mid);
+      color: var(--ink3);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .hero-trust::before {
@@ -192,180 +252,285 @@
 
     /* HERO CARD */
     .hero-card {
-      background: var(--bg);
-      border: 1px solid var(--rule);
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
       border-radius: 16px;
-      padding: 32px;
+      padding: 36px;
       position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.8;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(ellipse, rgba(79,110,247,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .hero-card-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 20px;
+      color: var(--ink3);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-card-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--ink3);
     }
 
     .symptom-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 0;
       margin-bottom: 28px;
     }
 
     .symptom-list li {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       font-size: 14px;
       color: var(--ink2);
       line-height: 1.5;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .symptom-list li:first-child {
+      padding-top: 0;
     }
 
     .symptom-icon {
       width: 22px;
       height: 22px;
-      background: #fee2e2;
-      border-radius: 50%;
+      background: var(--red-dim);
+      border: 1px solid rgba(239,68,68,0.15);
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #ef4444;
       flex-shrink: 0;
       margin-top: 1px;
     }
 
     .hero-card-divider {
       border: none;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid var(--border);
       margin: 0 0 24px;
     }
 
     .hero-card-result {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       font-size: 14px;
       color: var(--green);
-      font-weight: 500;
-      line-height: 1.5;
+      font-weight: 600;
+      line-height: 1.6;
+      background: var(--green-dim);
+      border: 1px solid rgba(62,207,142,0.15);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 4px;
     }
 
     .result-icon {
       width: 22px;
       height: 22px;
-      background: var(--green-light);
-      border-radius: 50%;
+      background: rgba(62,207,142,0.15);
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
+      font-weight: 700;
       flex-shrink: 0;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
-    /* ── LOGO BAR ── */
-    .logo-bar {
-      background: var(--bg);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+    /* ── GOOGLE PRODUCT STRIP ── */
+    .product-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       padding: 28px 48px;
-      text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
-    .logo-bar p {
-      font-size: 12px;
+    .product-strip-label {
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 20px;
+      color: var(--ink3);
+      text-align: center;
+      margin-bottom: 24px;
     }
 
-    .logo-bar-items {
+    .product-strip-logos {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 48px;
+      gap: 0;
       flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .logo-bar-item {
-      font-size: 14px;
-      font-weight: 600;
-      color: #b0b0aa;
-      letter-spacing: -0.01em;
+    .product-logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+      cursor: default;
     }
 
-    /* ── SECTIONS SHARED ── */
+    .product-logo-item:last-child {
+      border-right: none;
+    }
+
+    .product-logo-item:hover {
+      background: var(--surface2);
+    }
+
+    .product-logo-item span {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink3);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .product-logo-item:hover span {
+      color: var(--ink2);
+    }
+
+    .product-logo-item svg {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .product-logo-item:hover svg {
+      opacity: 1;
+    }
+
+    /* ── SECTION SHARED ── */
     .section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 96px 48px;
+      padding: 100px 48px;
+      position: relative;
+      z-index: 1;
     }
 
     .section-header {
-      margin-bottom: 60px;
+      margin-bottom: 64px;
     }
 
     .section-eyebrow {
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-eyebrow::after {
+      content: '';
+      height: 1px;
+      width: 32px;
+      background: var(--accent);
+      opacity: 0.4;
     }
 
     .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 3vw, 42px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
       color: var(--ink);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      font-weight: 700;
     }
 
     .section-sub {
       font-size: 16px;
       color: var(--ink2);
-      line-height: 1.7;
-      max-width: 560px;
+      line-height: 1.75;
+      max-width: 540px;
     }
 
     /* ── HOW IT WORKS ── */
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--rule);
+      gap: 1px;
+      background: var(--border);
       border-radius: 12px;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
 
     .step {
-      background: var(--white);
+      background: var(--surface);
       padding: 36px 28px;
       position: relative;
+      transition: background 0.2s;
+    }
+
+    .step:hover {
+      background: var(--surface2);
     }
 
     .step-num {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      opacity: 0.7;
     }
 
     .step-icon {
-      font-size: 28px;
-      margin-bottom: 14px;
+      font-size: 24px;
+      margin-bottom: 16px;
     }
 
     .step h3 {
+      font-family: 'Syne', sans-serif;
       font-size: 15px;
       font-weight: 700;
       color: var(--ink);
@@ -374,54 +539,75 @@
     }
 
     .step p {
-      font-size: 14px;
-      color: var(--mid);
-      line-height: 1.65;
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.7;
     }
 
     /* ── SERVICES / PRICING ── */
+    .pricing-bg {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 16px;
     }
 
     .pricing-card {
-      border: 1.5px solid var(--rule);
+      border: 1px solid var(--border-hi);
       border-radius: 12px;
       padding: 36px;
+      background: var(--bg);
       position: relative;
       transition: border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
     }
 
     .pricing-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 24px rgba(22,64,214,0.08);
+      border-color: var(--border-hi);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
     }
 
     .pricing-card.featured {
-      border-color: var(--accent);
-      background: linear-gradient(135deg, #fafbff 0%, #f0f3ff 100%);
+      border-color: var(--gold);
+      background: linear-gradient(135deg, #0e0d08 0%, #100f07 100%);
+      box-shadow: 0 0 0 1px var(--gold-dim), inset 0 1px 0 rgba(201,168,76,0.1);
     }
 
-    .pricing-card.featured .featured-badge {
+    .pricing-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .featured-badge {
       display: inline-block;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: white;
-      background: var(--accent);
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,0.25);
       padding: 4px 12px;
-      border-radius: 20px;
+      border-radius: 4px;
       margin-bottom: 20px;
     }
 
     .pricing-card-header {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .pricing-card h3 {
+      font-family: 'Inter', sans-serif;
       font-size: 18px;
       font-weight: 700;
       color: var(--ink);
@@ -430,9 +616,9 @@
     }
 
     .pricing-card .tagline {
-      font-size: 14px;
-      color: var(--mid);
-      line-height: 1.5;
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.6;
     }
 
     .pricing-amount {
@@ -443,42 +629,47 @@
     }
 
     .pricing-dollar {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
-      color: var(--ink);
+      color: var(--ink2);
     }
 
     .pricing-num {
-      font-size: 42px;
-      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      font-size: 46px;
+      font-weight: 600;
       color: var(--ink);
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       line-height: 1;
     }
 
+    .pricing-card.featured .pricing-num {
+      color: var(--gold);
+    }
+
     .pricing-period {
-      font-size: 14px;
-      color: var(--mid);
+      font-size: 13px;
+      color: var(--ink2);
       font-weight: 400;
     }
 
     .pricing-note {
       font-size: 12px;
-      color: var(--mid);
-      margin-bottom: 24px;
+      color: var(--ink3);
+      margin-bottom: 22px;
     }
 
     .pricing-divider {
       border: none;
-      border-top: 1px solid var(--rule);
-      margin: 24px 0;
+      border-top: 1px solid var(--border);
+      margin: 22px 0;
     }
 
     .pricing-features {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 11px;
       margin-bottom: 28px;
     }
 
@@ -486,7 +677,7 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--ink2);
       line-height: 1.5;
     }
@@ -494,9 +685,13 @@
     .check {
       color: var(--green);
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       flex-shrink: 0;
       margin-top: 1px;
+    }
+
+    .pricing-card.featured .check {
+      color: var(--gold);
     }
 
     .pricing-cta {
@@ -504,15 +699,16 @@
       text-align: center;
       padding: 13px 24px;
       border-radius: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
+      letter-spacing: 0.01em;
     }
 
     .pricing-cta-outline {
-      border: 1.5px solid var(--rule);
-      color: var(--ink);
+      border: 1px solid var(--border-hi);
+      color: var(--ink2);
     }
 
     .pricing-cta-outline:hover {
@@ -523,34 +719,55 @@
     .pricing-cta-filled {
       background: var(--accent);
       color: white;
+      box-shadow: 0 4px 16px var(--accent-glow);
     }
 
     .pricing-cta-filled:hover {
-      background: var(--accent-hover);
+      opacity: 0.9;
+      box-shadow: 0 6px 24px var(--accent-glow);
     }
 
-    /* ── WHY ── */
-    .why-bg {
-      background: var(--bg);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+    .pricing-cta-gold {
+      background: var(--gold);
+      color: #0a0800;
+      font-weight: 700;
+      box-shadow: 0 4px 16px var(--gold-glow);
     }
 
+    .pricing-cta-gold:hover {
+      opacity: 0.9;
+      box-shadow: 0 6px 24px var(--gold-glow);
+    }
+
+    /* ── WHY CLARIFY ── */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 1px;
+      background: var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
 
-    .why-item {}
+    .why-item {
+      background: var(--surface);
+      padding: 32px 28px;
+      transition: background 0.2s;
+    }
+
+    .why-item:hover {
+      background: var(--surface2);
+    }
 
     .why-icon {
-      font-size: 28px;
+      font-size: 22px;
       margin-bottom: 16px;
     }
 
     .why-item h3 {
-      font-size: 16px;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
       font-weight: 700;
       color: var(--ink);
       letter-spacing: -0.01em;
@@ -558,40 +775,42 @@
     }
 
     .why-item p {
-      font-size: 14px;
-      color: var(--mid);
-      line-height: 1.7;
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.75;
     }
 
-    /* ── WHAT YOU GET ── */
+    /* ── DELIVERABLES ── */
     .deliverables-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 12px;
     }
 
     .deliverable {
       display: flex;
       align-items: flex-start;
       gap: 16px;
-      padding: 24px;
-      border: 1px solid var(--rule);
+      padding: 22px;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      background: var(--white);
-      transition: border-color 0.2s;
+      background: var(--surface);
+      transition: border-color 0.2s, background 0.2s;
     }
 
     .deliverable:hover {
-      border-color: var(--accent);
+      border-color: var(--border-hi);
+      background: var(--surface2);
     }
 
     .deliverable-icon {
-      font-size: 22px;
+      font-size: 20px;
       flex-shrink: 0;
     }
 
     .deliverable h4 {
-      font-size: 14px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 6px;
@@ -599,146 +818,168 @@
     }
 
     .deliverable p {
-      font-size: 13px;
-      color: var(--mid);
-      line-height: 1.6;
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.65;
     }
 
     /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 80px;
-      align-items: start;
+    .about-bg {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
 
-    .about-grid h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3vw, 38px);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 80px;
+      align-items: start;
     }
 
     .about-grid p {
       font-size: 15px;
       color: var(--ink2);
-      line-height: 1.8;
-      margin-bottom: 16px;
+      line-height: 1.85;
+      margin-bottom: 18px;
     }
 
     .about-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
     .pill {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 5px 14px;
-      border-radius: 20px;
+      color: var(--ink2);
+      background: var(--surface2);
+      border: 1px solid var(--border-hi);
+      padding: 5px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
     }
 
     .about-sidebar {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 1px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
 
     .about-stat {
       background: var(--bg);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 24px;
+      padding: 24px 22px;
     }
 
     .about-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
       color: var(--ink);
-      letter-spacing: -0.03em;
-      line-height: 1;
+      letter-spacing: -0.02em;
       margin-bottom: 6px;
     }
 
     .about-stat-label {
-      font-size: 13px;
-      color: var(--mid);
-      line-height: 1.5;
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6;
     }
 
     /* ── FAQ ── */
     .faq-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      border: 1px solid var(--rule);
+      gap: 1px;
+      background: var(--border);
       border-radius: 12px;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
 
     .faq-item {
+      background: var(--surface);
       padding: 28px 32px;
-      border-bottom: 1px solid var(--rule);
-      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .faq-item:last-child { border-bottom: none; }
+    .faq-item:hover {
+      background: var(--surface2);
+    }
 
     .faq-q {
+      font-family: 'Syne', sans-serif;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -0.01em;
     }
 
     .faq-a {
       font-size: 14px;
-      color: var(--mid);
-      line-height: 1.7;
+      color: var(--ink2);
+      line-height: 1.75;
     }
 
     /* ── CTA BAND ── */
     .cta-band {
-      background: var(--ink);
-      padding: 96px 48px;
+      background: var(--accent);
+      padding: 72px 48px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .cta-band-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 60px;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 60px;
     }
 
     .cta-band h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 3.5vw, 46px);
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 800;
       color: white;
+      letter-spacing: -0.025em;
       line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .cta-band p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.65;
-      max-width: 520px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      max-width: 480px;
     }
 
     .cta-band-actions {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 12px;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
     }
 
     .btn-white {
@@ -746,41 +987,46 @@
       align-items: center;
       gap: 8px;
       background: white;
-      color: var(--ink);
-      font-size: 15px;
+      color: var(--accent);
+      font-size: 14px;
       font-weight: 700;
-      padding: 16px 36px;
+      padding: 14px 28px;
       border-radius: 8px;
       text-decoration: none;
+      transition: all 0.2s;
       white-space: nowrap;
-      transition: opacity 0.2s, transform 0.1s;
     }
 
     .btn-white:hover {
-      opacity: 0.92;
       transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
 
     .cta-band-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.35);
-      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.02em;
     }
 
     /* ── FOOTER ── */
     footer {
-      background: #0a0a09;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
       padding: 40px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .footer-logo {
-      font-weight: 700;
+      font-family: 'Syne', sans-serif;
       font-size: 15px;
-      color: white;
+      font-weight: 700;
+      color: var(--ink);
       letter-spacing: -0.01em;
     }
 
@@ -791,40 +1037,40 @@
 
     .footer-links a {
       font-size: 13px;
-      color: rgba(255,255,255,0.4);
+      color: var(--ink2);
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-links a:hover { color: var(--ink); }
 
     footer p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
+      font-size: 12px;
+      color: var(--ink3);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 0 24px; }
-      .nav-links a:not(.nav-cta) { display: none; }
-      .hero { grid-template-columns: 1fr; gap: 48px; padding: 110px 24px 60px; }
-      .hero-card { display: none; }
-      .logo-bar { padding: 24px; }
-      .section { padding: 64px 24px; }
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 110px 24px 64px; gap: 48px; }
+      .hero::before { display: none; }
+      .section { padding: 72px 24px; }
       .steps { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; gap: 32px; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
       .deliverables-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .cta-band { padding: 64px 24px; }
-      .cta-band-inner { grid-template-columns: 1fr; gap: 36px; }
+      .cta-band { padding: 56px 24px; }
+      .cta-band-inner { flex-direction: column; gap: 32px; }
       .cta-band-actions { align-items: flex-start; }
-      footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
+      footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+      .product-strip { padding: 20px 24px; }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 480px) {
       .steps { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -833,208 +1079,263 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">
-      <span class="nav-logo-placeholder">Logo</span>
-      Clarify Paid Search
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="11" stroke="#4f6ef7" stroke-width="2.5" stroke-dasharray="60 9" stroke-dashoffset="0"/>
+          <path d="M21 14 L24 11 L24 17 Z" fill="#4f6ef7"/>
+        </svg>
+      </div>
+      Clarify
     </a>
     <div class="nav-links">
       <a href="#how">How It Works</a>
       <a href="#services">Services</a>
       <a href="#about">About</a>
-      <a href="mailto:clarifypaidsearch@gmail.com" class="nav-cta">Get a Free Audit</a>
+      <a href="mailto:clarifypaidsearch@gmail.com" class="nav-cta">Get Free Review</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <div>
-      <div class="hero-badge">Google Ads · Paid Search · Performance</div>
-      <h1>Your Google Ads account is probably <em>losing money</em> right now.</h1>
-      <p class="hero-sub">Most small business Google Ads accounts are built once and never properly maintained. Bad keyword targeting, broken conversion tracking, and wasted budget quietly drain results month after month. Clarify finds it, fixes it, and keeps it working.</p>
+    <div class="hero-left">
+      <div class="hero-badge">Google Ads Specialist — Chicago</div>
+      <h1>Stop paying for ads that<br/><span class="gradient-word">don't convert.</span></h1>
+      <p class="hero-sub">Agency-trained paid search expertise for small businesses. Flat fees, no contracts, direct access to the person doing the work.</p>
       <div class="hero-actions">
-        <a href="mailto:clarifypaidsearch@gmail.com" class="btn-primary">Get a Free Account Review →</a>
-        <span class="hero-trust">No retainer required. Response within 24 hours.</span>
-        <span class="hero-trust">Agency-trained. No junior staff, no handoffs.</span>
+        <a href="mailto:clarifypaidsearch@gmail.com" class="btn-primary">Get a free account review →</a>
+        <span class="hero-trust">No commitment. Response within 24 hours.</span>
       </div>
     </div>
     <div class="hero-card">
-      <p class="hero-card-label">Common account issues</p>
+      <div class="hero-card-label">Common account issues</div>
       <ul class="symptom-list">
         <li>
           <span class="symptom-icon">✗</span>
-          Spending on irrelevant search terms that will never convert
+          Broad match keywords burning budget on irrelevant searches
         </li>
         <li>
           <span class="symptom-icon">✗</span>
-          Conversion tracking that's broken, duplicated, or unmeasured
+          Conversion tracking misfiring or double-counting
         </li>
         <li>
           <span class="symptom-icon">✗</span>
-          Campaigns built years ago that nobody fully understands anymore
+          No negative keyword list — same bad terms for months
         </li>
         <li>
           <span class="symptom-icon">✗</span>
-          Bidding strategies fighting against each other
-        </li>
-        <li>
-          <span class="symptom-icon">✗</span>
-          No real visibility into what's actually driving results
+          Smart campaigns with zero visibility into what's actually running
         </li>
       </ul>
       <hr class="hero-card-divider" />
       <div class="hero-card-result">
         <span class="result-icon">✓</span>
-        Clarify identifies exactly what's wrong and fixes it — with clear documentation so you always understand your own account.
+        Audit in 48 hours. Fix list in priority order. Your call what happens next.
       </div>
     </div>
   </div>
 
-  <!-- LOGO BAR -->
-  <div class="logo-bar">
-    <p>Works with accounts running on</p>
-    <div class="logo-bar-items">
-      <span class="logo-bar-item">Google Search</span>
-      <span class="logo-bar-item">Google Shopping</span>
-      <span class="logo-bar-item">Performance Max</span>
-      <span class="logo-bar-item">Display & Remarketing</span>
-      <span class="logo-bar-item">Local Campaigns</span>
+  <!-- GOOGLE PRODUCT STRIP -->
+  <div class="product-strip">
+    <p class="product-strip-label">Specialist across the full Google ecosystem</p>
+    <div class="product-strip-logos">
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="30" r="8" fill="#FBBC04"/>
+          <circle cx="30" cy="30" r="8" fill="#34A853"/>
+          <circle cx="20" cy="12" r="8" fill="#4285F4"/>
+        </svg>
+        <span>Google Ads</span>
+      </div>
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="22" width="9" height="14" rx="2" fill="#F9AB00" opacity="0.5"/>
+          <rect x="15.5" y="13" width="9" height="23" rx="2" fill="#F9AB00" opacity="0.75"/>
+          <rect x="27" y="4" width="9" height="32" rx="2" fill="#E37400"/>
+        </svg>
+        <span>Google Analytics</span>
+      </div>
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="11" fill="none" stroke="#4285F4" stroke-width="3.5"/>
+          <line x1="25" y1="25" x2="35" y2="35" stroke="#4285F4" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span>Search</span>
+      </div>
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,4 36,36 4,36" fill="none" stroke="#34A853" stroke-width="3" stroke-linejoin="round"/>
+          <line x1="20" y1="15" x2="20" y2="26" stroke="#34A853" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="30" r="2" fill="#34A853"/>
+        </svg>
+        <span>Performance Max</span>
+      </div>
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="16" width="28" height="20" rx="3" fill="none" stroke="#EA4335" stroke-width="3"/>
+          <path d="M13 16 Q13 7 20 7 Q27 7 27 16" fill="none" stroke="#EA4335" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="14" cy="23" r="2" fill="#EA4335"/>
+          <circle cx="26" cy="23" r="2" fill="#EA4335"/>
+        </svg>
+        <span>Shopping</span>
+      </div>
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="30" height="30" rx="4" fill="none" stroke="#4285F4" stroke-width="3"/>
+          <path d="M13 20 L20 13 L27 20 L20 27 Z" fill="#4285F4" opacity="0.8"/>
+        </svg>
+        <span>Tag Manager</span>
+      </div>
+
+      <div class="product-logo-item">
+        <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="4" width="22" height="32" rx="2" fill="none" stroke="#34A853" stroke-width="3"/>
+          <line x1="6" y1="14" x2="28" y2="14" stroke="#34A853" stroke-width="2"/>
+          <line x1="6" y1="22" x2="28" y2="22" stroke="#34A853" stroke-width="2"/>
+          <line x1="17" y1="4" x2="17" y2="36" stroke="#34A853" stroke-width="2"/>
+          <path d="M28 4 L34 10 L28 10 Z" fill="#34A853" opacity="0.7"/>
+        </svg>
+        <span>Sheets Reporting</span>
+      </div>
+
     </div>
   </div>
 
   <!-- HOW IT WORKS -->
-  <div id="how">
-    <div class="section">
-      <div class="section-header">
-        <p class="section-eyebrow">The Process</p>
-        <h2 class="section-title">Simple, transparent, and fast.</h2>
-        <p class="section-sub">No lengthy onboarding, no discovery calls that go nowhere. You get real work done in the first week.</p>
+  <div id="how" class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Process</p>
+      <h2 class="section-title">How it works.</h2>
+      <p class="section-sub">No onboarding calls, no 6-week ramp. You send access, I send findings.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">✉️</div>
+        <h3>Send access</h3>
+        <p>Grant read-only or admin access to your Google Ads account. Takes 2 minutes from the Users tab.</p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <p class="step-num">01</p>
-          <div class="step-icon">📬</div>
-          <h3>You reach out</h3>
-          <p>Email with a quick description of your account and what's not working. No forms, no scheduling software required.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">02</p>
-          <div class="step-icon">🔍</div>
-          <h3>I audit the account</h3>
-          <p>You share read-only access. I dig into structure, keywords, bidding, tracking, and spend within 48 hours.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">03</p>
-          <div class="step-icon">📋</div>
-          <h3>You get a clear report</h3>
-          <p>A written breakdown of every issue found, ranked by impact, with specific recommendations for each one.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">04</p>
-          <div class="step-icon">⚡</div>
-          <h3>We fix it</h3>
-          <p>Either you implement the fixes yourself, or I do it for you. No lock-in. You own the account and always will.</p>
-        </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">🔍</div>
+        <h3>I audit everything</h3>
+        <p>Campaign structure, keyword match types, negatives, bidding, tracking, ad copy, extensions. Every layer.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">📋</div>
+        <h3>You get a report</h3>
+        <p>Written findings ranked by estimated impact. Every issue explained. Specific fix for each one. 48-hour turnaround.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-icon">⚡</div>
+        <h3>Decide what's next</h3>
+        <p>Fix it yourself, have Clarify implement the changes, or move to monthly management. Your call, no pressure.</p>
       </div>
     </div>
   </div>
 
-  <!-- SERVICES -->
-  <div id="services" style="background: var(--bg); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+  <!-- SERVICES / PRICING -->
+  <div id="services" class="pricing-bg">
     <div class="section">
       <div class="section-header">
-        <p class="section-eyebrow">Services & Pricing</p>
-        <h2 class="section-title">Straightforward pricing. No retainer traps.</h2>
-        <p class="section-sub">Every engagement is scoped clearly upfront. You know exactly what you're getting and what it costs before anything starts.</p>
+        <p class="section-eyebrow">Services</p>
+        <h2 class="section-title">Flat fees. No retainer required.</h2>
+        <p class="section-sub">Every service is scoped, priced, and delivered clearly. No monthly surprises.</p>
       </div>
       <div class="pricing-grid">
 
         <div class="pricing-card">
           <div class="pricing-card-header">
             <h3>Account Audit</h3>
-            <p class="tagline">A full diagnostic of your Google Ads account with a written findings report and prioritized action list.</p>
+            <p class="tagline">A full diagnosis of what's costing you money and why.</p>
           </div>
           <div class="pricing-amount">
             <span class="pricing-dollar">$</span>
             <span class="pricing-num">299</span>
           </div>
-          <p class="pricing-note">One-time · Delivered in 48 hours</p>
+          <div class="pricing-note">One-time · 48-hour turnaround</div>
           <hr class="pricing-divider" />
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Campaign & ad group structure review</li>
+            <li><span class="check">✓</span> Full account structure review</li>
             <li><span class="check">✓</span> Keyword & match type analysis</li>
+            <li><span class="check">✓</span> Negative keyword gap report</li>
             <li><span class="check">✓</span> Conversion tracking audit</li>
-            <li><span class="check">✓</span> Bidding strategy assessment</li>
-            <li><span class="check">✓</span> Wasted spend identification</li>
-            <li><span class="check">✓</span> Written report with priority action list</li>
-            <li><span class="check">✓</span> 30-min walkthrough call included</li>
+            <li><span class="check">✓</span> Written report, issues ranked by impact</li>
+            <li><span class="check">✓</span> 90-day priority roadmap</li>
           </ul>
-          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Start with an audit →</a>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Request audit →</a>
         </div>
 
         <div class="pricing-card featured">
-          <span class="featured-badge">Most Popular</span>
+          <div class="featured-badge">Most Popular</div>
           <div class="pricing-card-header">
             <h3>Audit + Full Cleanup</h3>
-            <p class="tagline">Everything in the audit, plus hands-on implementation of all recommended fixes — done for you.</p>
+            <p class="tagline">Find it and fix it. Handed back clean and running properly.</p>
           </div>
           <div class="pricing-amount">
             <span class="pricing-dollar">$</span>
             <span class="pricing-num">599</span>
           </div>
-          <p class="pricing-note">One-time · Completed within 5 business days</p>
+          <div class="pricing-note">One-time · Delivered in under 1 week</div>
           <hr class="pricing-divider" />
           <ul class="pricing-features">
             <li><span class="check">✓</span> Everything in the Audit</li>
-            <li><span class="check">✓</span> Negative keyword list build</li>
-            <li><span class="check">✓</span> Match type restructuring</li>
-            <li><span class="check">✓</span> Conversion tracking fixes</li>
-            <li><span class="check">✓</span> Campaign consolidation & cleanup</li>
-            <li><span class="check">✓</span> Bidding strategy alignment</li>
-            <li><span class="check">✓</span> Documentation of all changes made</li>
+            <li><span class="check">✓</span> Implementation of all audit fixes</li>
+            <li><span class="check">✓</span> Negative keyword list built and applied</li>
+            <li><span class="check">✓</span> Bidding strategy review and corrections</li>
+            <li><span class="check">✓</span> Tracking verified and corrected</li>
+            <li><span class="check">✓</span> Full change log with explanations</li>
           </ul>
-          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-filled">Get the full cleanup →</a>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-gold">Get audit + cleanup →</a>
         </div>
 
         <div class="pricing-card">
           <div class="pricing-card-header">
             <h3>Monthly Management</h3>
-            <p class="tagline">Ongoing optimization and management for accounts that need consistent expert attention.</p>
+            <p class="tagline">Ongoing optimization with full transparency, month-to-month.</p>
           </div>
           <div class="pricing-amount">
             <span class="pricing-dollar">$</span>
             <span class="pricing-num">750</span>
-            <span class="pricing-period">/month</span>
+            <span class="pricing-period">/mo</span>
           </div>
-          <p class="pricing-note">Month-to-month · No long-term contract</p>
+          <div class="pricing-note">No contract · Cancel anytime</div>
           <hr class="pricing-divider" />
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Weekly bid & budget optimizations</li>
-            <li><span class="check">✓</span> Search term monitoring & negatives</li>
-            <li><span class="check">✓</span> Ad copy testing & rotation</li>
-            <li><span class="check">✓</span> Monthly performance report</li>
-            <li><span class="check">✓</span> Direct email access — no ticketing system</li>
-            <li><span class="check">✓</span> Monthly strategy call</li>
+            <li><span class="check">✓</span> Weekly bid and budget adjustments</li>
+            <li><span class="check">✓</span> Search term review and negative expansion</li>
+            <li><span class="check">✓</span> Ad copy testing and rotation</li>
+            <li><span class="check">✓</span> Monthly performance summary</li>
+            <li><span class="check">✓</span> Direct access — email response within 24 hours</li>
+            <li><span class="check">✓</span> Full change documentation throughout</li>
           </ul>
-          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Inquire about management →</a>
+          <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Discuss management →</a>
         </div>
 
         <div class="pricing-card">
           <div class="pricing-card-header">
             <h3>Reporting Dashboard</h3>
-            <p class="tagline">A live Google Sheets dashboard connected directly to your Google Ads data. No third-party tools required.</p>
+            <p class="tagline">Automated daily reporting built in Google Sheets. You own it forever.</p>
           </div>
           <div class="pricing-amount">
             <span class="pricing-dollar">$</span>
             <span class="pricing-num">299</span>
           </div>
-          <p class="pricing-note">One-time setup · Refreshes automatically daily</p>
+          <div class="pricing-note">One-time · No subscriptions or add-ons</div>
           <hr class="pricing-divider" />
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Built with Google Apps Script — no add-ons</li>
-            <li><span class="check">✓</span> Campaign, ad group & keyword views</li>
-            <li><span class="check">✓</span> Spend pacing & budget tracking</li>
-            <li><span class="check">✓</span> Conversion & cost-per-conversion trends</li>
+            <li><span class="check">✓</span> Built with Google Apps Script — no Supermetrics</li>
+            <li><span class="check">✓</span> Pulls live data from your Google Ads account</li>
+            <li><span class="check">✓</span> Customized to your KPIs and business</li>
             <li><span class="check">✓</span> Automated daily data refresh</li>
-            <li><span class="check">✓</span> You own it completely — no dependency on me</li>
+            <li><span class="check">✓</span> No ongoing dependency on Clarify</li>
           </ul>
           <a href="mailto:clarifypaidsearch@gmail.com" class="pricing-cta pricing-cta-outline">Set up my dashboard →</a>
         </div>
@@ -1044,103 +1345,103 @@
   </div>
 
   <!-- WHY CLARIFY -->
-  <div class="why-bg">
-    <div class="section">
-      <div class="section-header">
-        <p class="section-eyebrow">Why Clarify</p>
-        <h2 class="section-title">Not an agency. Not a freelancer who dabbles.</h2>
-        <p class="section-sub">There's a gap between expensive full-service agencies and generalist freelancers who do a bit of everything. Clarify is built to fill it.</p>
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Why Clarify</p>
+      <h2 class="section-title">Not an agency. Not a dabbler.</h2>
+      <p class="section-sub">The gap between expensive agencies and generalist freelancers is where most small businesses get burned. Clarify is built to fill it.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🏢</div>
+        <h3>Agency-trained</h3>
+        <p>Managing multi-account healthcare portfolios at a performance marketing firm. The rigor, without the overhead.</p>
       </div>
-      <div class="why-grid">
-        <div class="why-item">
-          <div class="why-icon">🏢</div>
-          <h3>Agency-trained expertise</h3>
-          <p>Trained managing multi-account healthcare portfolios at a performance marketing agency. The rigor without the overhead.</p>
-        </div>
-        <div class="why-item">
-          <div class="why-icon">🎯</div>
-          <h3>Paid search only</h3>
-          <p>No SEO, no social, no web design. Google Ads is all Clarify does. Specialists consistently outperform generalists in paid search.</p>
-        </div>
-        <div class="why-item">
-          <div class="why-icon">📞</div>
-          <h3>You work with me directly</h3>
-          <p>No account managers, no junior staff doing the actual work. Every audit, every optimization, every email comes from the same person.</p>
-        </div>
-        <div class="why-item">
-          <div class="why-icon">🔓</div>
-          <h3>You own everything</h3>
-          <p>Your account, your data, your campaigns. Nothing is locked to Clarify's tools or access. You can walk away with everything intact at any time.</p>
-        </div>
-        <div class="why-item">
-          <div class="why-icon">📄</div>
-          <h3>Full transparency</h3>
-          <p>Every change documented. Every recommendation explained. You'll always know what's happening in your account and why.</p>
-        </div>
-        <div class="why-item">
-          <div class="why-icon">⚡</div>
-          <h3>Fast turnaround</h3>
-          <p>Audits delivered in 48 hours. Cleanups completed in under a week. No multi-month onboarding before any real work gets done.</p>
-        </div>
+      <div class="why-item">
+        <div class="why-icon">🎯</div>
+        <h3>Paid search only</h3>
+        <p>No SEO, no social, no web design. Google Ads is everything Clarify does. Specialists beat generalists here.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📞</div>
+        <h3>You work with me directly</h3>
+        <p>No account managers, no junior staff. Every audit, every optimization, every email from one person.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🔓</div>
+        <h3>You own everything</h3>
+        <p>Your account, your data, your campaigns. Nothing locked to Clarify's tools. Walk away clean at any time.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📄</div>
+        <h3>Full transparency</h3>
+        <p>Every change documented. Every recommendation explained. You always know what's happening and why.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <h3>Fast turnaround</h3>
+        <p>Audits in 48 hours. Cleanups under a week. No multi-month onboarding before real work gets done.</p>
       </div>
     </div>
   </div>
 
-  <!-- WHAT YOU GET -->
-  <div class="section">
-    <div class="section-header">
-      <p class="section-eyebrow">Deliverables</p>
-      <h2 class="section-title">Concrete outputs, not vague strategy decks.</h2>
-      <p class="section-sub">Every engagement produces something tangible you can act on — whether or not you continue working with Clarify.</p>
-    </div>
-    <div class="deliverables-grid">
-      <div class="deliverable">
-        <span class="deliverable-icon">📊</span>
-        <div>
-          <h4>Written Audit Report</h4>
-          <p>A detailed document covering every issue found in your account, ranked by estimated impact, with specific fixes for each one.</p>
-        </div>
+  <!-- DELIVERABLES -->
+  <div style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; z-index: 1;">
+    <div class="section">
+      <div class="section-header">
+        <p class="section-eyebrow">Deliverables</p>
+        <h2 class="section-title">Concrete outputs, not vague strategy decks.</h2>
+        <p class="section-sub">Every engagement produces something tangible — whether or not you continue working with Clarify.</p>
       </div>
-      <div class="deliverable">
-        <span class="deliverable-icon">🚫</span>
-        <div>
-          <h4>Negative Keyword List</h4>
-          <p>A complete list of terms your ads should never appear for — built specifically around your account's search term history.</p>
+      <div class="deliverables-grid">
+        <div class="deliverable">
+          <span class="deliverable-icon">📊</span>
+          <div>
+            <h4>Written Audit Report</h4>
+            <p>Every issue found, ranked by impact, with a specific fix for each one.</p>
+          </div>
         </div>
-      </div>
-      <div class="deliverable">
-        <span class="deliverable-icon">📈</span>
-        <div>
-          <h4>Live Reporting Dashboard</h4>
-          <p>A Google Sheets dashboard that pulls your account data automatically every day. No add-ons, no Supermetrics, no extra cost.</p>
+        <div class="deliverable">
+          <span class="deliverable-icon">🚫</span>
+          <div>
+            <h4>Negative Keyword List</h4>
+            <p>Built from your account's actual search term history. Applied immediately.</p>
+          </div>
         </div>
-      </div>
-      <div class="deliverable">
-        <span class="deliverable-icon">📝</span>
-        <div>
-          <h4>Change Documentation</h4>
-          <p>A log of every change made to the account, what it was, why it was made, and what the expected outcome is.</p>
+        <div class="deliverable">
+          <span class="deliverable-icon">📈</span>
+          <div>
+            <h4>Live Reporting Dashboard</h4>
+            <p>Google Sheets pulling your account data automatically. No add-ons, no recurring cost.</p>
+          </div>
         </div>
-      </div>
-      <div class="deliverable">
-        <span class="deliverable-icon">🎯</span>
-        <div>
-          <h4>Tracking Verification</h4>
-          <p>Confirmation that conversion tracking is firing correctly, attributed properly, and measuring the things that actually matter to your business.</p>
+        <div class="deliverable">
+          <span class="deliverable-icon">📝</span>
+          <div>
+            <h4>Change Documentation</h4>
+            <p>Every change logged — what, why, and expected outcome. Full audit trail.</p>
+          </div>
         </div>
-      </div>
-      <div class="deliverable">
-        <span class="deliverable-icon">🗺️</span>
-        <div>
-          <h4>90-Day Roadmap</h4>
-          <p>A prioritized list of what to tackle next — so you always know what the most impactful move is, even between engagements.</p>
+        <div class="deliverable">
+          <span class="deliverable-icon">🎯</span>
+          <div>
+            <h4>Tracking Verification</h4>
+            <p>Conversion tracking confirmed firing correctly, attributed properly, measuring what matters.</p>
+          </div>
+        </div>
+        <div class="deliverable">
+          <span class="deliverable-icon">🗺️</span>
+          <div>
+            <h4>90-Day Roadmap</h4>
+            <p>Prioritized list of next moves so you always know the highest-impact action between engagements.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ABOUT -->
-  <div id="about" style="background: var(--bg); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+  <div id="about" class="about-bg">
     <div class="section">
       <div class="section-header">
         <p class="section-eyebrow">About</p>
@@ -1148,10 +1449,10 @@
       </div>
       <div class="about-grid">
         <div>
-          <p>Clarify Paid Search was built because there's a real gap in the market. Full-service agencies charge $2,000–$5,000/month, require long contracts, and often have a junior analyst actually running your account. Freelance generalists dabble in paid search between social posts and web projects.</p>
-          <p>Neither gives a small business what they actually need — deep Google Ads expertise, direct access to the person doing the work, and pricing that reflects the scope of what's actually being done.</p>
+          <p>Clarify exists because there's a real gap in the market. Full-service agencies charge $2,000–$5,000/month, require long contracts, and often have a junior analyst actually running your account day-to-day. Freelance generalists dabble in paid search between social posts and web projects.</p>
+          <p>Neither gives a small business what they actually need — deep Google Ads expertise, direct access to the person doing the work, and pricing that reflects the actual scope of what's being done.</p>
           <p>I'm a senior paid search analyst with agency experience managing multi-account healthcare portfolios. I know what a high-performing account looks like, I know what breaks, and I know how to fix it clearly and quickly.</p>
-          <p>Clarify takes on a small number of clients at a time so the work stays at a high standard. If you're looking for a big team or a full-service agency experience, I'm not the right fit. If you want focused expertise and fast results, let's talk.</p>
+          <p>Clarify takes on a small number of clients at a time so the work stays high-quality. If you want a big team or full-service experience, I'm not the right fit. If you want focused expertise and fast results — let's talk.</p>
           <div class="about-pills">
             <span class="pill">Google Ads</span>
             <span class="pill">Search Campaigns</span>
@@ -1173,7 +1474,7 @@
           </div>
           <div class="about-stat">
             <div class="about-stat-num">Direct</div>
-            <div class="about-stat-label">Every email, every deliverable, every optimization comes from one person — not a team</div>
+            <div class="about-stat-label">Every email, every deliverable, every optimization from one person — not a team</div>
           </div>
           <div class="about-stat">
             <div class="about-stat-num">Chicago</div>
@@ -1193,7 +1494,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <p class="faq-q">Do I need to sign a contract or commit to a retainer?</p>
-        <p class="faq-a">No. Audits and cleanups are flat-fee, one-time engagements. Monthly management is month-to-month with no minimum commitment. You can stop at any time.</p>
+        <p class="faq-a">No. Audits and cleanups are flat-fee, one-time engagements. Monthly management is month-to-month with no minimum commitment. Stop at any time.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">What access do you need to my Google Ads account?</p>
@@ -1205,11 +1506,11 @@
       </div>
       <div class="faq-item">
         <p class="faq-q">My account is a mess. Where do we even start?</p>
-        <p class="faq-a">Start with an audit. It costs $299 and tells you exactly what's wrong in priority order. From there you decide whether to fix it yourself or have Clarify handle it — no pressure either way.</p>
+        <p class="faq-a">Start with an audit. $299, 48-hour turnaround, tells you exactly what's wrong in priority order. From there you decide whether to fix it yourself or have Clarify handle it — no pressure either way.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">What industries do you work with?</p>
-        <p class="faq-a">Any business running Google Ads. Background is in healthcare, but the fundamentals of account structure, keyword strategy, and conversion tracking apply across every vertical.</p>
+        <p class="faq-a">Any business running Google Ads. Background is in healthcare, but keyword strategy, account structure, and conversion tracking fundamentals apply across every vertical.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">What if I just want someone to look at my account for free?</p>
@@ -1222,8 +1523,8 @@
   <div class="cta-band">
     <div class="cta-band-inner">
       <div>
-        <h2>Get a free look at your account. No strings attached.</h2>
-        <p>Send access and I'll come back within 48 hours with the top issues I find — no charge, no sales call required. If what I find is useful, we go from there.</p>
+        <h2>Get a free look at your account.<br/>No strings attached.</h2>
+        <p>Send access and I'll come back within 48 hours with the top issues I find — no charge, no sales call. If what I find is useful, we go from there.</p>
       </div>
       <div class="cta-band-actions">
         <a href="mailto:clarifypaidsearch@gmail.com" class="btn-white">Email Clarify →</a>
