@@ -412,6 +412,8 @@
       align-items: center;
     }
 
+    .hero-left { transform: translateY(-36px); }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -584,15 +586,16 @@
       top: -30%;
       height: 26%;
       background: linear-gradient(180deg, transparent, rgba(91,124,255,.075), rgba(84,200,255,.10), transparent);
-      animation: scan 7s var(--e-io) infinite;
-      animation-delay: 2.2s;
+      opacity: 0;
       pointer-events: none;
+    }
+    .instrument.is-live .inst-scan {
+      animation: scan 2.8s var(--e-io) .5s 1 both;
     }
     @keyframes scan {
       0%   { transform: translateY(0); opacity: 0; }
-      8%   { opacity: 1; }
-      46%  { transform: translateY(520%); opacity: 1; }
-      54%  { opacity: 0; }
+      12%  { opacity: 1; }
+      82%  { transform: translateY(520%); opacity: 1; }
       100% { transform: translateY(520%); opacity: 0; }
     }
 
@@ -811,74 +814,6 @@
       color: var(--muted-2);
     }
 
-    /* query triage ticker */
-    .inst-ticker {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      background: rgba(0,0,0,.28);
-      overflow: hidden;
-    }
-    .ticker-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 9px 13px;
-      border-bottom: 1px solid var(--line);
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .ticker-head .ticker-note { color: var(--muted-2); letter-spacing: .1em; }
-    .ticker-list {
-      list-style: none;
-      margin: 0;
-      padding: 6px 0;
-      height: 108px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-    .ticker-list li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 7px 13px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-    }
-    html.js .ticker-list li.is-new {
-      animation: ticker-in .5s var(--e-out) both;
-    }
-    @keyframes ticker-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .ticker-q {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .ticker-q::before { content: "“"; color: var(--muted-2); }
-    .ticker-q::after { content: "”"; color: var(--muted-2); }
-    .ticker-tag {
-      flex-shrink: 0;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      border-radius: 6px;
-      padding: 3px 8px;
-    }
-    .ticker-tag.blocked { color: var(--red); background: var(--red-soft); border: 1px solid rgba(255,107,107,.3); }
-    .ticker-tag.kept { color: var(--green); background: var(--green-soft); border: 1px solid rgba(74,222,155,.3); }
-    .ticker-tag.watch { color: var(--gold); background: var(--gold-soft); border: 1px solid rgba(217,183,95,.3); }
 
     .inst-foot {
       margin-top: 16px;
@@ -1875,6 +1810,7 @@
 
     @media (max-width: 1060px) {
       .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .hero-left { transform: none; }
       .hero h1 { max-width: 16ch; }
       .instrument-wrap { max-width: 620px; }
       .signal-grid { grid-template-columns: repeat(3, 1fr); }
@@ -2139,18 +2075,6 @@
                 <p class="score-row-note">Some structure exists, but documenting changes and learnings would make optimization much clearer.</p>
               </li>
             </ul>
-
-            <div class="inst-ticker">
-              <div class="ticker-head">
-                <span>Query triage</span>
-                <span class="ticker-note">Illustrative sample</span>
-              </div>
-              <ul class="ticker-list" id="tickerList">
-                <li><span class="ticker-q">emergency dentist near me</span><span class="ticker-tag kept">Kept</span></li>
-                <li><span class="ticker-q">free teeth whitening diy</span><span class="ticker-tag blocked">Blocked</span></li>
-                <li><span class="ticker-q">invisalign cost estimate</span><span class="ticker-tag watch">Watch</span></li>
-              </ul>
-            </div>
 
             <p class="inst-foot"><span class="tick" aria-hidden="true">✓</span><span><strong>You get the score, the reason behind it, and the fix</strong> — each section shows where the account stands and where the biggest gains come from first.</span></p>
           </aside>
@@ -2770,6 +2694,7 @@
             entries.forEach(function (entry) {
               if (!entry.isIntersecting) return;
               live.unobserve(entry.target);
+              instrument.classList.add('is-live');
               rows.classList.add('is-live');
               ringFill.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1) .15s';
               requestAnimationFrame(function () {
@@ -2779,6 +2704,7 @@
           }, { threshold: 0.35 });
           live.observe(instrument);
         } else {
+          instrument.classList.add('is-live');
           rows.classList.add('is-live');
           ringFill.style.strokeDashoffset = TARGET_OFFSET;
         }
@@ -2799,75 +2725,6 @@
             instrument.style.transform = '';
           });
         }
-      });
-
-      /* ---------- 8. Query triage ticker ---------- */
-      safe(function () {
-        var list = document.getElementById('tickerList');
-        if (!list || RM) return; /* reduced motion keeps the static sample rows */
-
-        var FEED = [
-          { q: 'water heater replacement cost', tag: 'kept' },
-          { q: 'google ads coupon code', tag: 'blocked' },
-          { q: 'personal injury lawyer chicago', tag: 'kept' },
-          { q: 'law school admission tips', tag: 'blocked' },
-          { q: 'med spa laser hair removal pricing', tag: 'kept' },
-          { q: 'botox training courses', tag: 'blocked' },
-          { q: 'divorce lawyer free consultation', tag: 'watch' },
-          { q: 'hvac repair same day', tag: 'kept' },
-          { q: 'how to unclog drain yourself', tag: 'blocked' },
-          { q: 'emergency dentist near me', tag: 'kept' },
-          { q: 'free teeth whitening diy', tag: 'blocked' },
-          { q: 'invisalign cost estimate', tag: 'watch' }
-        ];
-        var LABELS = { kept: 'Kept', blocked: 'Blocked', watch: 'Watch' };
-        var idx = 0;
-        var timer = null;
-        var inView = false;
-
-        function push() {
-          var item = FEED[idx % FEED.length];
-          idx += 1;
-          var li = document.createElement('li');
-          li.className = 'is-new';
-
-          var q = document.createElement('span');
-          q.className = 'ticker-q';
-          q.textContent = item.q;
-
-          var tag = document.createElement('span');
-          tag.className = 'ticker-tag ' + item.tag;
-          tag.textContent = LABELS[item.tag];
-
-          li.appendChild(q);
-          li.appendChild(tag);
-          list.appendChild(li);
-          while (list.children.length > 4) list.removeChild(list.firstElementChild);
-        }
-
-        function start() {
-          if (timer || !inView || document.hidden) return;
-          timer = setInterval(push, 2200);
-        }
-        function stop() {
-          if (timer) { clearInterval(timer); timer = null; }
-        }
-
-        if ('IntersectionObserver' in window) {
-          var vis = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              inView = entry.isIntersecting;
-              if (inView) start(); else stop();
-            });
-          }, { threshold: 0.15 });
-          vis.observe(list);
-        } else {
-          inView = true;
-          start();
-        }
-        document.addEventListener('visibilitychange', function () {
-          if (document.hidden) stop(); else start();
-        });
       });
 
       /* ---------- 9. Pointer-follow glow on cards ---------- */
