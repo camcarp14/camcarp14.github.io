@@ -1,0 +1,3269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clarify Paid Search helps small businesses clean up Google Ads accounts with focused audits, conversion tracking reviews, and month-to-month paid search management." />
+  <meta name="theme-color" content="#06070c" />
+  <meta property="og:title" content="Clarify Paid Search — Google Ads Audits & Management" />
+  <meta property="og:description" content="Senior-level paid search help without agency retainers, long contracts, or vague strategy decks." />
+  <meta property="og:type" content="website" />
+  <title>Clarify Paid Search — Google Ads Audits &amp; Management</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2307080d'/%3E%3Crect x='12' y='20' width='8' height='18' rx='2' fill='%232f7dff'/%3E%3Crect x='28' y='10' width='8' height='28' rx='2' fill='%2354c8ff'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    (function () {
+      var de = document.documentElement;
+      de.classList.add('js', 'intro-ready');
+      /* Safety valve: if anything downstream fails, reveal the page anyway. */
+      window.__introSafety = setTimeout(function () { de.classList.add('is-loaded'); }, 3000);
+    })();
+  </script>
+
+  <style>
+    /* ============================================================
+       CLARIFY PAID SEARCH — design system
+       Type   : Bricolage Grotesque (display) / Inter (body) / IBM Plex Mono (data)
+       Motion : expo-out reveals, staggered intros, one signature
+                instrument (the live diagnostic card)
+       ============================================================ */
+
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+
+    :root {
+      color-scheme: dark;
+
+      --bg: #06070c;
+      --bg-2: #0a0c13;
+      --surface: rgba(15, 17, 27, 0.78);
+      --surface-solid: #10121c;
+      --surface-2: #141726;
+      --surface-3: #1a1f31;
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.16);
+
+      --ink: #f4f2ea;
+      --muted: #a6aabc;
+      --muted-2: #6f7489;
+
+      --blue: #5b7cff;
+      --blue-2: #8fb0ff;
+      --cyan: #54c8ff;
+      --blue-soft: rgba(91,124,255,0.14);
+      --gold: #d9b75f;
+      --gold-soft: rgba(217,183,95,0.13);
+      --green: #4ade9b;
+      --green-soft: rgba(74,222,155,0.12);
+      --red: #ff6b6b;
+      --red-soft: rgba(255,107,107,0.12);
+
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --shadow-soft: 0 12px 44px rgba(0, 0, 0, 0.32);
+
+      --max: 1180px;
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+
+      --font-display: "Bricolage Grotesque", Inter, system-ui, sans-serif;
+      --font-body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+      --e-out: cubic-bezier(.16, 1, .3, 1);
+      --e-io: cubic-bezier(.65, 0, .35, 1);
+      --t-fast: .22s;
+      --t-med: .55s;
+      --t-slow: .9s;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: 16.5px;
+      background:
+        radial-gradient(circle at 16% -4%, rgba(91,124,255,0.20), transparent 34rem),
+        radial-gradient(circle at 84% 12%, rgba(217,183,95,0.10), transparent 30rem),
+        linear-gradient(180deg, #06070c 0%, #090b12 45%, #06070c 100%);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    /* film grain */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      opacity: .5;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; }
+    button, input, textarea, select { font: inherit; }
+    ::selection { background: rgba(91,124,255,.35); }
+    strong { font-weight: 700; }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 18px;
+      top: 12px;
+      z-index: 300;
+      transform: translateY(-160%);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    :focus-visible {
+      outline: 2px solid var(--blue-2);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 44px));
+      margin-inline: auto;
+    }
+
+    /* ============ HEADER ============ */
+
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      border-bottom: 1px solid transparent;
+      transition: background var(--t-fast) ease, border-color var(--t-fast) ease, box-shadow var(--t-fast) ease;
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(6,7,12,.72);
+      border-bottom-color: var(--line);
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    }
+
+    .progress {
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 2px;
+      pointer-events: none;
+    }
+    .progress i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan) 60%, var(--gold));
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .is-scrolled .progress i { opacity: 1; }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--ink);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-symbol {
+      position: relative;
+      width: 46px;
+      height: 44px;
+      flex: 0 0 46px;
+      filter: drop-shadow(0 10px 24px rgba(47,125,255,.28));
+    }
+
+    .brand-symbol::before,
+    .brand-symbol::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      width: 13px;
+      border-radius: 3px 3px 1px 1px;
+      transform: skewX(-24deg);
+      background: linear-gradient(180deg, #54c8ff 0%, #2f7dff 46%, #214de3 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
+      transition: transform .4s var(--e-out);
+    }
+    .brand-symbol::before { left: 7px; height: 30px; }
+    .brand-symbol::after {
+      left: 27px;
+      height: 42px;
+      bottom: 5px;
+      background: linear-gradient(180deg, #6bd7ff 0%, #347fff 44%, #244bd5 100%);
+    }
+    .brand:hover .brand-symbol::before { transform: skewX(-24deg) translateY(-2px); }
+    .brand:hover .brand-symbol::after { transform: skewX(-24deg) translateY(-4px); }
+
+    .brand-divider {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,.45), transparent);
+      flex: 0 0 1px;
+    }
+
+    .brand-wordmark { display: grid; gap: 3px; line-height: 1; transform: translateY(1px); }
+    .brand-name {
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: .22em;
+      font-size: 21px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .brand-subtitle {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: .32em;
+      font-size: 9.5px;
+      color: #2f8dff;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 999px;
+      transition: color .18s ease, background .18s ease;
+    }
+    .nav-links a:hover { color: var(--ink); background: rgba(255,255,255,.055); }
+    .nav-links a.is-active { color: var(--ink); background: rgba(91,124,255,.16); }
+
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .mobile-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 17px;
+      height: 2px;
+      border-radius: 99px;
+      background: currentColor;
+      margin: 4px auto;
+      transition: transform .3s var(--e-out), opacity .2s ease;
+    }
+    .mobile-toggle.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .mobile-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ============ BUTTONS ============ */
+
+    .cta, .secondary-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+      transition: transform .18s var(--e-out), box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      white-space: nowrap;
+      cursor: pointer;
+      will-change: transform;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--blue), #7a5cff);
+      color: white;
+      box-shadow: 0 14px 42px rgba(91,124,255,.30), inset 0 1px 0 rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.14);
+      overflow: hidden;
+    }
+
+    /* sheen sweep */
+    .cta::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      left: -60%;
+      width: 40%;
+      background: linear-gradient(105deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: skewX(-20deg);
+      transition: left .6s var(--e-out);
+      pointer-events: none;
+    }
+    .cta:hover::after { left: 120%; }
+    .cta:hover { box-shadow: 0 18px 54px rgba(91,124,255,.42), inset 0 1px 0 rgba(255,255,255,.22); }
+
+    .cta .arr { transition: transform .25s var(--e-out); }
+    .cta:hover .arr { transform: translateX(3px); }
+
+    .secondary-cta {
+      color: var(--ink);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+    }
+    .secondary-cta:hover { border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.07); transform: translateY(-1px); }
+
+    main { padding-top: 76px; }
+
+    section { position: relative; }
+
+    /* ============ HERO ============ */
+
+    .hero {
+      position: relative;
+      padding: 80px 0 64px;
+      overflow: clip;
+    }
+
+    /* slow ambient beam behind the hero */
+    .hero-aurora {
+      position: absolute;
+      top: -320px;
+      left: 50%;
+      width: 1100px;
+      height: 1100px;
+      margin-left: -550px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .5;
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        rgba(91,124,255,.16) 70deg,
+        transparent 140deg,
+        rgba(217,183,95,.10) 220deg,
+        transparent 290deg,
+        rgba(84,200,255,.12) 340deg,
+        transparent 360deg);
+      filter: blur(70px);
+      animation: aurora-spin 64s linear infinite;
+    }
+    @keyframes aurora-spin { to { transform: rotate(360deg); } }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(400px, .96fr);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-left { transform: translateY(-36px); }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+    .eyebrow .dot {
+      width: 6px; height: 6px;
+      border-radius: 99px;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(74,222,155,.5);
+      animation: pulse 2.4s ease-out infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(74,222,155,.45); }
+      70%  { box-shadow: 0 0 0 9px rgba(74,222,155,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,155,0); }
+    }
+
+    .hero h1 {
+      margin-top: 22px;
+      font-size: clamp(42px, 5.6vw, 72px);
+      font-weight: 600;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+
+    /* word-level intro masks */
+    .hero h1 .w {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      padding-bottom: .22em;
+      margin-bottom: -.22em;
+    }
+    .hero h1 .w > span {
+      display: inline-block;
+      will-change: transform;
+    }
+    html.js.intro-ready .hero h1 .w > span {
+      transform: translateY(130%);
+    }
+    html.js.is-loaded .hero h1 .w > span {
+      transform: translateY(0);
+      transition: transform .9s var(--e-out);
+      transition-delay: var(--d, 0s);
+    }
+
+    .accent { position: relative; color: var(--blue-2); white-space: nowrap; }
+    .accent .u {
+      position: absolute;
+      left: -2%;
+      bottom: -0.14em;
+      width: 104%;
+      height: .3em;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .accent .u path {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 7;
+      stroke-linecap: round;
+      opacity: .95;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+    }
+    html.js.intro-ready .accent .u path { stroke-dashoffset: 1; }
+    html.js.is-loaded .accent .u path {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s var(--e-io);
+      transition-delay: 1.15s;
+    }
+
+    /* staggered intro items (eyebrow, copy, ctas, chips) */
+    html.js.intro-ready .intro-item {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    html.js.is-loaded .intro-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .8s ease, transform .9s var(--e-out);
+      transition-delay: var(--d, 0s);
+    }
+
+    .hero-copy {
+      margin-top: 24px;
+      max-width: 54ch;
+      color: var(--muted);
+      font-size: 17.5px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .trust-row {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .trust-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.028);
+      border-radius: 999px;
+      padding: 8px 13px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .trust-chip:hover { color: var(--ink); border-color: var(--line-strong); }
+
+    /* ============ THE INSTRUMENT (signature element) ============ */
+
+    .instrument-wrap { perspective: 1400px; }
+
+    .instrument {
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,0) 32%),
+        var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-xl);
+      padding: 26px 26px 22px;
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform .25s ease;
+      --mx: 50%;
+      --my: 50%;
+    }
+
+    /* pointer-follow glare */
+    .instrument::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(560px circle at var(--mx) var(--my), rgba(120,150,255,.10), transparent 55%);
+      opacity: 0;
+      transition: opacity .35s ease;
+      pointer-events: none;
+    }
+    .instrument:hover::before { opacity: 1; }
+
+    /* scan sweep */
+    .inst-scan {
+      position: absolute;
+      left: 0; right: 0;
+      top: -30%;
+      height: 26%;
+      background: linear-gradient(180deg, transparent, rgba(91,124,255,.075), rgba(84,200,255,.10), transparent);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .instrument.is-live .inst-scan {
+      animation: scan 2.8s var(--e-io) .5s 1 both;
+    }
+    @keyframes scan {
+      0%   { transform: translateY(0); opacity: 0; }
+      12%  { opacity: 1; }
+      82%  { transform: translateY(520%); opacity: 1; }
+      100% { transform: translateY(520%); opacity: 0; }
+    }
+
+    .inst-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .inst-kicker {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .inst-head h2 {
+      margin-top: 8px;
+      font-size: 21px;
+      letter-spacing: -.015em;
+    }
+    .inst-sub {
+      margin-top: 8px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 40ch;
+    }
+
+    .inst-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue-2);
+      border: 1px solid rgba(91,124,255,.35);
+      background: var(--blue-soft);
+      border-radius: 999px;
+      padding: 7px 12px;
+    }
+    .inst-badge i {
+      width: 6px; height: 6px;
+      border-radius: 99px;
+      background: var(--blue-2);
+      animation: pulse-blue 2.2s ease-out infinite;
+    }
+    @keyframes pulse-blue {
+      0%   { box-shadow: 0 0 0 0 rgba(143,176,255,.5); }
+      70%  { box-shadow: 0 0 0 8px rgba(143,176,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(143,176,255,0); }
+    }
+
+    .inst-score {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.025);
+    }
+
+    .ring { position: relative; width: 116px; height: 116px; }
+    .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-track {
+      fill: none;
+      stroke: rgba(255,255,255,.08);
+      stroke-width: 9;
+    }
+    .ring-fill {
+      fill: none;
+      stroke: url(#ringGrad);
+      stroke-width: 9;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 8px rgba(91,124,255,.45));
+    }
+    .ring-label {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      line-height: 1;
+    }
+    .ring-label strong {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .ring-label span {
+      margin-top: 4px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: var(--muted-2);
+    }
+
+    .verdict-flag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(217,183,95,.4);
+      background: var(--gold-soft);
+      border-radius: 999px;
+      padding: 5px 11px;
+    }
+    .verdict p {
+      margin-top: 10px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .verdict-mini {
+      margin-top: 12px;
+      display: flex;
+      gap: 22px;
+    }
+    .verdict-mini strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -.02em;
+    }
+    .verdict-mini span {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    .inst-rows {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 13px;
+    }
+    .score-row { display: grid; gap: 7px; }
+    .score-row-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .score-row-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+    .score-row-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 3px 7px;
+    }
+    .score-row-badge.poor { color: var(--red); background: var(--red-soft); border: 1px solid rgba(255,107,107,.3); }
+    .score-row-badge.fair { color: var(--gold); background: var(--gold-soft); border: 1px solid rgba(217,183,95,.3); }
+    .score-row-badge.good { color: var(--green); background: var(--green-soft); border: 1px solid rgba(74,222,155,.3); }
+    .score-row-value {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .score-row-value.poor { color: var(--red); }
+    .score-row-value.fair { color: var(--gold); }
+    .score-row-value.good { color: var(--green); }
+
+    .score-bar {
+      height: 6px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.06);
+      overflow: hidden;
+    }
+    .score-bar span {
+      display: block;
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      width: var(--w, 0%);
+      box-shadow: 0 0 12px rgba(91,124,255,.4);
+    }
+    html.js .inst-rows .score-bar span {
+      width: 0%;
+      transition: width 1.1s var(--e-out);
+    }
+    html.js .inst-rows.is-live .score-bar span { width: var(--w, 0%); }
+    .inst-rows li:nth-child(1) .score-bar span { transition-delay: .1s; }
+    .inst-rows li:nth-child(2) .score-bar span { transition-delay: .25s; }
+    .inst-rows li:nth-child(3) .score-bar span { transition-delay: .4s; }
+    .inst-rows li:nth-child(4) .score-bar span { transition-delay: .55s; }
+
+    .score-row-note {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted-2);
+    }
+
+
+    .inst-foot {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .inst-foot .tick {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      display: grid;
+      place-content: center;
+      border-radius: 99px;
+      background: var(--green-soft);
+      border: 1px solid rgba(74,222,155,.35);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+    .inst-foot strong { color: var(--ink); }
+
+    /* ============ SIGNAL STRIP ============ */
+
+    .signal-strip {
+      margin-top: 64px;
+      padding-top: 34px;
+      border-top: 1px solid var(--line);
+    }
+    .signal-strip-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      text-align: center;
+    }
+    .signal-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    .signal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.02);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: transform .3s var(--e-out), border-color .25s ease, color .25s ease, background .25s ease;
+    }
+    .signal svg { width: 30px; height: 30px; transition: transform .35s var(--e-out); }
+    .signal:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-strong);
+      color: var(--ink);
+      background: rgba(255,255,255,.04);
+    }
+    .signal:hover svg { transform: scale(1.12); }
+
+    /* ============ SECTION SCAFFOLDING ============ */
+
+    #diagnosis, #process, #services, #deliverables, #proof, #faq { padding: 104px 0 0; }
+    .contact { padding: 104px 0 110px; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue-2);
+    }
+    .section-label::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    .section-title {
+      margin-top: 14px;
+      font-size: clamp(30px, 3.6vw, 44px);
+      font-weight: 600;
+      letter-spacing: -.028em;
+      line-height: 1.08;
+      max-width: 22ch;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+    .section-copy {
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.7;
+      padding-bottom: 6px;
+    }
+
+    /* pointer-follow glow cards */
+    .glow {
+      position: relative;
+      --mx: 50%;
+      --my: 50%;
+    }
+    .glow::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(420px circle at var(--mx) var(--my), rgba(120,150,255,.09), transparent 60%);
+      opacity: 0;
+      transition: opacity .35s ease;
+      pointer-events: none;
+    }
+    .glow:hover::after { opacity: 1; }
+
+    /* ============ DIAGNOSIS ============ */
+
+    .diag-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(300px, .9fr);
+      gap: 18px;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .pain {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+      padding: 24px;
+      transition: transform .35s var(--e-out), border-color .3s ease;
+    }
+    .pain:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+
+    .finding-id {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      color: var(--red);
+      background: var(--red-soft);
+      border: 1px solid rgba(255,107,107,.28);
+      border-radius: 6px;
+      padding: 4px 9px;
+    }
+    .pain h3 {
+      margin-top: 14px;
+      font-size: 19px;
+      letter-spacing: -.015em;
+    }
+    .pain p:not(.finding-id) {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .standard-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+      border: 1px solid rgba(91,124,255,.32);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(91,124,255,.16), transparent 22rem),
+        var(--surface-2);
+      padding: 26px;
+    }
+    .standard-panel h3 {
+      margin-top: 12px;
+      font-size: 21px;
+      letter-spacing: -.02em;
+    }
+    .standard-panel > div > p:last-child {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .metric-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(0,0,0,.22);
+      padding: 14px 16px;
+    }
+    .metric strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric span {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    /* ============ PROCESS ============ */
+
+    .process {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .process .track {
+      position: absolute;
+      top: 45px;
+      left: 4%;
+      right: 4%;
+      height: 1px;
+      background: rgba(255,255,255,.06);
+      z-index: 0;
+    }
+    .process .track i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      box-shadow: 0 0 12px rgba(91,124,255,.5);
+    }
+    html.js .process.is-live .track i {
+      transform: scaleX(1);
+      transition: transform 1.6s var(--e-io) .2s;
+    }
+    html:not(.js) .process .track i { transform: scaleX(1); }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+      padding: 24px;
+      transition: transform .35s var(--e-out), border-color .3s ease;
+    }
+    .step:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+    .step-number {
+      display: inline-grid;
+      place-content: center;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(91,124,255,.35);
+      background: var(--blue-soft);
+      color: var(--blue-2);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .step h3 {
+      margin-top: 16px;
+      font-size: 18px;
+      letter-spacing: -.015em;
+    }
+    .step p {
+      margin-top: 9px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* ============ SERVICES ============ */
+
+    #services .shell { position: relative; }
+    #services::before {
+      content: "";
+      position: absolute;
+      inset: 60px 0 0;
+      background: radial-gradient(60rem 30rem at 50% 0%, rgba(91,124,255,.07), transparent 70%);
+      pointer-events: none;
+    }
+
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .offer {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.008));
+      padding: 30px 28px;
+      transition: transform .4s var(--e-out), border-color .3s ease, box-shadow .4s ease;
+    }
+    .offer:hover {
+      transform: translateY(-5px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* featured card: rotating conic border */
+    @property --oa {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .offer.featured {
+      border-color: transparent;
+      background:
+        linear-gradient(var(--surface-solid), var(--surface-solid)) padding-box,
+        conic-gradient(from var(--oa), rgba(91,124,255,.9), rgba(84,200,255,.5), rgba(217,183,95,.75), rgba(91,124,255,.15), rgba(91,124,255,.9)) border-box;
+      border: 1px solid transparent;
+      box-shadow: 0 30px 90px rgba(91,124,255,.16);
+      animation: orbit 7s linear infinite;
+    }
+    @keyframes orbit { to { --oa: 360deg; } }
+    .offer.featured:hover { transform: translateY(-7px); }
+
+    .offer-badge {
+      position: absolute;
+      top: -13px;
+      left: 26px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #0a0c13;
+      background: linear-gradient(90deg, var(--gold), #eccf85);
+      border-radius: 999px;
+      padding: 6px 12px;
+      box-shadow: 0 10px 26px rgba(217,183,95,.3);
+    }
+
+    .offer h3 { font-size: 22px; letter-spacing: -.02em; }
+    .offer-intro {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      min-height: 3.2em;
+    }
+
+    .price {
+      margin-top: 18px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      line-height: 1;
+    }
+    .price .currency {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--muted);
+      transform: translateY(-14px);
+    }
+    .price .number {
+      font-family: var(--font-display);
+      font-size: 54px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      font-variant-numeric: tabular-nums;
+    }
+    .price .period {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .price-note {
+      margin-top: 10px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 0;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 11px;
+      flex-grow: 1;
+    }
+    .feature-list li {
+      position: relative;
+      padding-left: 26px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 3px;
+      width: 15px; height: 15px;
+      border-radius: 99px;
+      background: var(--blue-soft);
+      border: 1px solid rgba(91,124,255,.4);
+    }
+    .feature-list li::after {
+      content: "";
+      position: absolute;
+      left: 4.5px;
+      top: 7px;
+      width: 6px; height: 3.5px;
+      border-left: 1.5px solid var(--blue-2);
+      border-bottom: 1.5px solid var(--blue-2);
+      transform: rotate(-45deg);
+    }
+
+    .offer .cta, .offer .secondary-cta { width: 100%; }
+
+    /* ---------- Software section: app-preview mockup ---------- */
+    .software-preview { margin: 0 0 56px; }
+    .appshot {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: var(--surface-solid);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .appshot-chrome {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--line);
+    }
+    .appshot-chrome .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .appshot-chrome .dot.r { background: var(--red); }
+    .appshot-chrome .dot.y { background: var(--gold); }
+    .appshot-chrome .dot.g { background: var(--green); }
+    .appshot-url {
+      margin: 0 auto; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-2);
+      background: var(--surface-3); border-radius: 999px; padding: 3px 14px;
+    }
+    .appshot-body { display: grid; grid-template-columns: 160px 1fr; min-height: 320px; }
+    .appshot-nav {
+      background: var(--bg-2); border-right: 1px solid var(--line);
+      padding: 16px 10px; display: flex; flex-direction: column; gap: 3px;
+    }
+    .appshot-nav-item {
+      font-size: 12.5px; color: var(--muted); padding: 7px 10px; border-radius: var(--radius-sm);
+      font-family: var(--font-display); display: flex; align-items: center; gap: 6px;
+    }
+    .appshot-nav-item.active { background: var(--blue-soft); color: var(--blue-2); font-weight: 600; }
+    .appshot-nav-label {
+      font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted-2); padding: 12px 10px 2px;
+    }
+    .appshot-badge {
+      font-style: normal; font-size: 9.5px; font-weight: 700; background: var(--red);
+      color: #1a0a0a; border-radius: 999px; padding: 0 6px; line-height: 1.5;
+    }
+    .appshot-main { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 14px; }
+    .appshot-banner {
+      display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--blue-2);
+      background: var(--blue-soft); border-radius: var(--radius-sm); padding: 9px 14px;
+    }
+    .appshot-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-2); flex: none; }
+    .appshot-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .appshot-card {
+      background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm);
+      padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;
+    }
+    .appshot-card-label { font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .06em; }
+    .appshot-card strong { font-family: var(--font-display); font-size: 19px; color: var(--ink); }
+    .appshot-card-note { font-size: 11px; color: var(--muted); }
+    .appshot-card-note.good { color: var(--green); }
+    .appshot-card-note.watch { color: var(--gold); }
+    .appshot-row {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: var(--muted); padding: 10px 0; border-top: 1px solid var(--line);
+    }
+    .appshot-row.muted { color: var(--muted-2); }
+    .appshot-chip { font-size: 10.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+    .appshot-chip.critical { background: var(--red-soft); color: var(--red); }
+    .appshot-chip.warning { background: var(--gold-soft); color: var(--gold); }
+    .appshot-chip.info { background: var(--blue-soft); color: var(--blue-2); }
+    .appshot-caption { text-align: center; font-size: 12.5px; color: var(--muted-2); margin-top: 14px; }
+
+    /* Muted ladder badge — signals "this is where audits lead" without stealing featured */
+    .offer-badge.muted {
+      background: var(--surface-3);
+      color: var(--muted);
+      box-shadow: none;
+      border: 1px solid var(--line-strong);
+    }
+
+    /* Two-path fork: the DFY-vs-DIY decision, weighted toward the software */
+    .software-fork {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 0 0 44px;
+    }
+    .fork-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.006));
+      padding: 20px 24px;
+      color: inherit;
+      text-decoration: none;
+      transition: transform .35s var(--e-out), border-color .3s ease, background .3s ease;
+    }
+    .fork-card:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+    .fork-card .fork-kicker {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      display: block;
+      margin-bottom: 7px;
+    }
+    .fork-card strong {
+      font-family: var(--font-display);
+      font-size: 17px;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      display: block;
+    }
+    .fork-card .fork-sub { font-size: 12.5px; color: var(--muted); margin-top: 5px; display: block; }
+    .fork-card .fork-arr { font-size: 20px; color: var(--muted-2); flex: none; transition: transform .25s var(--e-out), color .25s ease; }
+    .fork-card:hover .fork-arr { transform: translateX(4px); color: var(--ink); }
+    .fork-card.accent {
+      border-color: rgba(91,124,255,.4);
+      background: linear-gradient(180deg, rgba(91,124,255,.1), rgba(91,124,255,.02));
+    }
+    .fork-card.accent .fork-kicker { color: var(--blue-2); }
+    .fork-card.accent:hover { border-color: var(--blue); }
+
+    /* Custom builds, demoted to a slim strip: present and findable, not competing for attention */
+    .build-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius-lg);
+      padding: 18px 24px;
+      background: rgba(255,255,255,.015);
+    }
+    .build-strip h3 {
+      font-size: 16px;
+      letter-spacing: -.01em;
+      margin-bottom: 4px;
+    }
+    .build-strip p { font-size: 13px; color: var(--muted); max-width: 62ch; }
+    .build-strip .build-price {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--muted-2);
+      white-space: nowrap;
+    }
+    .build-strip .secondary-cta { flex: none; }
+
+    .note-bar {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.02);
+      padding: 20px 24px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .note-bar strong { color: var(--ink); }
+
+    /* ============ DELIVERABLES ============ */
+
+    .deliverables {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .deliverable {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+      padding: 24px;
+      transition: transform .35s var(--e-out), border-color .3s ease;
+    }
+    .deliverable:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+    .deliverable .icon {
+      display: grid;
+      place-content: center;
+      width: 44px; height: 44px;
+      border-radius: 13px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,.035);
+      color: var(--blue-2);
+      transition: transform .35s var(--e-out), color .3s ease, border-color .3s ease;
+    }
+    .deliverable:hover .icon { transform: translateY(-2px) scale(1.06); color: var(--cyan); border-color: rgba(84,200,255,.4); }
+    .deliverable .icon svg { width: 22px; height: 22px; }
+    .deliverable h3 {
+      margin-top: 16px;
+      font-size: 17.5px;
+      letter-spacing: -.015em;
+    }
+    .deliverable p {
+      margin-top: 9px;
+      font-size: 13.5px;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+
+    /* ============ PROOF ============ */
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    .about-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(91,124,255,.12), transparent 24rem),
+        var(--surface-2);
+      padding: 34px;
+    }
+    .about-card h2 {
+      margin-top: 14px;
+      font-size: clamp(26px, 2.6vw, 33px);
+      letter-spacing: -.025em;
+      max-width: 20ch;
+    }
+    .about-card p {
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+    .pill-row {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      padding: 7px 12px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .pill:hover { color: var(--ink); border-color: var(--line-strong); }
+
+    .proof-stack { display: grid; gap: 18px; }
+    .proof {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+      padding: 22px;
+      transition: transform .35s var(--e-out), border-color .3s ease;
+    }
+    .proof:hover { transform: translateX(4px); border-color: var(--line-strong); }
+    .proof-icon {
+      flex-shrink: 0;
+      display: grid;
+      place-content: center;
+      width: 44px; height: 44px;
+      border-radius: 13px;
+      border: 1px solid rgba(91,124,255,.35);
+      background: var(--blue-soft);
+      color: var(--blue-2);
+    }
+    .proof-icon svg { width: 21px; height: 21px; }
+    .proof h3 { font-size: 17px; letter-spacing: -.015em; }
+    .proof p {
+      margin-top: 7px;
+      font-size: 13.5px;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+
+    /* ============ FAQ ============ */
+
+    .faq-wrap { max-width: 780px; margin-inline: auto; }
+    .faq-wrap .section-head {
+      grid-template-columns: 1fr;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .faq-wrap .section-label { justify-content: center; }
+    .faq-wrap .section-label::before { display: none; }
+    .faq-wrap .section-title { margin-inline: auto; }
+
+    details.faq {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.006));
+      margin-bottom: 12px;
+      transition: border-color .3s ease, background .3s ease;
+      overflow: hidden;
+    }
+    details.faq:hover { border-color: var(--line-strong); }
+    details.faq[open] { border-color: rgba(91,124,255,.35); }
+
+    details.faq summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 24px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: -.01em;
+      user-select: none;
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+
+    .chev {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      display: grid;
+      place-content: center;
+      border-radius: 99px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,.03);
+      transition: transform .45s var(--e-out), border-color .3s ease, background .3s ease;
+    }
+    .chev::before, .chev::after {
+      content: "";
+      grid-area: 1 / 1;
+      width: 11px;
+      height: 1.5px;
+      background: var(--ink);
+      border-radius: 99px;
+      place-self: center;
+    }
+    .chev::after { transform: rotate(90deg); transition: transform .45s var(--e-out); }
+    details.faq[open] .chev, details.faq.is-open .chev {
+      transform: rotate(45deg);
+      border-color: rgba(91,124,255,.45);
+      background: var(--blue-soft);
+    }
+
+    .faq-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .5s var(--e-out);
+    }
+    details.faq.is-open .faq-body { grid-template-rows: 1fr; }
+    html:not(.js) details.faq[open] .faq-body { grid-template-rows: 1fr; }
+    .faq-inner { overflow: hidden; }
+    .faq-inner p {
+      padding: 0 24px 22px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    /* ============ CONTACT ============ */
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: 40px 0 0;
+      background: radial-gradient(56rem 30rem at 50% 10%, rgba(91,124,255,.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .contact-copy h2 {
+      margin-top: 14px;
+      font-size: clamp(30px, 3.4vw, 42px);
+      letter-spacing: -.028em;
+      max-width: 15ch;
+    }
+    .contact-copy > p {
+      margin-top: 16px;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 46ch;
+    }
+
+    .next-steps {
+      list-style: none;
+      margin: 30px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+    .next-steps li {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .next-steps .num {
+      flex-shrink: 0;
+      display: grid;
+      place-content: center;
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      border: 1px solid rgba(91,124,255,.35);
+      background: var(--blue-soft);
+      color: var(--blue-2);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .next-steps strong {
+      display: block;
+      font-size: 14.5px;
+      letter-spacing: -.01em;
+      margin-bottom: 3px;
+    }
+    .next-steps span:not(.num) {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .email-inline {
+      margin-top: 30px;
+      font-size: 14px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.02);
+      padding: 14px 18px;
+      display: inline-block;
+    }
+    .email-inline a {
+      color: var(--blue-2);
+      font-weight: 600;
+      text-decoration-color: rgba(143,176,255,.4);
+      text-underline-offset: 3px;
+      transition: color .2s ease;
+    }
+    .email-inline a:hover { color: var(--cyan); }
+
+    .form-card {
+      position: relative;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,0) 30%),
+        var(--surface);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 32px;
+    }
+
+    .form-card-head h3 { font-size: 22px; letter-spacing: -.02em; }
+    .form-card-head p {
+      margin-top: 7px;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .lead-form { margin-top: 24px; display: grid; gap: 16px; }
+    .hidden-field { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field { display: grid; gap: 7px; }
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field .req { color: var(--gold); }
+    .field .opt { color: var(--muted-2); letter-spacing: .08em; text-transform: none; }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(0,0,0,.26);
+      color: var(--ink);
+      padding: 13px 14px;
+      font-size: 14.5px;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted-2); }
+    .field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 L6 6.5 L11 1.5' fill='none' stroke='%23a6aabc' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; cursor: pointer; }
+    .field select:invalid { color: var(--muted-2); }
+    .field textarea { min-height: 108px; resize: vertical; }
+
+    .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--line-strong); }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: rgba(91,124,255,.6);
+      box-shadow: 0 0 0 3px rgba(91,124,255,.16);
+      background: rgba(0,0,0,.34);
+    }
+    .field [aria-invalid="true"] {
+      border-color: rgba(255,107,107,.6);
+      box-shadow: 0 0 0 3px rgba(255,107,107,.12);
+    }
+
+    .field-error {
+      min-height: 0;
+      font-size: 12px;
+      color: var(--red);
+    }
+    .field-error:empty { display: none; }
+
+    .form-status {
+      display: none;
+      font-size: 13.5px;
+      line-height: 1.55;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .form-status.error {
+      display: block;
+      color: #ffb3b3;
+      background: var(--red-soft);
+      border: 1px solid rgba(255,107,107,.3);
+    }
+
+    .form-submit {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), #7a5cff);
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 16px 46px rgba(91,124,255,.32), inset 0 1px 0 rgba(255,255,255,.22);
+      transition: transform .18s var(--e-out), box-shadow .2s ease, opacity .2s ease;
+    }
+    .form-submit::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      left: -60%;
+      width: 40%;
+      background: linear-gradient(105deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: skewX(-20deg);
+      transition: left .6s var(--e-out);
+      pointer-events: none;
+    }
+    .form-submit:hover::after { left: 120%; }
+    .form-submit:hover { transform: translateY(-1px); box-shadow: 0 20px 56px rgba(91,124,255,.44), inset 0 1px 0 rgba(255,255,255,.22); }
+    .form-submit:disabled { opacity: .75; cursor: progress; transform: none; }
+
+    .spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border-radius: 99px;
+      border: 2px solid rgba(255,255,255,.35);
+      border-top-color: #fff;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-submit.is-busy .spinner { display: inline-block; }
+
+    .form-fineprint {
+      font-size: 12px;
+      color: var(--muted-2);
+      text-align: center;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 34px 10px 20px;
+    }
+    .form-success.is-shown { display: block; animation: success-in .6s var(--e-out) both; }
+    @keyframes success-in {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .form-success .check {
+      width: 66px; height: 66px;
+      margin: 0 auto 18px;
+    }
+    .form-success .check svg { width: 100%; height: 100%; }
+    .form-success .check circle {
+      fill: var(--green-soft);
+      stroke: rgba(74,222,155,.5);
+      stroke-width: 1.5;
+    }
+    .form-success .check path {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 3.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+    .form-success.is-shown .check path {
+      animation: check-draw .7s var(--e-out) .25s forwards;
+    }
+    @keyframes check-draw { to { stroke-dashoffset: 0; } }
+    .form-success h3 { font-size: 23px; letter-spacing: -.02em; }
+    .form-success p {
+      margin-top: 10px;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 40ch;
+      margin-inline: auto;
+    }
+
+    /* ============ FOOTER ============ */
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: rgba(0,0,0,.24);
+    }
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 28px 0;
+      font-size: 13px;
+      color: var(--muted-2);
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ============ SCROLL REVEALS ============ */
+
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      filter: blur(5px);
+      transition: opacity .9s ease, transform 1s var(--e-out), filter .9s ease;
+    }
+    html.js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    html.js .reveal[data-stagger] > * {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .8s ease, transform .9s var(--e-out);
+      transition-delay: calc(var(--i, 0) * 90ms);
+    }
+    html.js .reveal[data-stagger].is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============ RESPONSIVE ============ */
+
+    @media (max-width: 1060px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .hero-left { transform: none; }
+      .hero h1 { max-width: 16ch; }
+      .instrument-wrap { max-width: 620px; }
+      .signal-grid { grid-template-columns: repeat(3, 1fr); }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .process .track { display: none; }
+      .offers-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+      .offer.featured { order: -1; }
+      .software-fork { grid-template-columns: 1fr; }
+      .build-strip { flex-direction: column; align-items: flex-start; }
+      .appshot-body { grid-template-columns: 1fr; }
+      .appshot-nav { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--line); }
+      .appshot-nav-label { display: none; }
+      .appshot-cards { grid-template-columns: 1fr; }
+      .deliverables { grid-template-columns: repeat(2, 1fr); }
+      .proof-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .section-head { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 22px;
+        right: 22px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        border-radius: var(--radius-lg);
+        background: rgba(10,12,19,.96);
+        border: 1px solid var(--line-strong);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity .3s ease, transform .35s var(--e-out);
+      }
+      .nav-links.is-open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .nav-links a { padding: 13px 16px; font-size: 14.5px; }
+      .mobile-toggle { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      html { scroll-padding-top: 84px; }
+      .nav { height: 68px; }
+      main { padding-top: 68px; }
+      .hero { padding: 56px 0 48px; }
+      .hero h1 { font-size: clamp(36px, 10.5vw, 46px); }
+      .accent { white-space: normal; }
+      .instrument { padding: 20px 18px 18px; }
+      .inst-head { flex-direction: column; }
+      .inst-score { grid-template-columns: 1fr; justify-items: start; }
+      .signal-grid { grid-template-columns: repeat(2, 1fr); }
+      .pain-grid { grid-template-columns: 1fr; }
+      .diag-grid { grid-template-columns: 1fr; }
+      .process { grid-template-columns: 1fr; }
+      .deliverables { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .note-bar { grid-template-columns: 1fr; }
+      .form-card { padding: 24px 20px; }
+      #diagnosis, #process, #services, #deliverables, #proof, #faq { padding-top: 80px; }
+      .contact { padding: 80px 0 88px; }
+      .section-head { margin-bottom: 38px; }
+      .footer-grid { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    /* ============ REDUCED MOTION ============ */
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      .hero-aurora, .inst-scan { display: none; }
+      html.js.intro-ready .hero h1 .w > span,
+      html.js.intro-ready .intro-item {
+        transform: none;
+        opacity: 1;
+      }
+      html.js.intro-ready .accent .u path { stroke-dashoffset: 0; }
+      html.js .reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+      html.js .reveal[data-stagger] > * { opacity: 1; transform: none; }
+      html.js .inst-rows .score-bar span { width: var(--w, 0%); }
+      html.js .process .track i { transform: scaleX(1); }
+      details.faq[open] .faq-body { grid-template-rows: 1fr; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Clarify Paid Search",
+    "description": "Google Ads audits, account cleanup, conversion tracking review, reporting dashboards, and month-to-month paid search management for small businesses.",
+    "areaServed": "US",
+    "email": "clarifypaidsearch@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chicago",
+      "addressRegion": "IL",
+      "addressCountry": "US"
+    },
+    "serviceType": [
+      "Google Ads Audit",
+      "Paid Search Management",
+      "Conversion Tracking Audit",
+      "Google Ads Reporting Dashboard",
+      "Custom Software and Data Integration",
+      "Self-Serve Google Ads Software"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Clarify Paid Search home">
+        <span class="brand-symbol" aria-hidden="true"></span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-wordmark">
+          <span class="brand-name">Clarify</span>
+          <span class="brand-subtitle">Paid Search</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#diagnosis">Diagnosis</a>
+        <a href="#process">Process</a>
+        <a href="#services">Services</a>
+        <a href="#software">Software</a>
+        <a href="#proof">Why Clarify</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="cta magnetic" href="#contact">Request audit</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><i id="scrollProgress"></i></div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-aurora" aria-hidden="true"></div>
+
+      <div class="shell hero-grid">
+        <div class="hero-left">
+          <div class="eyebrow intro-item" style="--d:0s"><span class="dot" aria-hidden="true"></span>Google Ads specialist · Chicago based</div>
+
+          <h1>
+            <span class="w"><span style="--d:.08s">The</span></span>
+            <span class="w"><span style="--d:.13s">paid</span></span>
+            <span class="w"><span style="--d:.18s">search</span></span>
+            <span class="w"><span style="--d:.23s">clarity</span></span>
+            <span class="w"><span style="--d:.28s">small</span></span>
+            <span class="w"><span style="--d:.33s">businesses</span></span>
+            <span class="w"><span style="--d:.38s">usually</span></span>
+            <span class="w"><span class="accent" style="--d:.43s">overpay agencies<svg class="u" viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 10 C 55 2, 130 13, 216 5"/></svg></span></span>
+            <span class="w"><span style="--d:.48s">to</span></span>
+            <span class="w"><span style="--d:.53s">get.</span></span>
+          </h1>
+
+          <p class="hero-copy intro-item" style="--d:.55s">Clarify finds where your Google Ads account is leaking spend, fixes the highest-impact issues, and gives you a clean roadmap without long contracts, bloated retainers, or vague strategy decks.</p>
+
+          <div class="hero-actions intro-item" style="--d:.68s">
+            <a class="cta magnetic" href="#contact">Request account audit <span class="arr" aria-hidden="true">→</span></a>
+            <a class="secondary-cta magnetic" href="#services">See services</a>
+          </div>
+
+          <div class="trust-row intro-item" style="--d:.8s" role="group" aria-label="Clarify engagement details">
+            <span class="trust-chip">Flat-fee audits</span>
+            <span class="trust-chip">No long-term contracts</span>
+            <span class="trust-chip">You keep full account ownership</span>
+            <span class="trust-chip">Self-serve software available</span>
+          </div>
+        </div>
+
+        <div class="instrument-wrap intro-item" style="--d:.4s">
+          <aside class="instrument" id="instrument" aria-label="Example Google Ads scorecard">
+            <div class="inst-scan" aria-hidden="true"></div>
+
+            <header class="inst-head">
+              <div>
+                <p class="inst-kicker">Example account scorecard</p>
+                <h2>What a scored audit can look like.</h2>
+                <p class="inst-sub">Instead of vague notes, the review becomes a scorecard: what is healthy, what is leaking, and what gets fixed first.</p>
+              </div>
+              <span class="inst-badge"><i aria-hidden="true"></i>Interactive sample</span>
+            </header>
+
+            <div class="inst-score">
+              <div class="ring" role="img" aria-label="Example account score: 72 out of 100, needs work">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#5b7cff" />
+                      <stop offset=".55" stop-color="#54c8ff" />
+                      <stop offset="1" stop-color="#d9b75f" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="ring-track" cx="60" cy="60" r="52" />
+                  <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="91.49" />
+                </svg>
+                <div class="ring-label" aria-hidden="true">
+                  <strong id="ringValue">72</strong>
+                  <span>/ 100</span>
+                </div>
+              </div>
+
+              <div class="verdict">
+                <span class="verdict-flag">Needs work</span>
+                <p>Fixable. Several high-impact leaks with clear first moves.</p>
+                <div class="verdict-mini">
+                  <div><strong data-count="18" data-suffix="%">18%</strong><span>Est. spend waste</span></div>
+                  <div><strong data-count="61" data-suffix="%">61%</strong><span>Tracking confidence</span></div>
+                </div>
+              </div>
+            </div>
+
+            <ul class="inst-rows" id="instRows">
+              <li class="score-row">
+                <div class="score-row-top">
+                  <span class="score-row-title">Search intent control</span>
+                  <span class="score-row-badge fair">Fair</span>
+                  <span class="score-row-value fair" data-count="58" data-suffix="/100">58/100</span>
+                </div>
+                <div class="score-bar" aria-hidden="true"><span style="--w:58%"></span></div>
+                <p class="score-row-note">Search terms are drifting away from buyer intent and negatives are not tight enough.</p>
+              </li>
+              <li class="score-row">
+                <div class="score-row-top">
+                  <span class="score-row-title">Conversion tracking readiness</span>
+                  <span class="score-row-badge poor">Poor</span>
+                  <span class="score-row-value poor" data-count="42" data-suffix="/100">42/100</span>
+                </div>
+                <div class="score-bar" aria-hidden="true"><span style="--w:42%"></span></div>
+                <p class="score-row-note">Forms, calls, and key actions need cleaner attribution before performance decisions are reliable.</p>
+              </li>
+              <li class="score-row">
+                <div class="score-row-top">
+                  <span class="score-row-title">PMax and automation guardrails</span>
+                  <span class="score-row-badge fair">Fair</span>
+                  <span class="score-row-value fair" data-count="63" data-suffix="/100">63/100</span>
+                </div>
+                <div class="score-bar" aria-hidden="true"><span style="--w:63%"></span></div>
+                <p class="score-row-note">Automation is active, but audience signals, exclusions, and business rules need sharper control.</p>
+              </li>
+              <li class="score-row">
+                <div class="score-row-top">
+                  <span class="score-row-title">Testing and change discipline</span>
+                  <span class="score-row-badge good">Good</span>
+                  <span class="score-row-value good" data-count="74" data-suffix="/100">74/100</span>
+                </div>
+                <div class="score-bar" aria-hidden="true"><span style="--w:74%"></span></div>
+                <p class="score-row-note">Some structure exists, but documenting changes and learnings would make optimization much clearer.</p>
+              </li>
+            </ul>
+
+            <p class="inst-foot"><span class="tick" aria-hidden="true">✓</span><span><strong>You get the score, the reason behind it, and the fix</strong> — each section shows where the account stands and where the biggest gains come from first.</span></p>
+          </aside>
+        </div>
+      </div>
+
+      <div class="shell signal-strip reveal" role="group" aria-label="Google advertising ecosystem specialties">
+        <p class="signal-strip-title">Built for the parts of Google Ads that actually make or break performance</p>
+        <div class="signal-grid">
+          <div class="signal">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="10" cy="30" r="7" fill="#fbbc04"/><circle cx="30" cy="30" r="7" fill="#34a853"/><circle cx="20" cy="11" r="7" fill="#4285f4"/></svg>
+            Search
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="23" width="5" height="10" rx="1.8" fill="#34a853"/><rect x="17.5" y="16" width="5" height="17" rx="1.8" fill="#4285f4"/><rect x="27" y="9" width="5" height="24" rx="1.8" fill="#fbbc04"/><path d="M9 12 L14 7 L19 12" fill="none" stroke="#34a853" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7 V17" stroke="#34a853" stroke-width="2.4" stroke-linecap="round"/></svg>
+            PMax
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="14" width="26" height="20" rx="4" fill="none" stroke="#ea4335" stroke-width="3"/><path d="M13 14 C13 7 27 7 27 14" fill="none" stroke="#ea4335" stroke-width="3" stroke-linecap="round"/></svg>
+            Shopping
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="18" cy="18" r="11" fill="none" stroke="#4285f4" stroke-width="3"/><path d="M27 27 L35 35" stroke="#4285f4" stroke-width="3" stroke-linecap="round"/></svg>
+            Query Mining
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="6" width="28" height="28" rx="5" fill="none" stroke="#f9ab00" stroke-width="3"/><path d="M13 26 L18 20 L22 23 L28 14" fill="none" stroke="#f9ab00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Tracking
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="7" width="24" height="28" rx="3" fill="none" stroke="#34a853" stroke-width="3"/><path d="M8 17 H32 M8 26 H32 M20 7 V35" stroke="#34a853" stroke-width="2"/></svg>
+            Reporting
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagnosis">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Diagnosis</p>
+            <h2 class="section-title">Most accounts do not need more spend. They need less waste.</h2>
+          </div>
+          <p class="section-copy">Small business Google Ads accounts usually break in predictable places: tracking, structure, query quality, landing page alignment, and lack of disciplined optimization. Clarify is built around finding those breaks quickly.</p>
+        </div>
+
+        <div class="diag-grid">
+          <div class="pain-grid reveal" data-stagger>
+            <article class="pain glow">
+              <p class="finding-id">Leak · L-01</p>
+              <h3>Keywords are too loose.</h3>
+              <p>Broad match and automated campaign types can work, but not when they are allowed to chase low-intent searches without negatives, exclusions, or signal quality.</p>
+            </article>
+            <article class="pain glow">
+              <p class="finding-id">Leak · L-02</p>
+              <h3>Tracking is lying.</h3>
+              <p>If conversions are duplicated, missing, or poorly weighted, the bidding system optimizes toward bad data and makes every future decision harder.</p>
+            </article>
+            <article class="pain glow">
+              <p class="finding-id">Leak · L-03</p>
+              <h3>No one owns the account logic.</h3>
+              <p>Campaigns get patched over time. Budgets move. Tests disappear. Eventually no one knows why the account is structured the way it is.</p>
+            </article>
+            <article class="pain glow">
+              <p class="finding-id">Leak · L-04</p>
+              <h3>Reporting does not answer the real question.</h3>
+              <p>Clicks and cost are not strategy. You need a view of spend, demand, conversion quality, and what should change next.</p>
+            </article>
+          </div>
+
+          <aside class="standard-panel reveal" aria-label="Clarify standard">
+            <div>
+              <p class="section-label">Clarify standard</p>
+              <h3>Useful paid search work should leave a trail.</h3>
+              <p>Every engagement produces a written diagnosis, a prioritized fix list, and clear documentation of what changed. No black box. No “trust the algorithm” hand-waving.</p>
+            </div>
+            <div class="metric-stack">
+              <div class="metric"><strong data-count="48" data-suffix="h">48h</strong><span>Audit target</span></div>
+              <div class="metric"><strong>0</strong><span>Long contracts</span></div>
+              <div class="metric"><strong data-count="100" data-suffix="%">100%</strong><span>Your account</span></div>
+              <div class="metric"><strong>1:1</strong><span>Direct contact</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Process</p>
+            <h2 class="section-title">A clean path from “I think ads are wasting money” to “here is exactly what to fix.”</h2>
+          </div>
+          <p class="section-copy">No six-week onboarding sprint. No discovery maze. The goal is to get from access to decisions quickly, then let you choose whether Clarify implements, manages, or hands it back.</p>
+        </div>
+
+        <div class="process reveal" data-stagger id="processFlow">
+          <div class="track" aria-hidden="true"><i></i></div>
+          <article class="step glow">
+            <div class="step-number">01</div>
+            <h3>Send account access.</h3>
+            <p>Read-only is enough for audits. Admin access is only needed when you want Clarify to implement changes.</p>
+          </article>
+          <article class="step glow">
+            <div class="step-number">02</div>
+            <h3>Get a real diagnosis.</h3>
+            <p>Campaign structure, search terms, negatives, bidding, conversion actions, assets, budgets, and reporting get reviewed.</p>
+          </article>
+          <article class="step glow">
+            <div class="step-number">03</div>
+            <h3>Review the priority map.</h3>
+            <p>You receive the findings ranked by expected impact, with a plain-English explanation and specific recommended fix.</p>
+          </article>
+          <article class="step glow">
+            <div class="step-number">04</div>
+            <h3>Choose the next move.</h3>
+            <p>Fix it internally, have Clarify clean it up, or move into month-to-month management. No pressure path.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Services</p>
+            <h2 class="section-title">Simple offers. Clear outcomes. No agency theater.</h2>
+          </div>
+          <p class="section-copy">Start with a focused audit, fix the account with a cleanup, keep optimization running month-to-month, or get a custom dashboard built around your own data. Pricing is transparent so the conversation can stay about performance.</p>
+        </div>
+
+        <div class="offers-grid reveal" data-stagger>
+          <article class="offer glow">
+            <div>
+              <h3>Account Audit</h3>
+              <p class="offer-intro">A full Google Ads diagnosis for businesses that need to know what is wrong before spending more.</p>
+              <div class="price"><span class="currency">$</span><span class="number" data-count="299">299</span></div>
+              <p class="price-note">One-time · Written findings · 48-hour target</p>
+            </div>
+            <ul class="feature-list">
+              <li>Account structure and campaign setup review</li>
+              <li>Search term, match type, and negative keyword analysis</li>
+              <li>Conversion tracking and attribution sanity check</li>
+              <li>Prioritized fix list ranked by likely impact</li>
+              <li>90-day roadmap for what to do next</li>
+            </ul>
+            <a class="secondary-cta" href="#contact" data-offer="Account Audit">Request audit →</a>
+          </article>
+
+          <article class="offer featured">
+            <p class="offer-badge">Best first engagement</p>
+            <div>
+              <h3>Audit + Cleanup</h3>
+              <p class="offer-intro">Find the waste, fix the obvious issues, and hand the account back cleaner than it came in.</p>
+              <div class="price"><span class="currency">$</span><span class="number" data-count="599">599</span></div>
+              <p class="price-note">One-time · Audit + implementation · Under 1 week target</p>
+            </div>
+            <ul class="feature-list">
+              <li>Everything included in the Account Audit</li>
+              <li>Negative keyword list built from real query history</li>
+              <li>Campaign, budget, bidding, and asset cleanup</li>
+              <li>Tracking issues flagged and corrected where possible</li>
+              <li>Full change log explaining every update</li>
+            </ul>
+            <a class="cta magnetic" href="#contact" data-offer="Audit + Cleanup">Get audit + cleanup <span class="arr" aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="offer glow">
+            <p class="offer-badge muted">Where audits usually lead</p>
+            <div>
+              <h3>Monthly Management</h3>
+              <p class="offer-intro">Ongoing paid search management for businesses that want disciplined optimization without a locked-in agency retainer.</p>
+              <div class="price"><span class="currency">$</span><span class="number" data-count="750">750</span><span class="period">/mo</span></div>
+              <p class="price-note">Month-to-month · Cancel anytime</p>
+            </div>
+            <ul class="feature-list">
+              <li>Weekly search term and negative keyword work</li>
+              <li>Budget, bid strategy, and campaign optimization</li>
+              <li>Ad copy, asset, and offer testing guidance</li>
+              <li>Monthly performance summary and next actions</li>
+              <li>Direct email access and change documentation</li>
+            </ul>
+            <a class="secondary-cta" href="#contact" data-offer="Monthly Management">Discuss management →</a>
+          </article>
+
+        </div>
+
+        <div class="build-strip reveal">
+          <div>
+            <h3>Custom Reporting &amp; Data Tools</h3>
+            <p>Dashboards, internal tools, and API integrations built around your real data — on the same React, Supabase, and Netlify stack Clarify itself runs on. You own the code and the data.</p>
+          </div>
+          <span class="build-price">Sheets from $299 · Custom apps from $1,500</span>
+          <a class="secondary-cta" href="#contact" data-offer="Custom Reporting &amp; Data Tools">Discuss a build →</a>
+        </div>
+
+        <div class="note-bar reveal">
+          <span><strong>Rather run it yourself?</strong> The same audit engine is available as self-serve software from $149/mo — see plans below.</span>
+          <span><strong>Not sure where to start?</strong> Start with the flat-fee audit and get a prioritized fix list before committing to anything ongoing.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="software">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Software</p>
+            <h2 class="section-title">Or run the same engine yourself.</h2>
+          </div>
+          <p class="section-copy">Everything above is Clarify doing the work for you. If you'd rather do it yourself, the same evidence-first audit engine — plus a system for finding and following up with new leads — is available as software you log into directly. Connect an account and it starts working immediately, no project turnaround to wait on.</p>
+        </div>
+
+        <div class="software-fork reveal" data-stagger>
+          <a class="fork-card" href="#contact">
+            <span>
+              <span class="fork-kicker">Done for you</span>
+              <strong>Clarify runs the account.</strong>
+              <span class="fork-sub">Audits from $299 · Management $750/mo · A person does the work.</span>
+            </span>
+            <span class="fork-arr" aria-hidden="true">→</span>
+          </a>
+          <a class="fork-card accent" href="#software-tiers">
+            <span>
+              <span class="fork-kicker">Do it yourself</span>
+              <strong>Same engine, your login.</strong>
+              <span class="fork-sub">From $149/mo · 14-day trial · Cancel anytime · Scales with you, not with hours.</span>
+            </span>
+            <span class="fork-arr" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="software-preview reveal">
+          <div class="appshot glow" role="img" aria-label="Stylized example of the Clarify software dashboard">
+            <div class="appshot-chrome">
+              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+              <span class="appshot-url">app.clarifypaidsearch.com</span>
+            </div>
+            <div class="appshot-body">
+              <nav class="appshot-nav" aria-hidden="true">
+                <span class="appshot-nav-item active">Today</span>
+                <span class="appshot-nav-label">Paid search</span>
+                <span class="appshot-nav-item">Audit</span>
+                <span class="appshot-nav-item">Alerts</span>
+                <span class="appshot-nav-label">Outreach</span>
+                <span class="appshot-nav-item">Discover</span>
+                <span class="appshot-nav-item">Leads</span>
+                <span class="appshot-nav-item">Inbox <i class="appshot-badge">2</i></span>
+                <span class="appshot-nav-item">Sequences</span>
+              </nav>
+              <div class="appshot-main" aria-hidden="true">
+                <div class="appshot-banner"><i class="appshot-dot"></i>2 alerts need a decision · 1 reply waiting</div>
+                <div class="appshot-cards">
+                  <div class="appshot-card">
+                    <span class="appshot-card-label">Spend this month</span>
+                    <strong>$4,180</strong>
+                    <span class="appshot-card-note good">On pace</span>
+                  </div>
+                  <div class="appshot-card">
+                    <span class="appshot-card-label">Wasted spend (30d)</span>
+                    <strong>$612</strong>
+                    <span class="appshot-card-note watch">11% of spend</span>
+                  </div>
+                  <div class="appshot-card">
+                    <span class="appshot-card-label">Pipeline</span>
+                    <strong>38</strong>
+                    <span class="appshot-card-note">leads in outreach</span>
+                  </div>
+                </div>
+                <div class="appshot-row"><span>Search intent drift on 3 campaigns</span><span class="appshot-chip warning">Warning</span></div>
+                <div class="appshot-row"><span>Conversion tracking gap on Form Submit</span><span class="appshot-chip critical">Critical</span></div>
+                <div class="appshot-row muted"><span>2 replies from outreach — ready to book</span><span class="appshot-chip info">Info</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="appshot-caption">A stylized look at the dashboard. Your login shows your real accounts, not a mockup.</p>
+        </div>
+
+        <div class="offers-grid reveal" data-stagger id="software-tiers">
+          <article class="offer glow">
+            <div>
+              <h3>Starter</h3>
+              <p class="offer-intro">For one account that just needs disciplined, ongoing monitoring.</p>
+              <div class="price"><span class="currency">$</span><span class="number" data-count="149">149</span><span class="period">/mo</span></div>
+              <p class="price-note">14-day trial · Cancel anytime</p>
+            </div>
+            <ul class="feature-list">
+              <li>1 Google Ads account, nightly sync</li>
+              <li>Full audit engine and alerting</li>
+              <li>1 outreach mailbox, email sequences</li>
+              <li>300 lead-discovery credits / mo</li>
+            </ul>
+            <a class="secondary-cta" href="#contact" data-offer="Clarify Software — Starter">Ask about Starter →</a>
+          </article>
+
+          <article class="offer featured">
+            <p class="offer-badge">Most businesses start here</p>
+            <div>
+              <h3>Growth</h3>
+              <p class="offer-intro">For a business ready to run its own pipeline, not just its ad account.</p>
+              <div class="price"><span class="currency">$</span><span class="number" data-count="399">399</span><span class="period">/mo</span></div>
+              <p class="price-note">14-day trial · Cancel anytime</p>
+            </div>
+            <ul class="feature-list">
+              <li>Up to 2 accounts, daily sync</li>
+              <li>Everything in Starter</li>
+              <li>3 outreach mailboxes, plus LinkedIn tasks</li>
+              <li>1,000 lead-discovery credits / mo</li>
+            </ul>
+            <a class="cta magnetic" href="#contact" data-offer="Clarify Software — Growth">Get started with Growth <span class="arr" aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="offer glow">
+            <div>
+              <h3>Pro</h3>
+              <p class="offer-intro">For multiple accounts and a real outbound engine, including SMS.</p>
+              <div class="price"><span class="currency">$</span><span class="number" data-count="699">699</span><span class="period">/mo</span></div>
+              <p class="price-note">14-day trial · Cancel anytime</p>
+            </div>
+            <ul class="feature-list">
+              <li>Up to 5 accounts, hourly sync</li>
+              <li>Everything in Growth</li>
+              <li>Unlimited mailboxes, plus SMS (consented)</li>
+              <li>3,000 lead-discovery credits / mo</li>
+            </ul>
+            <a class="secondary-cta" href="#contact" data-offer="Clarify Software — Pro">Ask about Pro →</a>
+          </article>
+        </div>
+
+        <div class="note-bar reveal">
+          <span><strong>Not sure which fits?</strong> Tell us your ad spend and goals in the form below and we'll point you to the right tier — or to the done-for-you service instead, if that's the better fit.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="deliverables">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Deliverables</p>
+            <h2 class="section-title">You leave with assets, not just opinions.</h2>
+          </div>
+          <p class="section-copy">Every project is designed to create something durable: a report, a cleaner account, a dashboard, a change log, or a roadmap your team can actually use.</p>
+        </div>
+
+        <div class="deliverables reveal" data-stagger>
+          <article class="deliverable glow">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+            <h3>Written audit report</h3>
+            <p>Every issue found, why it matters, what to do next, and how important it is relative to everything else.</p>
+          </article>
+          <article class="deliverable glow">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 7v6l-4-2v-4z"/></svg></div>
+            <h3>Negative keyword buildout</h3>
+            <p>Search waste identified from real query history, grouped, and applied carefully so you do not block good demand.</p>
+          </article>
+          <article class="deliverable glow">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg></div>
+            <h3>Tracking verification</h3>
+            <p>Conversion actions reviewed for duplicates, missing actions, noisy goals, and bidding signals that can hurt performance.</p>
+          </article>
+          <article class="deliverable glow">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h1.5M4 12h1.5M4 18h1.5M9.5 6H20M9.5 12H20M9.5 18H20"/></svg></div>
+            <h3>Change log</h3>
+            <p>Every major optimization documented with the reason behind it so the account never becomes a black box.</p>
+          </article>
+          <article class="deliverable glow">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7.5 16v-4M12 16V8.5M16.5 16v-6"/></svg></div>
+            <h3>Reporting dashboard</h3>
+            <p>Google Sheets reporting that gives you a cleaner view of spend, conversion trends, and priority KPIs.</p>
+          </article>
+          <article class="deliverable glow">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.4 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h6.5"/></svg></div>
+            <h3>90-day roadmap</h3>
+            <p>A practical sequence of next moves so you know what to fix now, what to test next, and what to ignore.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <div class="shell proof-grid">
+        <div class="about-card reveal">
+          <p class="section-label">Why Clarify</p>
+          <h2>Senior paid search thinking, without the agency wrapper.</h2>
+          <p>Clarify is for businesses that want focused Google Ads help from the person actually doing the work. No account manager handoffs. No inflated full-service package. No junior analyst buried behind a polished deck.</p>
+          <p>The work is direct, specific, and documentation-heavy: diagnose the account, prioritize the fix list, implement carefully, and make the next move obvious.</p>
+          <div class="pill-row">
+            <span class="pill">Google Ads</span>
+            <span class="pill">Search</span>
+            <span class="pill">Performance Max</span>
+            <span class="pill">Shopping</span>
+            <span class="pill">GA4</span>
+            <span class="pill">Tag Manager</span>
+            <span class="pill">Sheets Reporting</span>
+          </div>
+        </div>
+
+        <div class="proof-stack reveal" data-stagger>
+          <article class="proof glow">
+            <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></div>
+            <div><h3>Agency-trained rigor.</h3><p>Built from the standards of managing complex paid search accounts: clear structure, careful QA, consistent optimization, and business-first recommendations.</p></div>
+          </article>
+          <article class="proof glow">
+            <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/></svg></div>
+            <div><h3>Specialist, not generalist.</h3><p>Clarify does not sell SEO, social media, web design, email, branding, and “growth.” The offer is paid search clarity.</p></div>
+          </article>
+          <article class="proof glow">
+            <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6l-5 4V7a3 3 0 0 1 3-3z"/></svg></div>
+            <div><h3>Direct communication.</h3><p>You work with the person reviewing your account, writing the findings, and making the changes. Fewer layers. Better context.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="shell faq-wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">FAQ</p>
+            <h2 class="section-title">Straight answers before you send access.</h2>
+          </div>
+        </div>
+
+        <div class="reveal" data-stagger>
+          <details class="faq" open>
+            <summary>Do I need to commit to monthly management?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>No. Audits and cleanups are one-time projects. Monthly management is month-to-month and only makes sense after the account has a clear optimization path.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>What access do you need?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>Read-only access is enough for an audit. Admin access is only needed when you want Clarify to implement account changes. You remain the owner and can revoke access at any time.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>How is this different from an agency?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>Agencies often bundle paid search into a broader retainer with multiple handoffs. Clarify is narrower: Google Ads diagnosis, cleanup, tracking review, reporting, and ongoing paid search optimization when needed.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>What kind of businesses are a good fit?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>Clarify is best for small businesses already spending on Google Ads, planning to start, or unsure whether their current account is wasting budget. The best fit is a business that values clear documentation and practical next steps.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>Do you guarantee better results?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>No ethical paid search specialist should guarantee specific performance. The goal is to improve account quality, measurement, structure, and decision-making so your spend has a better chance of working.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>What's the difference between hiring Clarify and using the software?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>The software runs the same audit logic and lead-outreach system, but you're in the driver's seat — you connect your own account and act on what it finds. Hiring Clarify means a person does the diagnosis, the fixes, and the outreach for you. Most businesses pick based on time, not budget: if you have an hour a week to spend on it, the software is usually the better value.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>What kinds of things can you build?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>Custom Google Ads and marketing dashboards are the most common ask, but the underlying skillset is general: internal tools, customer-facing web apps, and API integrations between the software you already use. If it can be built with React, Supabase, and Netlify, it's in scope — bring the problem and we'll figure out if it's a fit.</p></div></div>
+          </details>
+          <details class="faq">
+            <summary>What should I send before an audit?<span class="chev" aria-hidden="true"></span></summary>
+            <div class="faq-body"><div class="faq-inner"><p>Your website, monthly ad spend range, main conversion goal, and what feels broken. Read-only Google Ads access is enough for the actual audit.</p></div></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell contact-grid">
+        <div class="contact-copy reveal">
+          <p class="section-label">Request an audit</p>
+          <h2>Send the account. Get the clarity.</h2>
+          <p>Tell Clarify a little about your account and what feels broken. You will get a reply within one business day with next steps, no obligation.</p>
+
+          <ul class="next-steps">
+            <li>
+              <span class="num">1</span>
+              <span><strong>You send the details</strong>Business, website, spend range, and what you want help with.</span>
+            </li>
+            <li>
+              <span class="num">2</span>
+              <span><strong>Clarify replies within one business day</strong>With a clear scope and the right starting point for your situation.</span>
+            </li>
+            <li>
+              <span class="num">3</span>
+              <span><strong>You decide the next move</strong>Audit, cleanup, or management. No pressure, no long contracts.</span>
+            </li>
+          </ul>
+
+          <div class="email-inline">
+            Prefer email? <a href="mailto:clarifypaidsearch@gmail.com?subject=Google%20Ads%20Audit%20Request">clarifypaidsearch@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="form-card reveal">
+          <div class="form-card-head" id="formHead">
+            <h3>Request your audit</h3>
+            <p>Takes about a minute. Fields marked with * are required.</p>
+          </div>
+
+          <form class="lead-form" id="leadForm" novalidate>
+            <p class="hidden-field" aria-hidden="true">
+              <label>Leave this field empty <input type="text" id="lf-bot" name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            </p>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="lf-name">Your name <span class="req">*</span></label>
+                <input type="text" id="lf-name" name="name" autocomplete="name" required placeholder="Jane Smith" />
+                <span class="field-error" data-error-for="lf-name"></span>
+              </div>
+              <div class="field">
+                <label for="lf-business">Business name <span class="req">*</span></label>
+                <input type="text" id="lf-business" name="business" autocomplete="organization" required placeholder="Smith Dental Co." />
+                <span class="field-error" data-error-for="lf-business"></span>
+              </div>
+            </div>
+
+            <div class="field full">
+              <label for="lf-email">Email <span class="req">*</span></label>
+              <input type="email" id="lf-email" name="email" autocomplete="email" inputmode="email" required placeholder="you@yourbusiness.com" />
+              <span class="field-error" data-error-for="lf-email"></span>
+            </div>
+
+            <div class="field full">
+              <label for="lf-website">Website <span class="opt">(optional)</span></label>
+              <input type="text" id="lf-website" name="website" autocomplete="url" inputmode="url" placeholder="yourbusiness.com" />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="lf-spend">Monthly ad spend <span class="req">*</span></label>
+                <select id="lf-spend" name="monthly_spend" required>
+                  <option value="" disabled selected>Select a range</option>
+                  <option>Not running ads yet</option>
+                  <option>Under $1,000 / mo</option>
+                  <option>$1,000–$3,000 / mo</option>
+                  <option>$3,000–$10,000 / mo</option>
+                  <option>$10,000+ / mo</option>
+                </select>
+                <span class="field-error" data-error-for="lf-spend"></span>
+              </div>
+              <div class="field">
+                <label for="lf-service">What do you need? <span class="req">*</span></label>
+                <select id="lf-service" name="service" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option>Account Audit</option>
+                  <option>Audit + Cleanup</option>
+                  <option>Monthly Management</option>
+                  <option>Custom Reporting &amp; Data Tools</option>
+                  <option>Clarify Software — Starter</option>
+                  <option>Clarify Software — Growth</option>
+                  <option>Clarify Software — Pro</option>
+                  <option>Reporting dashboard</option>
+                  <option>Not sure yet</option>
+                </select>
+                <span class="field-error" data-error-for="lf-service"></span>
+              </div>
+            </div>
+
+            <div class="field full">
+              <label for="lf-details">What feels broken? <span class="opt">(optional)</span></label>
+              <textarea id="lf-details" name="details" placeholder="e.g. spend is up but leads are flat, not sure if tracking is right…"></textarea>
+            </div>
+
+            <div class="form-status" id="formStatus" role="alert"></div>
+
+            <button type="submit" class="form-submit" id="formSubmit"><span class="spinner" aria-hidden="true"></span><span class="form-submit-label">Request my audit →</span></button>
+            <p class="form-fineprint">No spam, no obligation. Your details are only used to reply about your audit.</p>
+          </form>
+
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            <div class="check" aria-hidden="true">
+              <svg viewBox="0 0 66 66">
+                <circle cx="33" cy="33" r="31" />
+                <path pathLength="1" d="M21 34.5 L29.5 43 L46 25.5" />
+              </svg>
+            </div>
+            <h3>Request received.</h3>
+            <p>Thanks — Clarify will reply within one business day with next steps. Check your inbox (and spam, just in case).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>© <span id="year">2026</span> Clarify Paid Search. Chicago-based. Available across the US.</div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:clarifypaidsearch@gmail.com?subject=Clarify%20Paid%20Search%20Question">Contact</a>
+      </div>
+      <div>Google Ads outcomes vary. No performance guarantees.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var de = document.documentElement;
+      var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var FINE = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      /* Run each module independently so one failure never blanks the page. */
+      function safe(fn) { try { fn(); } catch (err) { console.error('[clarify]', err); } }
+
+      var easeOutExpo = function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); };
+
+      function countUp(el, target, opts) {
+        opts = opts || {};
+        var dur = opts.dur || 1100;
+        var suffix = opts.suffix || '';
+        var delay = opts.delay || 0;
+        if (RM) { el.textContent = target + suffix; return; }
+        var start = null;
+        function frame(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          el.textContent = Math.round(target * easeOutExpo(p)) + suffix;
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        setTimeout(function () {
+          el.textContent = '0' + suffix;
+          requestAnimationFrame(frame);
+        }, delay);
+      }
+
+      /* ---------- 1. Scroll reveals (first, so they always work) ---------- */
+      safe(function () {
+        document.querySelectorAll('.reveal[data-stagger]').forEach(function (parent) {
+          Array.prototype.forEach.call(parent.children, function (child, i) {
+            child.style.setProperty('--i', i);
+          });
+        });
+
+        var revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window && !RM) {
+          var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+          revealEls.forEach(function (el) { revealObserver.observe(el); });
+        } else {
+          revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+        }
+      });
+
+      /* ---------- 2. Intro choreography ---------- */
+      safe(function () {
+        function begin() {
+          clearTimeout(window.__introSafety);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { de.classList.add('is-loaded'); });
+          });
+        }
+        if (document.fonts && document.fonts.ready && !RM) {
+          var done = false;
+          var go = function () { if (!done) { done = true; begin(); } };
+          document.fonts.ready.then(go);
+          setTimeout(go, 700); /* don't hold the intro hostage to slow font loads */
+        } else {
+          begin();
+        }
+      });
+
+      /* ---------- 3. Header: scrolled state + progress bar ---------- */
+      safe(function () {
+        var header = document.getElementById('siteHeader');
+        var bar = document.getElementById('scrollProgress');
+        var ticking = false;
+
+        function paint() {
+          ticking = false;
+          var y = window.scrollY || document.documentElement.scrollTop;
+          header.classList.toggle('is-scrolled', y > 8);
+          var doc = document.documentElement;
+          var max = doc.scrollHeight - doc.clientHeight;
+          var ratio = max > 0 ? Math.min(y / max, 1) : 0;
+          bar.style.transform = 'scaleX(' + ratio + ')';
+        }
+        function onScroll() {
+          if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+        }
+        paint();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+      });
+
+      /* ---------- 4. Mobile nav ---------- */
+      safe(function () {
+        var navLinks = document.getElementById('navLinks');
+        var mobileToggle = document.getElementById('mobileToggle');
+
+        mobileToggle.addEventListener('click', function () {
+          var isOpen = navLinks.classList.toggle('is-open');
+          mobileToggle.classList.toggle('is-open', isOpen);
+          mobileToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.addEventListener('click', function (event) {
+          if (event.target.tagName === 'A') {
+            navLinks.classList.remove('is-open');
+            mobileToggle.classList.remove('is-open');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      /* ---------- 5. Scrollspy ---------- */
+      safe(function () {
+        if (!('IntersectionObserver' in window)) return;
+        var links = document.querySelectorAll('#navLinks a[href^="#"]');
+        var map = {};
+        links.forEach(function (link) { map[link.getAttribute('href').slice(1)] = link; });
+
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && map[entry.target.id]) {
+              links.forEach(function (l) { l.classList.remove('is-active'); });
+              map[entry.target.id].classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-38% 0px -55% 0px', threshold: 0 });
+
+        Object.keys(map).forEach(function (id) {
+          var section = document.getElementById(id);
+          if (section) spy.observe(section);
+        });
+      });
+
+      /* ---------- 6. Counters ---------- */
+      safe(function () {
+        var counters = document.querySelectorAll('[data-count]');
+        if (!('IntersectionObserver' in window) || RM) return; /* keep final values as written in the HTML */
+
+        var seen = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            seen.unobserve(el);
+            countUp(el, parseInt(el.getAttribute('data-count'), 10), {
+              suffix: el.getAttribute('data-suffix') || '',
+              delay: parseInt(el.getAttribute('data-delay') || '0', 10),
+              dur: 1200
+            });
+          });
+        }, { threshold: 0.5 });
+        counters.forEach(function (el) { seen.observe(el); });
+      });
+
+      /* ---------- 7. The instrument: ring, bars, tilt, glare ---------- */
+      safe(function () {
+        var instrument = document.getElementById('instrument');
+        if (!instrument) return;
+
+        var rows = document.getElementById('instRows');
+        var ringFill = document.getElementById('ringFill');
+        var C = 2 * Math.PI * 52;
+        var TARGET_OFFSET = C * (1 - 72 / 100);
+
+        if (!RM) {
+          /* park the ring empty until it scrolls into view */
+          ringFill.style.strokeDashoffset = C;
+        }
+
+        if ('IntersectionObserver' in window && !RM) {
+          var live = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              live.unobserve(entry.target);
+              instrument.classList.add('is-live');
+              rows.classList.add('is-live');
+              ringFill.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1) .15s';
+              requestAnimationFrame(function () {
+                ringFill.style.strokeDashoffset = TARGET_OFFSET;
+              });
+            });
+          }, { threshold: 0.35 });
+          live.observe(instrument);
+        } else {
+          instrument.classList.add('is-live');
+          rows.classList.add('is-live');
+          ringFill.style.strokeDashoffset = TARGET_OFFSET;
+        }
+
+        /* subtle 3D tilt + pointer glare on fine pointers */
+        if (FINE && !RM) {
+          instrument.addEventListener('pointermove', function (e) {
+            var r = instrument.getBoundingClientRect();
+            var px = (e.clientX - r.left) / r.width;
+            var py = (e.clientY - r.top) / r.height;
+            instrument.style.setProperty('--mx', (px * 100) + '%');
+            instrument.style.setProperty('--my', (py * 100) + '%');
+            var rx = (0.5 - py) * 4.2;
+            var ry = (px - 0.5) * 4.2;
+            instrument.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+          });
+          instrument.addEventListener('pointerleave', function () {
+            instrument.style.transform = '';
+          });
+        }
+      });
+
+      /* ---------- 9. Pointer-follow glow on cards ---------- */
+      safe(function () {
+        if (!FINE) return;
+        document.querySelectorAll('.glow').forEach(function (card) {
+          card.addEventListener('pointermove', function (e) {
+            var r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+            card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+          });
+        });
+      });
+
+      /* ---------- 10. Magnetic buttons ---------- */
+      safe(function () {
+        if (!FINE || RM) return;
+        document.querySelectorAll('.magnetic').forEach(function (btn) {
+          btn.addEventListener('pointermove', function (e) {
+            var r = btn.getBoundingClientRect();
+            var dx = (e.clientX - (r.left + r.width / 2)) * 0.14;
+            var dy = (e.clientY - (r.top + r.height / 2)) * 0.22;
+            dx = Math.max(-5, Math.min(5, dx));
+            dy = Math.max(-4, Math.min(4, dy));
+            btn.style.transform = 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px)';
+          });
+          btn.addEventListener('pointerleave', function () {
+            btn.style.transform = '';
+          });
+        });
+      });
+
+      /* ---------- 11. Process connector line ---------- */
+      safe(function () {
+        var flow = document.getElementById('processFlow');
+        if (!flow) return;
+        if (!('IntersectionObserver' in window) || RM) { flow.classList.add('is-live'); return; }
+        var lineObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              flow.classList.add('is-live');
+              lineObserver.unobserve(flow);
+            }
+          });
+        }, { threshold: 0.3 });
+        lineObserver.observe(flow);
+      });
+
+      /* ---------- 12. FAQ height animation ---------- */
+      safe(function () {
+        var faqs = document.querySelectorAll('details.faq');
+        if (RM) return; /* native open/close */
+
+        faqs.forEach(function (d) {
+          var body = d.querySelector('.faq-body');
+          var summary = d.querySelector('summary');
+          if (d.open) d.classList.add('is-open');
+
+          summary.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (d.open && d.classList.contains('is-open')) {
+              /* close: collapse first, then release the open attribute */
+              d.classList.remove('is-open');
+              var fallback = setTimeout(finish, 600);
+              function finish() {
+                clearTimeout(fallback);
+                body.removeEventListener('transitionend', onEnd);
+                d.open = false;
+              }
+              function onEnd(ev) {
+                if (ev.propertyName === 'grid-template-rows') finish();
+              }
+              body.addEventListener('transitionend', onEnd);
+            } else if (!d.open) {
+              d.open = true;
+              requestAnimationFrame(function () {
+                requestAnimationFrame(function () { d.classList.add('is-open'); });
+              });
+            }
+          });
+        });
+      });
+
+      /* ---------- 13. Footer year ---------- */
+      safe(function () {
+        document.getElementById('year').textContent = new Date().getFullYear();
+      });
+
+      /* ---------- 14. Preselect service from offer CTAs ---------- */
+      safe(function () {
+        var serviceSelect = document.getElementById('lf-service');
+        document.querySelectorAll('[data-offer]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            var value = el.getAttribute('data-offer');
+            if (serviceSelect) {
+              var match = Array.prototype.find.call(serviceSelect.options, function (o) { return o.value === value; });
+              if (match) serviceSelect.value = value;
+            }
+          });
+        });
+      });
+
+      /* ---------- 15. Lead form: validate, POST to Supabase, mailto fallback ---------- */
+      safe(function () {
+        var form = document.getElementById('leadForm');
+        var formSuccess = document.getElementById('formSuccess');
+        var formStatus = document.getElementById('formStatus');
+        var formSubmit = document.getElementById('formSubmit');
+        var submitLabel = formSubmit.querySelector('.form-submit-label');
+        var EMAIL = 'clarifypaidsearch@gmail.com';
+        var LEAD_ENDPOINT = 'https://nrzpinvyxxorxufadvyc.supabase.co/functions/v1/inbound-lead';
+
+        var requiredFields = [
+          { id: 'lf-name', label: 'your name' },
+          { id: 'lf-business', label: 'your business name' },
+          { id: 'lf-email', label: 'your email' },
+          { id: 'lf-spend', label: 'a spend range' },
+          { id: 'lf-service', label: 'what you need' }
+        ];
+
+        function clearErrors() {
+          formStatus.className = 'form-status';
+          formStatus.textContent = '';
+          requiredFields.forEach(function (f) {
+            var field = document.getElementById(f.id);
+            field.removeAttribute('aria-invalid');
+            var note = document.querySelector('[data-error-for="' + f.id + '"]');
+            if (note) note.textContent = '';
+          });
+        }
+
+        function validate() {
+          clearErrors();
+          var firstInvalid = null;
+          requiredFields.forEach(function (f) {
+            var field = document.getElementById(f.id);
+            if (!field.value.trim()) {
+              field.setAttribute('aria-invalid', 'true');
+              var note = document.querySelector('[data-error-for="' + f.id + '"]');
+              if (note) note.textContent = 'Please add ' + f.label + '.';
+              if (!firstInvalid) firstInvalid = field;
+            }
+          });
+          if (firstInvalid) { firstInvalid.focus(); return false; }
+
+          var emailField = document.getElementById('lf-email');
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+            emailField.setAttribute('aria-invalid', 'true');
+            var note = document.querySelector('[data-error-for="lf-email"]');
+            if (note) note.textContent = 'Please enter a valid email.';
+            emailField.focus();
+            return false;
+          }
+          return true;
+        }
+
+        function values() {
+          return {
+            name: document.getElementById('lf-name').value.trim(),
+            business: document.getElementById('lf-business').value.trim(),
+            email: document.getElementById('lf-email').value.trim(),
+            website: document.getElementById('lf-website').value.trim(),
+            monthly_spend: document.getElementById('lf-spend').value,
+            service: document.getElementById('lf-service').value,
+            details: document.getElementById('lf-details').value.trim(),
+            'bot-field': document.getElementById('lf-bot').value
+          };
+        }
+
+        function setBusy(busy) {
+          formSubmit.disabled = busy;
+          formSubmit.classList.toggle('is-busy', busy);
+          submitLabel.textContent = busy ? 'Sending…' : 'Request my audit →';
+        }
+
+        function showSuccess() {
+          form.style.display = 'none';
+          document.getElementById('formHead').style.display = 'none';
+          formSuccess.classList.add('is-shown');
+          formSuccess.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'center' });
+        }
+
+        function mailtoFallback(v) {
+          var subject = 'Google Ads Audit Request — ' + (v.business || v.name);
+          var body =
+            'Name: ' + v.name + '\n' +
+            'Business: ' + v.business + '\n' +
+            'Email: ' + v.email + '\n' +
+            'Website: ' + (v.website || '—') + '\n' +
+            'Monthly ad spend: ' + v.monthly_spend + '\n' +
+            'Looking for: ' + v.service + '\n\n' +
+            'Details: ' + (v.details || '—');
+          window.location.href =
+            'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        }
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          if (!validate()) return;
+
+          var v = values();
+          setBusy(true);
+
+          fetch(LEAD_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(v)
+          }).then(function (response) {
+            if (!response.ok) throw new Error('Bad response ' + response.status);
+            showSuccess();
+          }).catch(function () {
+            /* Endpoint unreachable — open a prefilled email so the lead is never lost. */
+            formStatus.className = 'form-status error';
+            formStatus.textContent =
+              'Opening your email app to send this directly. If nothing happens, email ' + EMAIL + '.';
+            mailtoFallback(v);
+            setBusy(false);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
