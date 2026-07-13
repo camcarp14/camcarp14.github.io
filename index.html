@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Clarify Search audits how your business shows up in Google — paid ads and organic rankings — then fixes what's leaking. Flat fees, month-to-month, no agency theater." />
+  <meta name="description" content="Clarify Search audits how your business shows up in Google — paid ads, organic rankings, and the new AI answers — then fixes what's leaking. Flat fees, month-to-month, no agency theater." />
   <meta name="theme-color" content="#0a0b0f" />
   <meta property="og:title" content="Clarify Search — Paid &amp; Organic Search Audits, Cleanups &amp; Management" />
-  <meta property="og:description" content="Own more of the results page — the clicks you buy and the ones you earn. Flat fees, month-to-month, no agency theater." />
+  <meta property="og:description" content="Own more of the results page — the clicks you buy, the ones you earn, and the AI answers that now sit on top. Flat fees, month-to-month, no agency theater." />
   <meta property="og:type" content="website" />
   <title>Clarify Search — Paid &amp; Organic Search Audits, Cleanups &amp; Management</title>
 
@@ -43,6 +43,9 @@
       --amber-soft: #f7ca7d;
       --mint: #4fd694;
       --mint-soft: #96e9c0;
+      --iris: #9a8cff;
+      --iris-soft: #c4bcff;
+      --iris-rgb: 154,140,255;
       --red: #ff7d7d;
       --max: 1200px;
       --pad: 72px;
@@ -243,9 +246,10 @@
       border: 1px solid var(--line-strong); background: rgba(255,255,255,.03);
       padding: 8px 14px; border-radius: 999px;
     }
-    .eyebrow .dot-a, .eyebrow .dot-b { width: 6px; height: 6px; border-radius: 50%; }
+    .eyebrow .dot-a, .eyebrow .dot-b, .eyebrow .dot-c { width: 6px; height: 6px; border-radius: 50%; }
     .eyebrow .dot-a { background: var(--amber); box-shadow: 0 0 10px rgba(240,169,59,.8); }
     .eyebrow .dot-b { background: var(--mint); box-shadow: 0 0 10px rgba(79,214,148,.8); margin-left: -4px; }
+    .eyebrow .dot-c { background: var(--iris); box-shadow: 0 0 10px rgba(154,140,255,.8); margin-left: -4px; }
 
     .hero h1 { font-size: clamp(38px, 4.8vw, 64px); line-height: 1.04; }
     .hero h1 em { font-style: normal; }
@@ -490,6 +494,75 @@
       letter-spacing: .22em; text-transform: uppercase; color: var(--muted-2);
       position: relative; z-index: 1; padding: 4px 0;
     }
+
+    /* ============ AI search visibility ============ */
+    #ai-visibility .mono-label { color: var(--iris-soft); }
+    #ai-visibility h2 .ital { color: var(--iris-soft); }
+    .ai-grid { display: grid; grid-template-columns: .96fr 1.04fr; gap: 40px; align-items: start; }
+
+    .ai-stack { display: grid; gap: 12px; }
+    .ai-layer {
+      position: relative; overflow: hidden;
+      display: grid; gap: 6px;
+      padding: 18px 20px 18px 22px;
+      border: 1px solid var(--line); border-radius: 16px;
+      background: var(--surface);
+    }
+    .ai-layer::before {
+      content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+      background: var(--ai-acc, var(--line-strong));
+    }
+    .ai-layer.l-ai   { --ai-acc: var(--iris); border-color: rgba(154,140,255,.4); background: linear-gradient(100deg, rgba(154,140,255,.1), var(--surface) 62%); }
+    .ai-layer.l-paid { --ai-acc: var(--amber); }
+    .ai-layer.l-org  { --ai-acc: var(--mint); }
+    .ai-layer-tag {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2);
+    }
+    .ai-layer.l-ai   .ai-layer-tag { color: var(--iris-soft); }
+    .ai-layer.l-paid .ai-layer-tag { color: var(--amber-soft); }
+    .ai-layer.l-org  .ai-layer-tag { color: var(--mint-soft); }
+    .ai-layer-tag .new {
+      margin-left: auto; font-size: 8.5px; letter-spacing: .12em;
+      padding: 3px 8px; border-radius: 999px;
+      color: var(--iris-soft); border: 1px solid rgba(154,140,255,.5);
+      background: rgba(154,140,255,.1);
+    }
+    .ai-layer strong { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -.01em; }
+    .ai-layer p { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+    .ai-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ai-card {
+      display: grid; gap: 7px; padding: 22px;
+      border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+      transition: border-color .25s ease;
+    }
+    .ai-card:hover { border-color: rgba(154,140,255,.32); }
+    .ai-card .ai-num {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; color: var(--iris-soft);
+    }
+    .ai-card h3 { font-size: 16px; letter-spacing: -.01em; }
+    .ai-card p { font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+    .ai-note {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 24px; padding: 20px 26px;
+      border: 1px solid rgba(154,140,255,.22);
+      background: linear-gradient(90deg, rgba(154,140,255,.07), rgba(79,214,148,.05));
+      border-radius: 16px;
+      font-size: 14px; line-height: 1.6; color: var(--muted);
+    }
+    .ai-note strong { color: var(--ink); font-weight: 600; }
+    .ai-note-mark {
+      flex-shrink: 0; width: 32px; height: 32px; border-radius: 9px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--iris-soft); border: 1px solid rgba(154,140,255,.4);
+      background: rgba(154,140,255,.08);
+      font-family: var(--font-mono); font-size: 13px;
+    }
+    .pill.p-ai { color: var(--iris-soft); border-color: rgba(154,140,255,.35); }
 
     /* ============ method ============ */
     .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -813,6 +886,7 @@
       .section-head > p { justify-self: start; }
       .pain-grid { grid-template-columns: 1fr 1fr; }
       .cov-grid { grid-template-columns: 1fr; }
+      .ai-grid { grid-template-columns: 1fr; gap: 30px; }
       .cov-spine { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0; }
       .cov-spine::before { display: none; }
       .spine-title { grid-column: 1 / -1; }
@@ -896,6 +970,9 @@
       .spine-node { padding: 10px 8px; font-size: 9.5px; }
       .spine-node strong { font-size: 14px; }
 
+      .ai-cards { grid-template-columns: 1fr; }
+      .ai-note { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 20px; }
+
       .method-grid { grid-template-columns: 1fr; gap: 14px; }
       .step { display: grid; grid-template-columns: auto 1fr; gap: 7px 16px; padding: 20px; border-radius: 16px; }
       .step-number { font-size: 20px; grid-row: 1 / span 3; }
@@ -947,6 +1024,7 @@
       <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
         <a href="#diagnosis">Diagnosis</a>
         <a href="#coverage">Coverage</a>
+        <a href="#ai-visibility">AI Search</a>
         <a href="#method">Method</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -969,9 +1047,9 @@
       <div class="orb orb-b" aria-hidden="true"></div>
       <div class="shell hero-grid">
         <div class="hero-left">
-          <span class="eyebrow intro-item" style="--d:0s"><span class="dot-a" aria-hidden="true"></span><span class="dot-b" aria-hidden="true"></span>Paid + organic search · Chicago</span>
+          <span class="eyebrow intro-item" style="--d:0s"><span class="dot-a" aria-hidden="true"></span><span class="dot-b" aria-hidden="true"></span><span class="dot-c" aria-hidden="true"></span>Paid · organic · AI search · Chicago</span>
           <h1 id="heroTitle">Own more of the results page — the clicks you <em class="ital pay">buy</em> and the ones you <em class="ital earn">earn</em>.</h1>
-          <p class="hero-copy intro-item" style="--d:.5s">Clarify audits how your business shows up in Google — <strong>paid ads and organic rankings</strong> — then fixes what's leaking. Flat fees, month-to-month, no agency theater.</p>
+          <p class="hero-copy intro-item" style="--d:.5s">Clarify audits how your business shows up in Google — <strong>paid ads, organic rankings, and AI answers</strong> — then fixes what's leaking. Flat fees, month-to-month, no agency theater.</p>
           <div class="hero-actions intro-item" style="--d:.62s">
             <a class="cta" href="#contact">Request an audit →</a>
             <a class="secondary-cta" href="#method">See how it works</a>
@@ -1072,10 +1150,10 @@
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <ul>
-          <li>Google Ads</li><li>Performance Max</li><li>Shopping</li><li>Technical SEO</li><li>Content &amp; On-page</li><li>Local SEO</li><li>GA4</li><li>Search Console</li><li>Tag Manager</li><li>Reporting</li>
+          <li>Google Ads</li><li>Performance Max</li><li>Shopping</li><li>Technical SEO</li><li>Content &amp; On-page</li><li>Local SEO</li><li>AI Overviews</li><li>AI Mode</li><li>ChatGPT &amp; Perplexity</li><li>Schema &amp; Entities</li><li>GA4</li><li>Search Console</li><li>Tag Manager</li><li>Reporting</li>
         </ul>
         <ul>
-          <li>Google Ads</li><li>Performance Max</li><li>Shopping</li><li>Technical SEO</li><li>Content &amp; On-page</li><li>Local SEO</li><li>GA4</li><li>Search Console</li><li>Tag Manager</li><li>Reporting</li>
+          <li>Google Ads</li><li>Performance Max</li><li>Shopping</li><li>Technical SEO</li><li>Content &amp; On-page</li><li>Local SEO</li><li>AI Overviews</li><li>AI Mode</li><li>ChatGPT &amp; Perplexity</li><li>Schema &amp; Entities</li><li>GA4</li><li>Search Console</li><li>Tag Manager</li><li>Reporting</li>
         </ul>
       </div>
     </div>
@@ -1088,7 +1166,7 @@
             <span class="mono-label">Diagnosis</span>
             <h2>Most businesses run search as two silos. Google runs it as <span class="ital">one page</span>.</h2>
           </div>
-          <p>Ads on top, rankings underneath, one shared pool of buyer intent. The leaks live in the gaps between them — Clarify is built to find them fast.</p>
+          <p>An AI answer up top, ads under it, rankings below that — one shared pool of buyer intent. The leaks live in the gaps between them, and Clarify is built to find them fast.</p>
         </div>
 
         <div class="pain-grid reveal">
@@ -1129,7 +1207,7 @@
             <span class="mono-label">Coverage</span>
             <h2>Two channels. <span class="ital">One system.</span></h2>
           </div>
-          <p>Pick a side or run both — either way, the work sits on shared keyword intelligence and one measurement setup, handled by one person.</p>
+          <p>Pick a side or run both — either way, the work sits on shared keyword intelligence and one measurement setup, handled by one person. That same foundation is what AI answers are assembled from.</p>
         </div>
 
         <div class="cov-grid reveal">
@@ -1170,6 +1248,67 @@
       </div>
     </section>
 
+    <!-- ============ AI SEARCH VISIBILITY ============ -->
+    <section class="band" id="ai-visibility">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="lede">
+            <span class="mono-label">AI Search Visibility</span>
+            <h2>Search grew a new top — <span class="ital">the answer itself</span>.</h2>
+          </div>
+          <p>AI Overviews, Google's AI Mode, and assistants like ChatGPT, Gemini &amp; Perplexity now answer before the links load. Clarify works to make your business the source they cite — folded into the same audit, never sold as a separate silo.</p>
+        </div>
+
+        <div class="ai-grid reveal">
+          <aside class="ai-stack" aria-label="How the results page now stacks">
+            <div class="ai-layer l-ai">
+              <span class="ai-layer-tag">The answer <span class="new">New top</span></span>
+              <strong>AI answer &amp; Overview</strong>
+              <p>A synthesized answer that cites a handful of sources — often before anyone scrolls.</p>
+            </div>
+            <div class="ai-layer l-paid">
+              <span class="ai-layer-tag">Paid — the clicks you buy</span>
+              <strong>Search ads</strong>
+              <p>Still the fastest way to buy intent, sitting right below the answer.</p>
+            </div>
+            <div class="ai-layer l-org">
+              <span class="ai-layer-tag">Organic — the clicks you earn</span>
+              <strong>Ranked results</strong>
+              <p>The listings that feed the answer above and earn the clicks it doesn't.</p>
+            </div>
+          </aside>
+
+          <div class="ai-cards">
+            <article class="ai-card">
+              <span class="ai-num">01</span>
+              <h3>Entity &amp; structured data</h3>
+              <p>Schema and clean signals so models know exactly who you are, what you sell, and where you serve.</p>
+            </article>
+            <article class="ai-card">
+              <span class="ai-num">02</span>
+              <h3>Answer-ready content</h3>
+              <p>Pages built to be quoted: real questions answered plainly, backed by genuine expertise and sources.</p>
+            </article>
+            <article class="ai-card">
+              <span class="ai-num">03</span>
+              <h3>Presence where models look</h3>
+              <p>Reviews, citations, and consistent mentions across the places AI systems actually pull from.</p>
+            </article>
+            <article class="ai-card">
+              <span class="ai-num">04</span>
+              <h3>AI answer monitoring</h3>
+              <p>Track which prompts surface you — or a competitor — and close the gaps as the answers shift.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="ai-note reveal">
+          <span class="ai-note-mark" aria-hidden="true">✦</span>
+          <span><strong>Part of the holistic approach, not a bolt-on.</strong> AI answers are assembled from the same authority, content, and structured data your organic and paid work already build — so visibility here is woven into those engagements rather than billed as a separate product.</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ METHOD ============ -->
     <section class="band" id="method">
       <div class="shell">
@@ -1191,7 +1330,7 @@
           <article class="step">
             <div class="step-number">02</div>
             <h3>Get a scored diagnosis.</h3>
-            <p>Every channel you choose is reviewed and scored like the sample above.</p>
+            <p>Every channel you choose is reviewed and scored like the sample above — including how ready you are to show up in AI answers.</p>
             <div class="artifact"><span>▪</span>ARTIFACT: WRITTEN AUDIT REPORT</div>
           </article>
           <article class="step">
@@ -1291,6 +1430,7 @@
           <a class="software-cta" href="#contact" data-offer="Clarify Software">See software plans →</a>
         </div>
 
+        <p class="pricing-fineprint">AI Search Visibility — structured data, entity clarity, and answer-engine monitoring — is built into organic and combined engagements as part of the holistic approach, not billed separately.</p>
         <p class="pricing-fineprint">Custom reporting &amp; data tools: Sheets dashboards from $299 · custom apps from $1,500. You own the code and the data.</p>
       </div>
     </section>
@@ -1307,6 +1447,8 @@
             <span class="pill p-paid">Performance Max</span>
             <span class="pill p-org">Technical SEO</span>
             <span class="pill p-org">Content</span>
+            <span class="pill p-ai">AI Overviews</span>
+            <span class="pill p-ai">Answer Engines</span>
             <span class="pill">GA4</span>
             <span class="pill">Search Console</span>
           </div>
@@ -1317,8 +1459,8 @@
             <p>Built from the standards of managing complex search accounts: clear structure, careful QA, consistent optimization, business-first recommendations.</p>
           </article>
           <article class="why-card">
-            <h3>Search. Both sides. Nothing else.</h3>
-            <p>No social, email, web design, or "growth" bundles. The entire offer is the results page — the ads you buy and the rankings you earn.</p>
+            <h3>Search. Every surface. Nothing else.</h3>
+            <p>No social, email, web design, or "growth" bundles. The entire offer is the results page — the ads you buy, the rankings you earn, and the AI answers that now sit above both.</p>
           </article>
           <article class="why-card">
             <h3>Direct communication.</h3>
@@ -1353,6 +1495,10 @@
             <div class="faq-body"><div><p>Slower than ads, honestly. Technical fixes can show in weeks; content compounds over months. The roadmap separates quick wins from compounding bets, so you always know which is which.</p></div></div>
           </details>
           <details class="faq">
+            <summary>What about AI Overviews, ChatGPT &amp; Perplexity?</summary>
+            <div class="faq-body"><div><p>They're part of the plan, not a separate product. AI answers are assembled from the same signals search already rewards — clear structured data, genuine authority, and content that answers real questions — so the audit checks how you show up in AI answers and the fixes are built to earn citations there. It's woven into organic and combined engagements, not sold as a bolt-on. Nobody controls what a model says, so the honest goal is making your business the obvious, well-structured source for it to cite.</p></div></div>
+          </details>
+          <details class="faq">
             <summary>How is this different from an agency?</summary>
             <div class="faq-body"><div><p>Agencies bundle search into broad retainers with multiple handoffs. Clarify is narrower: diagnosis, cleanup, tracking, and disciplined optimization on the one page that matters.</p></div></div>
           </details>
@@ -1374,7 +1520,7 @@
         <div class="contact-copy reveal">
           <span class="mono-label">Request an audit</span>
           <h2>Send the account. Get the <span class="ital">clarity</span>.</h2>
-          <p>Tell Clarify a little about how you show up in search and what feels broken. You'll get a reply within one business day with next steps — no obligation.</p>
+          <p>Tell Clarify a little about how you show up in search — ads, rankings, or AI answers — and what feels broken. You'll get a reply within one business day with next steps, no obligation.</p>
           <ol class="next-steps">
             <li>
               <span class="num">1</span>
@@ -1455,6 +1601,7 @@
                   <option>Monthly Management — Paid Search</option>
                   <option>Monthly Management — Organic Search</option>
                   <option>Monthly Management — Both Channels</option>
+                  <option>AI Search Visibility</option>
                   <option>Custom Reporting &amp; Data Tools</option>
                   <option>Clarify Software</option>
                   <option>Not sure yet</option>
@@ -1715,19 +1862,19 @@
         },
         organic: {
           audit:   { price: '349', period: '', note: 'One-time · Written findings · 72h target', save: null,
-            feats: ['Technical crawl: indexation, speed, errors', 'Content vs. buyer intent gap analysis', 'On-page, titles & internal linking review', 'Prioritized fixes + 90-day roadmap'] },
+            feats: ['Technical crawl: indexation, speed, errors', 'Content vs. buyer intent gap analysis', 'On-page, titles & internal linking review', 'AI Overviews & answer-engine readiness', 'Prioritized fixes + 90-day roadmap'] },
           cleanup: { price: '699', period: '', note: 'One-time · Audit + implementation · 1–2 weeks', save: null,
             feats: ['Everything in the audit', 'Technical fixes shipped (or dev-ready specs)', 'Titles, meta & money-page cleanup', 'Full change log for every update'] },
           mgmt:    { price: '850', period: '/mo', note: 'Month-to-month · Cancel anytime', save: null,
-            feats: ['Monthly content & on-page priorities', 'Technical monitoring & fixes', 'Rank + Search Console reporting', 'Direct email access, changes documented'] }
+            feats: ['Monthly content & on-page priorities', 'Technical monitoring & fixes', 'Rank + Search Console reporting', 'AI answer monitoring & entity upkeep', 'Direct email access, changes documented'] }
         },
         both: {
           audit:   { price: '549', period: '', note: 'One-time · One combined report', save: 'Save $99',
-            feats: ['Paid + organic audits, one report', 'Overlap analysis: where ads buy what you rank for', 'Unified tracking & Search Console check', 'One prioritized 90-day roadmap'] },
+            feats: ['Paid + organic audits, one report', 'Overlap analysis: where ads buy what you rank for', 'Unified tracking & Search Console check', 'AI answer readiness across the page', 'One prioritized 90-day roadmap'] },
           cleanup: { price: '1,099', period: '', note: 'One-time · Both channels, one pass', save: 'Save $199',
             feats: ['Everything in both cleanups', 'Overlap fixes — stop buying clicks you earn', 'Tracking + technical repairs together', 'A single change log across channels'] },
           mgmt:    { price: '1,350', period: '/mo', note: 'Month-to-month · Cancel anytime', save: 'Save $250/mo',
-            feats: ['Everything in both plans', 'Budgets shift as rankings move', 'Paid query data feeds the content plan', 'One monthly report, one person'] }
+            feats: ['Everything in both plans', 'Budgets shift as rankings move', 'Paid query data feeds the content plan', 'AI answer visibility, tracked over time', 'One monthly report, one person'] }
         }
       };
       var TIERS = { audit: 'Audit', cleanup: 'Audit + Cleanup', mgmt: 'Monthly Management' };
