@@ -932,9 +932,49 @@
     }
     .reveal.in { opacity: 1; transform: none; filter: none; }
 
+    /* Headings wipe up out of a mask instead of just fading — the one motion
+       that makes the page feel authored rather than templated. */
+    .section-head h2, .contact-copy h2 {
+      clip-path: inset(0 0 106% 0);
+      transition: clip-path 1.05s var(--e-out) .06s;
+    }
+    .reveal.in h2 { clip-path: inset(0 0 -20% 0); }
+
+    /* Staggered children. The container stops animating itself and becomes a
+       passthrough so the two effects never muddy each other. */
+    .reveal.stagger { opacity: 1; transform: none; filter: none; transition: none; }
+    .reveal.stagger > * {
+      opacity: 0; transform: translateY(20px); filter: blur(5px);
+      transition: opacity .75s var(--e-out), transform .75s var(--e-out), filter .75s var(--e-out);
+    }
+    .reveal.stagger.in > * { opacity: 1; transform: none; filter: none; }
+    .reveal.stagger.in > *:nth-child(1) { transition-delay: .04s; }
+    .reveal.stagger.in > *:nth-child(2) { transition-delay: .13s; }
+    .reveal.stagger.in > *:nth-child(3) { transition-delay: .22s; }
+    .reveal.stagger.in > *:nth-child(4) { transition-delay: .31s; }
+    .reveal.stagger.in > *:nth-child(5) { transition-delay: .40s; }
+    .reveal.stagger.in > *:nth-child(6) { transition-delay: .49s; }
+    /* the FAQ runs longer than six — keep the tail behind the head */
+    .reveal.stagger.in > *:nth-child(n+7) { transition-delay: .56s; }
+
+    /* scroll progress hairline */
+    #progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 100%;
+      transform: scaleX(0); transform-origin: 0 50%;
+      background: linear-gradient(90deg, var(--amber), var(--mint));
+      z-index: 400; pointer-events: none;
+    }
+
+    /* magnetic buttons — cursor pull, desktop + motion-safe only */
+    .mag { will-change: transform; }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+      .section-head h2, .contact-copy h2 { clip-path: none; transition: none; }
+      .reveal.stagger > * { opacity: 1; transform: none; filter: none; transition: none; }
+      #progress { display: none; }
+      .mag { transform: none !important; }
       .ring-fill, .score-bar span, .seg-thumb, .faq-body { transition: none; }
       .instrument.in .inst-scan, .orb-a, .orb-b, .marquee-track,
       .offer.featured::before, .price.swap .number, .price.swap .period,
@@ -1082,6 +1122,7 @@
   </style>
 </head>
 <body>
+  <div id="progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
@@ -1106,7 +1147,7 @@
 
       <div class="nav-actions">
         <span class="nav-price">Free check · audits from $299</span>
-        <a class="cta" href="#pricing">Free leak check →</a>
+        <a class="cta mag" href="#pricing">Free leak check →</a>
         <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
         </button>
@@ -1125,8 +1166,8 @@
           <h1 id="heroTitle">Own more of the results page — the clicks you <em class="ital pay">buy</em> and the ones you <em class="ital earn">earn</em>.</h1>
           <p class="hero-copy intro-item" style="--d:.5s">Clarify audits how your business shows up in Google — <strong>paid ads, organic rankings, and AI answers</strong> — then fixes what's leaking. Flat fees, month-to-month, no agency theater.</p>
           <div class="hero-actions intro-item" style="--d:.62s">
-            <a class="cta" href="#pricing">Get a free leak check →</a>
-            <a class="secondary-cta" href="#method">See how it works</a>
+            <a class="cta mag" href="#pricing">Get a free leak check →</a>
+            <a class="secondary-cta mag" href="#method">See how it works</a>
           </div>
           <div class="trust-row intro-item" style="--d:.74s" role="group" aria-label="Clarify engagement details">
             <span class="trust-chip">Flat-fee pricing</span>
@@ -1243,7 +1284,7 @@
           <p>An AI answer up top, ads under it, rankings below that — one shared pool of buyer intent. The leaks live in the gaps between them, and Clarify is built to find them fast.</p>
         </div>
 
-        <div class="pain-grid reveal">
+        <div class="pain-grid reveal stagger">
           <article class="pain">
             <h3>Paying for clicks you already earn.</h3>
             <p>Ad budget quietly bids on terms the site already ranks for, because nobody checks the overlap.</p>
@@ -1284,7 +1325,7 @@
           <p>Your business can appear in three places on one results page: the AI answer, the ads, and the rankings. <strong>You buy two of them</strong> — paid and organic. The third is earned from the same work, which is why it isn't sold separately. Pick a side or run both; either way it's one keyword map, one measurement setup, one person.</p>
         </div>
 
-        <div class="cov-grid reveal">
+        <div class="cov-grid reveal stagger">
           <article class="cov-panel paid spot">
             <span class="cov-tag">Paid — the clicks you buy</span>
             <h3>Paid search</h3>
@@ -1330,10 +1371,10 @@
             <span class="mono-label">The third surface — included, not sold</span>
             <h2>The surface you <span class="ital">can't buy your way onto</span>.</h2>
           </div>
-          <p>AI Overviews, Google's AI Mode, and assistants like ChatGPT, Gemini &amp; Perplexity now answer before the links load. There is no ad slot to bid on and no ranking to climb — models cite sources they can parse and trust. That comes out of the same structured data, content, and authority your paid and organic work already build, so it's part of both engagements rather than a fourth line item.</p>
+          <p>AI Overviews, AI Mode, ChatGPT and Perplexity now answer before the links load. There's no slot to bid on and no ranking to climb — models cite what they can parse and trust, which your paid and organic work already builds. So it's included in both, never a fourth line item.</p>
         </div>
 
-        <div class="ai-grid reveal">
+        <div class="ai-grid reveal stagger">
           <aside class="ai-stack" aria-label="How the results page now stacks">
             <div class="ai-layer l-ai">
               <span class="ai-layer-tag">The answer <span class="new">New top</span></span>
@@ -1378,7 +1419,7 @@
 
         <div class="ai-note reveal">
           <span class="ai-note-mark" aria-hidden="true">✦</span>
-          <span><strong>Part of the holistic approach, not a bolt-on.</strong> AI answers are assembled from the same authority, content, and structured data your organic and paid work already build — so visibility here is woven into those engagements rather than billed as a separate product.</span>
+          <span><strong>Nobody controls what a model says.</strong> The honest goal is being the clearest, best-structured source for it to reach for.</span>
         </div>
       </div>
     </section>
@@ -1394,7 +1435,7 @@
           <p>No six-week onboarding. Each step hands you something durable, whether or not you spend another dollar with Clarify. <strong>The free leak check is steps 01 and 02</strong> — you can stop there and owe nothing.</p>
         </div>
 
-        <div class="method-grid reveal">
+        <div class="method-grid reveal stagger">
           <article class="step">
             <div class="step-number">01</div>
             <span class="step-tier t-free">Free &amp; paid</span>
@@ -1462,11 +1503,11 @@
           <div class="fs-side">
             <div class="price" id="price-free"><span class="currency">$</span><span class="number">0</span><span class="period"></span></div>
             <p class="fs-note" id="fsNote">3 business days · 5 a week</p>
-            <a class="cta" href="#contact" id="cta-free" data-offer="Free Leak Check — Paid Search">Claim a leak check →</a>
+            <a class="cta mag" href="#contact" id="cta-free" data-offer="Free Leak Check — Paid Search">Claim a leak check →</a>
           </div>
         </div>
 
-        <div class="offers-grid reveal">
+        <div class="offers-grid reveal stagger">
           <article class="offer spot">
             <div class="offer-top">
               <h3>Audit</h3>
@@ -1549,7 +1590,7 @@
             <span class="pill">Search Console</span>
           </div>
         </div>
-        <div class="why-cards reveal">
+        <div class="why-cards reveal stagger">
           <article class="why-card">
             <h3>Agency-trained rigor.</h3>
             <p>Built from the standards of managing complex search accounts: clear structure, careful QA, consistent optimization, business-first recommendations.</p>
@@ -1557,10 +1598,6 @@
           <article class="why-card">
             <h3>Search. Every surface. Nothing else.</h3>
             <p>No social, email, web design, or "growth" bundles. The entire offer is the results page — the ads you buy, the rankings you earn, and the AI answers that now sit above both.</p>
-          </article>
-          <article class="why-card">
-            <h3>Direct communication.</h3>
-            <p>You work with the person reviewing your account, writing the findings, and making the changes. Fewer layers, better context.</p>
           </article>
         </div>
       </div>
@@ -1573,7 +1610,7 @@
           <span class="mono-label">FAQ</span>
           <h2>Straight answers before you send access.</h2>
         </div>
-        <div class="faq-list reveal">
+        <div class="faq-list reveal stagger">
           <details class="faq oa" open>
             <summary>Is the free leak check actually free?</summary>
             <div class="faq-body"><div><p>Yes — no card, no call, no trial that quietly becomes a bill. It is capped at five a week because one person does the work, and it covers one channel so it stays a twenty-minute job. You get a one-page scorecard and a short walkthrough, and you keep them whether or not you ever buy anything. What it does not include is the fix list, the roadmap, or the campaign-by-campaign scoring — that genuinely takes a day, which is what the $299 audit is. The free check tells you whether you are leaking and roughly how much; the audit tells you where it comes from and what to fix first.</p></div></div>
@@ -1812,6 +1849,40 @@
         });
       }, { threshold: 0.15 });
       document.querySelectorAll('.reveal, .instrument').forEach(function (el) { io.observe(el); });
+
+      /* ---- scroll progress hairline ---- */
+      var progressEl = document.getElementById('progress');
+      var progressRaf = 0;
+      function drawProgress() {
+        progressRaf = 0;
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        progressEl.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+      }
+      window.addEventListener('scroll', function () {
+        if (!progressRaf) progressRaf = requestAnimationFrame(drawProgress);
+      }, { passive: true });
+      drawProgress();
+
+      /* ---- magnetic buttons ---- */
+      if (!reduced && window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.mag').forEach(function (el) {
+          var raf = 0, tx = 0, ty = 0, cx = 0, cy = 0;
+          function loop() {
+            cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
+            el.style.transform = 'translate(' + cx.toFixed(2) + 'px,' + cy.toFixed(2) + 'px)';
+            raf = (Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1) ? requestAnimationFrame(loop) : 0;
+          }
+          function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+          el.addEventListener('pointermove', function (e) {
+            var r = el.getBoundingClientRect();
+            tx = (e.clientX - (r.left + r.width / 2)) * 0.28;
+            ty = (e.clientY - (r.top + r.height / 2)) * 0.34;
+            kick();
+          });
+          el.addEventListener('pointerleave', function () { tx = 0; ty = 0; kick(); });
+        });
+      }
 
       /* ============================================================
          DUAL-CHANNEL SCORECARD
