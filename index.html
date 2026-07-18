@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Clarify Search audits how your business shows up in Google — paid ads, organic rankings, and the new AI answers — then fixes what's leaking. Flat fees, month-to-month, no agency theater." />
+  <meta name="description" content="Clarify Search audits how your business shows up in Google — paid ads, organic rankings, and the new AI answers — then fixes what's leaking. Start with a free leak check: three checks, one number, no call. Flat fees after that, month-to-month, no agency theater." />
   <meta name="theme-color" content="#0a0b0f" />
   <meta property="og:title" content="Clarify Search — Paid &amp; Organic Search Audits, Cleanups &amp; Management" />
-  <meta property="og:description" content="Own more of the results page — the clicks you buy, the ones you earn, and the AI answers that now sit on top. Flat fees, month-to-month, no agency theater." />
+  <meta property="og:description" content="Own more of the results page — the clicks you buy, the ones you earn, and the AI answers that now sit on top. Start with a free leak check: three checks, one number, no call." />
   <meta property="og:type" content="website" />
   <title>Clarify Search — Paid &amp; Organic Search Audits, Cleanups &amp; Management</title>
 
@@ -708,6 +708,57 @@
     .offer.featured .feature-list { color: #c9cbd6; }
     .offer .cta, .offer .secondary-cta { width: 100%; }
 
+    /* ---- free leak check: the on-ramp above the ladder. Tracks --acc so it
+           follows the channel toggle like the rest of the pricing block. ---- */
+    .free-strip {
+      position: relative;
+      display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: center;
+      margin-bottom: 22px; padding: 28px 32px;
+      border: 1px solid rgba(var(--acc-rgb), .32);
+      background: linear-gradient(100deg, rgba(var(--acc-rgb), .075), rgba(var(--acc-rgb), .02));
+      border-radius: 20px;
+      transition: border-color .3s ease, background .3s ease;
+    }
+    .fs-head { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; }
+    .fs-head h3 { font-size: 22px; }
+    .fs-badge {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--bg);
+      background: var(--acc-soft); padding: 5px 11px; border-radius: 999px;
+      transition: background .3s ease;
+    }
+    .fs-intro { margin-top: 12px; font-size: 14.5px; line-height: 1.6; color: var(--muted); max-width: 64ch; }
+    .fs-intro strong { color: var(--ink); font-weight: 600; }
+    .fs-list {
+      list-style: none; padding: 0; margin: 15px 0 0;
+      display: flex; flex-wrap: wrap; gap: 7px 24px;
+      font-size: 13.5px; line-height: 1.5; color: var(--muted);
+    }
+    .fs-list li { position: relative; padding-left: 19px; }
+    .fs-list li::before {
+      content: "✓"; position: absolute; left: 0; top: 0;
+      color: var(--acc); font-size: 11px; line-height: 1.5;
+      transition: color .3s ease;
+    }
+    .fs-stop {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,.13);
+      font-size: 13px; line-height: 1.6; color: var(--muted-2); max-width: 72ch;
+    }
+    .fs-stop b {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+      margin-right: 9px;
+    }
+    .fs-side { display: grid; justify-items: center; gap: 11px; text-align: center; }
+    .fs-side .price { padding-top: 0; }
+    .fs-side .price .number { font-size: 50px; }
+    .fs-note {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted-2);
+    }
+    .fs-side .cta { width: 100%; }
+
     .software-strip {
       display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
       margin-top: 26px; padding: 26px 30px;
@@ -989,6 +1040,11 @@
       .price .number { font-size: 36px; }
       .software-strip { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
       .software-cta { justify-content: center; }
+      .free-strip { grid-template-columns: 1fr; gap: 20px; padding: 22px 20px; }
+      .fs-side { justify-items: stretch; }
+      .fs-side .price { justify-content: center; }
+      .fs-side .price .number { font-size: 40px; }
+      .fs-list { gap: 7px 16px; }
 
       .why-grid, .faq-grid, .contact-grid { gap: 28px; }
       .why-card { padding: 20px; }
@@ -1031,8 +1087,8 @@
       </nav>
 
       <div class="nav-actions">
-        <span class="nav-price">Audits from $299</span>
-        <a class="cta" href="#contact">Request audit →</a>
+        <span class="nav-price">Free check · audits from $299</span>
+        <a class="cta" href="#pricing">Free leak check →</a>
         <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
         </button>
@@ -1051,7 +1107,7 @@
           <h1 id="heroTitle">Own more of the results page — the clicks you <em class="ital pay">buy</em> and the ones you <em class="ital earn">earn</em>.</h1>
           <p class="hero-copy intro-item" style="--d:.5s">Clarify audits how your business shows up in Google — <strong>paid ads, organic rankings, and AI answers</strong> — then fixes what's leaking. Flat fees, month-to-month, no agency theater.</p>
           <div class="hero-actions intro-item" style="--d:.62s">
-            <a class="cta" href="#contact">Request an audit →</a>
+            <a class="cta" href="#pricing">Get a free leak check →</a>
             <a class="secondary-cta" href="#method">See how it works</a>
           </div>
           <div class="trust-row intro-item" style="--d:.74s" role="group" aria-label="Clarify engagement details">
@@ -1371,6 +1427,23 @@
           <p class="sr-only" role="status" aria-live="polite" id="segLive">Showing paid search pricing.</p>
         </div>
 
+        <div class="free-strip reveal" id="freeStrip">
+          <div class="fs-main">
+            <div class="fs-head">
+              <span class="fs-badge">Start here — free</span>
+              <h3>The Leak Check</h3>
+            </div>
+            <p class="fs-intro" id="fsIntro"></p>
+            <ul class="fs-list" id="fsFeats"></ul>
+            <p class="fs-stop" id="fsStop"></p>
+          </div>
+          <div class="fs-side">
+            <div class="price" id="price-free"><span class="currency">$</span><span class="number">0</span><span class="period"></span></div>
+            <p class="fs-note" id="fsNote">3 business days · 5 a week</p>
+            <a class="cta" href="#contact" id="cta-free" data-offer="Free Leak Check — Paid Search">Claim a leak check →</a>
+          </div>
+        </div>
+
         <div class="offers-grid reveal">
           <article class="offer spot">
             <div class="offer-top">
@@ -1430,6 +1503,7 @@
           <a class="software-cta" href="#contact" data-offer="Clarify Software">See software plans →</a>
         </div>
 
+        <p class="pricing-fineprint">The free leak check is worth running if you're spending about $1,500+/mo on Google Ads, or you have organic traffic worth defending. Below that it usually finds too little to justify your time or Clarify's — the audit is the better starting point. Five a week is a real capacity limit, not a countdown timer.</p>
         <p class="pricing-fineprint">AI Search Visibility — structured data, entity clarity, and answer-engine monitoring — is built into organic and combined engagements as part of the holistic approach, not billed separately.</p>
         <p class="pricing-fineprint">Custom reporting &amp; data tools: Sheets dashboards from $299 · custom apps from $1,500. You own the code and the data.</p>
       </div>
@@ -1479,6 +1553,10 @@
         </div>
         <div class="faq-list reveal">
           <details class="faq oa" open>
+            <summary>Is the free leak check actually free?</summary>
+            <div class="faq-body"><div><p>Yes — no card, no call, no trial that quietly becomes a bill. It is capped at five a week because one person does the work, and it covers one channel so it stays a twenty-minute job. You get a one-page scorecard and a short walkthrough, and you keep them whether or not you ever buy anything. What it does not include is the fix list, the roadmap, or the campaign-by-campaign scoring — that genuinely takes a day, which is what the $299 audit is. The free check tells you whether you are leaking and roughly how much; the audit tells you where it comes from and what to fix first.</p></div></div>
+          </details>
+          <details class="faq">
             <summary>Do I have to do both channels?</summary>
             <div class="faq-body"><div><p>No. Plenty of accounts start with one. The bundle exists because the channels share data — paid queries reveal what content should target, and rankings tell ads what not to buy — but each service stands alone.</p></div></div>
           </details>
@@ -1518,9 +1596,9 @@
     <section class="band" id="contact">
       <div class="shell contact-grid">
         <div class="contact-copy reveal">
-          <span class="mono-label">Request an audit</span>
+          <span class="mono-label">Start free</span>
           <h2>Send the account. Get the <span class="ital">clarity</span>.</h2>
-          <p>Tell Clarify a little about how you show up in search — ads, rankings, or AI answers — and what feels broken. You'll get a reply within one business day with next steps, no obligation.</p>
+          <p>Tell Clarify a little about how you show up in search — ads, rankings, or AI answers — and what feels broken. Ask for the free leak check and you'll get a number back, not a sales call. Reply within one business day, no obligation.</p>
           <ol class="next-steps">
             <li>
               <span class="num">1</span>
@@ -1528,11 +1606,11 @@
             </li>
             <li>
               <span class="num">2</span>
-              <span><strong>Clarify replies within one business day.</strong> Clear scope, right starting point.</span>
+              <span><strong>Clarify replies within one business day.</strong> Clear scope, right starting point — including whether the free check is worth running for you.</span>
             </li>
             <li>
               <span class="num">3</span>
-              <span><strong>You decide the next move.</strong> Audit, cleanup, or management. No pressure.</span>
+              <span><strong>You decide the next move.</strong> Nothing, the audit, cleanup, or management. No pressure either way.</span>
             </li>
           </ol>
           <div class="email-inline">
@@ -1542,8 +1620,8 @@
 
         <div class="form-card reveal" id="formCard">
           <div class="form-card-head">
-            <h3>Request your audit</h3>
-            <p>Takes about a minute. Fields marked * are required.</p>
+            <h3>Get your leak check</h3>
+            <p>Takes about a minute — or pick a paid engagement in the dropdown. Fields marked * are required.</p>
           </div>
 
           <form class="lead-form" id="leadForm" novalidate>
@@ -1592,6 +1670,8 @@
                 <label for="lf-service">What do you need? *</label>
                 <select id="lf-service" name="service" required>
                   <option value="" disabled selected>Select an option</option>
+                  <option>Free Leak Check — Paid Search</option>
+                  <option>Free Leak Check — Organic Search</option>
                   <option>Audit — Paid Search</option>
                   <option>Audit — Organic Search</option>
                   <option>Audit — Both Channels</option>
@@ -1615,14 +1695,14 @@
               <textarea id="lf-details" name="details" placeholder="e.g. spend is up but leads are flat, traffic dropped after a redesign, not sure if tracking is right…"></textarea>
             </div>
 
-            <button type="submit" class="form-submit" id="formSubmit">Request my audit →</button>
-            <p class="form-fineprint">No spam, no obligation. Your details are only used to reply about your audit.</p>
+            <button type="submit" class="form-submit" id="formSubmit">Send my request →</button>
+            <p class="form-fineprint">No spam, no obligation. Your details are only used to reply about your request.</p>
           </form>
 
           <div class="form-success" role="status" aria-live="polite">
             <div class="check" aria-hidden="true">✓</div>
-            <h3>Request received.</h3>
-            <p>Thanks — Clarify will reply within one business day with next steps. Check your inbox (and spam, just in case).</p>
+            <h3>One last tap — hit send.</h3>
+            <p>Your email app just opened with everything filled in. <strong>Send that message</strong> and Clarify replies within one business day. If nothing opened, mail <a href="#contact" data-email data-email-text data-subject="Clarify Search Request">clarifypaidsearch [at] gmail.com</a> directly — same result.</p>
           </div>
         </div>
       </div>
@@ -1879,6 +1959,35 @@
       };
       var TIERS = { audit: 'Audit', cleanup: 'Audit + Cleanup', mgmt: 'Monthly Management' };
 
+      /* The free tier is deliberately single-channel. On "both" that limit becomes
+         the argument for the combined audit, so the copy pivots instead of hiding. */
+      var FREE = {
+        paid: {
+          intro: 'Three checks on your Google Ads account and one number: roughly what you are burning every month. <strong>No charge, no card, no call.</strong>',
+          feats: ['Overlap — ads bidding on terms you already rank for', 'Wasted spend, estimated from your real search terms', 'Conversion tracking: pass, fail, or actively misleading'],
+          stopLabel: 'Where it stops',
+          stop: 'no fix list, no roadmap, no campaign-by-campaign scoring. Those take a day of work rather than twenty minutes — that is the audit.',
+          note: '3 business days · 5 a week',
+          offer: 'Free Leak Check — Paid Search'
+        },
+        organic: {
+          intro: 'Three checks on your site and Search Console, and one number: roughly what you are leaving on the table every month. <strong>No charge, no card, no call.</strong>',
+          feats: ['Striking distance — queries ranking 5–20 you could own', 'Money pages that rank but cannot convert', 'Indexation and crawl red flags on pages that matter'],
+          stopLabel: 'Where it stops',
+          stop: 'no fix list, no roadmap, no page-by-page scoring, and no AI-answer readiness review. That is the audit.',
+          note: '3 business days · 5 a week',
+          offer: 'Free Leak Check — Organic Search'
+        },
+        both: {
+          intro: 'The free check covers <strong>one channel</strong> — pick whichever worries you more. The gap between them, where ads buy clicks you already earn, needs both sides open at once.',
+          feats: ['Pick paid — overlap, wasted spend, tracking', 'Or pick organic — striking distance, money pages, indexation', 'Either way: one number, three business days'],
+          stopLabel: 'Why the audit exists',
+          stop: 'only the combined audit reads both channels against each other. That overlap analysis is usually where the money actually is.',
+          note: '3 business days · one channel',
+          offer: 'Free Leak Check — Paid Search'
+        }
+      };
+
       var pricingSection = document.getElementById('pricing');
       var seg = document.getElementById('seg');
       var segThumb = seg.querySelector('.seg-thumb');
@@ -1906,6 +2015,16 @@
         ctaEl.setAttribute('data-offer', TIERS[tierKey] + ' — ' + CH_LABEL[ch]);
       }
 
+      function renderFree(data) {
+        document.getElementById('fsIntro').innerHTML = data.intro;
+        document.getElementById('fsFeats').innerHTML = data.feats.map(function (f, i) {
+          return '<li class="fl-in" style="--i:' + i + '">' + f + '</li>';
+        }).join('');
+        document.getElementById('fsStop').innerHTML = '<b>' + data.stopLabel + '</b> — ' + data.stop;
+        document.getElementById('fsNote').textContent = data.note;
+        document.getElementById('cta-free').setAttribute('data-offer', data.offer);
+      }
+
       function setChannel(ch, focusBtn) {
         currentCh = ch;
         pricingSection.setAttribute('data-ch', ch);
@@ -1917,6 +2036,7 @@
           if (active && focusBtn) b.focus();
         });
         ['audit', 'cleanup', 'mgmt'].forEach(function (t) { renderTier(t, PRICING[ch][t], ch); });
+        renderFree(FREE[ch]);
         segCaption.textContent = CAPTIONS[ch];
         segLive.textContent = 'Showing ' + CH_LABEL[ch].toLowerCase() + ' pricing.';
       }
@@ -2021,8 +2141,32 @@
           if (firstInvalid) firstInvalid.focus();
           return;
         }
-        /* NOTE: wire this to your form backend (Netlify Forms, Formspree, or your API).
-           The payload is available as: new FormData(form) */
+        /* Static host (GitHub Pages) — no server to POST to, so the submission is
+           handed to the visitor's mail client as a fully prefilled message.
+           To move to a real background POST later, swap the mailto for a fetch to
+           a Formspree/Web3Forms endpoint and keep everything else as-is. */
+        var fd = new FormData(form);
+        var val = function (k) { return (fd.get(k) || '').toString().trim(); };
+        var details = val('details');
+        if (details.length > 1200) details = details.slice(0, 1200) + '… (truncated)';
+
+        var subject = 'Clarify request — ' + (val('service') || 'General enquiry') + ' — ' + val('business');
+        var body = [
+          'Name: ' + val('name'),
+          'Business: ' + val('business'),
+          'Email: ' + val('email'),
+          'Website: ' + (val('website') || '—'),
+          'Monthly search budget: ' + val('monthly_budget'),
+          'What they need: ' + val('service'),
+          '',
+          'What feels broken:',
+          details || '—'
+        ].join('\r\n');
+
+        window.location.href = 'mailto:' + addr +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+
         formCard.classList.add('is-sent');
       });
 
