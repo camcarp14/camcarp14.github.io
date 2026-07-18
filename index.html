@@ -584,6 +584,15 @@
       padding-top: 14px; border-top: 1px dashed rgba(255,255,255,.12);
       font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; color: var(--mint);
     }
+    /* which rung of the ladder each step belongs to */
+    .step-tier {
+      align-self: start;
+      font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase;
+      padding: 4px 9px; border-radius: 999px; white-space: nowrap;
+    }
+    .step-tier.t-free { color: var(--mint-soft); border: 1px solid rgba(79,214,148,.42); background: rgba(79,214,148,.09); }
+    .step-tier.t-paid { color: var(--muted); border: 1px solid var(--line-strong); background: rgba(255,255,255,.04); }
 
     /* ============ pricing ============ */
     #pricing { --acc: var(--amber); --acc-soft: var(--amber-soft); --acc-rgb: 240,169,59; }
@@ -1089,7 +1098,7 @@
       <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
         <a href="#diagnosis">Diagnosis</a>
         <a href="#coverage">Coverage</a>
-        <a href="#ai-visibility">AI Search</a>
+        <a href="#ai-visibility">AI Answers</a>
         <a href="#method">Method</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -1269,10 +1278,10 @@
       <div class="shell">
         <div class="section-head reveal">
           <div class="lede">
-            <span class="mono-label">Coverage</span>
-            <h2>Two channels. <span class="ital">One system.</span></h2>
+            <span class="mono-label">Coverage — what you buy</span>
+            <h2>Three surfaces. <span class="ital">Two you buy.</span></h2>
           </div>
-          <p>Pick a side or run both — either way, the work sits on shared keyword intelligence and one measurement setup, handled by one person. That same foundation is what AI answers are assembled from.</p>
+          <p>Your business can appear in three places on one results page: the AI answer, the ads, and the rankings. <strong>You buy two of them</strong> — paid and organic. The third is earned from the same work, which is why it isn't sold separately. Pick a side or run both; either way it's one keyword map, one measurement setup, one person.</p>
         </div>
 
         <div class="cov-grid reveal">
@@ -1318,10 +1327,10 @@
       <div class="shell">
         <div class="section-head reveal">
           <div class="lede">
-            <span class="mono-label">AI Search Visibility</span>
-            <h2>Search grew a new top — <span class="ital">the answer itself</span>.</h2>
+            <span class="mono-label">The third surface — included, not sold</span>
+            <h2>The surface you <span class="ital">can't buy your way onto</span>.</h2>
           </div>
-          <p>AI Overviews, Google's AI Mode, and assistants like ChatGPT, Gemini &amp; Perplexity now answer before the links load. Clarify works to make your business the source they cite — folded into the same audit, never sold as a separate silo.</p>
+          <p>AI Overviews, Google's AI Mode, and assistants like ChatGPT, Gemini &amp; Perplexity now answer before the links load. There is no ad slot to bid on and no ranking to climb — models cite sources they can parse and trust. That comes out of the same structured data, content, and authority your paid and organic work already build, so it's part of both engagements rather than a fourth line item.</p>
         </div>
 
         <div class="ai-grid reveal">
@@ -1382,32 +1391,36 @@
             <span class="mono-label">Method</span>
             <h2>Four steps. Every one leaves an <span class="ital">artifact</span>.</h2>
           </div>
-          <p>No six-week onboarding. Each step hands you something durable, whether or not you spend another dollar with Clarify.</p>
+          <p>No six-week onboarding. Each step hands you something durable, whether or not you spend another dollar with Clarify. <strong>The free leak check is steps 01 and 02</strong> — you can stop there and owe nothing.</p>
         </div>
 
         <div class="method-grid reveal">
           <article class="step">
             <div class="step-number">01</div>
+            <span class="step-tier t-free">Free &amp; paid</span>
             <h3>Send read-only access.</h3>
             <p>Google Ads, GA4, and Search Console viewer access is enough. Admin only if Clarify implements.</p>
             <div class="artifact"><span>▪</span>ARTIFACT: ACCESS CHECKLIST</div>
           </article>
           <article class="step">
             <div class="step-number">02</div>
+            <span class="step-tier t-free">Where free stops</span>
             <h3>Get a scored diagnosis.</h3>
-            <p>Every channel you choose is reviewed and scored like the sample above — including how ready you are to show up in AI answers.</p>
-            <div class="artifact"><span>▪</span>ARTIFACT: WRITTEN AUDIT REPORT</div>
+            <p>Free gets you three checks and one number on a single channel. The audit scores every channel you choose, like the sample above — including how ready you are to be cited in AI answers.</p>
+            <div class="artifact"><span>▪</span>ARTIFACT: SCORECARD, THEN FULL REPORT</div>
           </article>
           <article class="step">
             <div class="step-number">03</div>
+            <span class="step-tier t-paid">Cleanup &amp; management</span>
             <h3>Fix the top leaks.</h3>
-            <p>Negatives from real queries, tracking repairs, technical and on-page fixes — highest impact first.</p>
+            <p>Negatives from real queries, tracking repairs, technical and on-page fixes — highest impact first. This is where diagnosis turns into changed settings.</p>
             <div class="artifact"><span>▪</span>ARTIFACT: CHANGE LOG + FIX LIST</div>
           </article>
           <article class="step">
             <div class="step-number">04</div>
+            <span class="step-tier t-paid">Audit onward</span>
             <h3>Decide the next move.</h3>
-            <p>Fix it yourself, have Clarify do it, or go month-to-month. No pressure.</p>
+            <p>Fix it yourself, have Clarify do it, or go month-to-month. The roadmap is yours either way. No pressure.</p>
             <div class="artifact"><span>▪</span>ARTIFACT: 90-DAY ROADMAP</div>
           </article>
         </div>
