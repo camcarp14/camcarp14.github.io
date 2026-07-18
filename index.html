@@ -886,6 +886,15 @@
     }
     .form-submit:hover { transform: translateY(-1px); box-shadow: 0 18px 52px rgba(0,0,0,.5); }
     .form-fineprint { font-size: 12px; color: var(--muted-2); text-align: center; }
+    .form-submit.is-busy { opacity: .72; cursor: progress; transform: none; }
+    .form-submit:disabled { pointer-events: none; }
+    .form-error-banner {
+      display: none;
+      font-size: 13px; line-height: 1.55; color: #ffd2d2;
+      border: 1px solid rgba(255,125,125,.42); background: rgba(255,125,125,.09);
+      border-radius: 12px; padding: 12px 14px;
+    }
+    .form-error-banner.show { display: block; }
 
     .form-success { display: none; gap: 12px; justify-items: center; text-align: center; padding: 56px 40px 60px; }
     .form-card.is-sent .lead-form, .form-card.is-sent .form-card-head { display: none; }
@@ -1695,14 +1704,15 @@
               <textarea id="lf-details" name="details" placeholder="e.g. spend is up but leads are flat, traffic dropped after a redesign, not sure if tracking is right…"></textarea>
             </div>
 
+            <p class="form-error-banner" id="formError" role="alert" aria-live="assertive"></p>
             <button type="submit" class="form-submit" id="formSubmit">Send my request →</button>
             <p class="form-fineprint">No spam, no obligation. Your details are only used to reply about your request.</p>
           </form>
 
           <div class="form-success" role="status" aria-live="polite">
             <div class="check" aria-hidden="true">✓</div>
-            <h3>One last tap — hit send.</h3>
-            <p>Your email app just opened with everything filled in. <strong>Send that message</strong> and Clarify replies within one business day. If nothing opened, mail <a href="#contact" data-email data-email-text data-subject="Clarify Search Request">clarifypaidsearch [at] gmail.com</a> directly — same result.</p>
+            <h3>Request received.</h3>
+            <p>Thanks — it's in. Clarify replies within one business day with next steps. If you'd rather add anything, mail <a href="#contact" data-email data-email-text data-subject="Clarify Search Request">clarifypaidsearch [at] gmail.com</a>.</p>
           </div>
         </div>
       </div>
@@ -2104,9 +2114,17 @@
         }
       });
 
-      /* ---- form validation + success state ---- */
+      /* ---- form validation + submission ---- */
+      var LEAD_ENDPOINT = 'https://nrzpinvyxxorxufadvyc.supabase.co/functions/v1/submit-lead';
       var form = document.getElementById('leadForm');
       var formCard = document.getElementById('formCard');
+      var submitBtn = document.getElementById('formSubmit');
+      var formErrorEl = document.getElementById('formError');
+
+      function setFormError(message) {
+        formErrorEl.textContent = message || '';
+        formErrorEl.classList.toggle('show', !!message);
+      }
 
       function setError(id, message) {
         var input = document.getElementById(id);
@@ -2141,33 +2159,46 @@
           if (firstInvalid) firstInvalid.focus();
           return;
         }
-        /* Static host (GitHub Pages) — no server to POST to, so the submission is
-           handed to the visitor's mail client as a fully prefilled message.
-           To move to a real background POST later, swap the mailto for a fetch to
-           a Formspree/Web3Forms endpoint and keep everything else as-is. */
+        /* Posts straight to a Supabase Edge Function, which inserts into the CRM's
+           inbound_leads table using the service role key server-side. No Supabase
+           credential is present in this page, so view-source exposes nothing that
+           could read the leads table. */
         var fd = new FormData(form);
         var val = function (k) { return (fd.get(k) || '').toString().trim(); };
-        var details = val('details');
-        if (details.length > 1200) details = details.slice(0, 1200) + '… (truncated)';
 
-        var subject = 'Clarify request — ' + (val('service') || 'General enquiry') + ' — ' + val('business');
-        var body = [
-          'Name: ' + val('name'),
-          'Business: ' + val('business'),
-          'Email: ' + val('email'),
-          'Website: ' + (val('website') || '—'),
-          'Monthly search budget: ' + val('monthly_budget'),
-          'What they need: ' + val('service'),
-          '',
-          'What feels broken:',
-          details || '—'
-        ].join('\r\n');
+        setFormError('');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('is-busy');
+        var originalLabel = submitBtn.textContent;
+        submitBtn.textContent = 'Sending…';
 
-        window.location.href = 'mailto:' + addr +
-          '?subject=' + encodeURIComponent(subject) +
-          '&body=' + encodeURIComponent(body);
-
-        formCard.classList.add('is-sent');
+        fetch(LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            name: val('name'),
+            business: val('business'),
+            email: val('email'),
+            website: val('website'),
+            monthly_budget: val('monthly_budget'),
+            service: val('service'),
+            details: val('details'),
+            bot_field: val('bot-field')
+          })
+        }).then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong on our end.');
+            formCard.classList.add('is-sent');
+          });
+        }).catch(function (err) {
+          /* Never swallow a failure — the visitor must know it did not send. */
+          setFormError((err && err.message ? err.message : 'Could not send.') +
+            ' You can email ' + addr + ' directly and it will reach the same inbox.');
+        }).then(function () {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('is-busy');
+          submitBtn.textContent = originalLabel;
+        });
       });
 
       /* ---- email links (assembled at runtime so scrapers don't harvest them) ---- */
