@@ -1045,26 +1045,54 @@
       }
     }
 
-    .software-strip {
-      display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
-      margin-top: 26px; padding: 26px 30px;
-      border: 1px solid rgba(240,169,59,.22); background: rgba(240,169,59,.045);
-      border-radius: 18px;
+    /* the self-serve tool — a real third option, not a footnote to hiring */
+    .software-block {
+      margin-top: 26px; padding: clamp(26px, 3vw, 38px) clamp(24px, 3vw, 40px);
+      border-radius: 20px;
+      border: 1px solid rgba(240,169,59,.28);
+      background: linear-gradient(120deg, rgba(240,169,59,.085), rgba(240,169,59,.02) 62%);
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      column-gap: clamp(24px, 3vw, 44px); row-gap: 14px;
+      align-items: start;
     }
-    .software-strip .kicker {
+    /* the copy spans both rows so the tiers and CTA stay stacked together
+       instead of being pushed apart by the headline's height */
+    .sw-head { grid-row: 1 / span 2; align-self: center; }
+    .sw-kicker {
       font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
       letter-spacing: .18em; text-transform: uppercase; color: var(--amber-soft);
     }
-    .software-strip p { margin-top: 6px; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
-    .software-strip p strong { color: var(--ink); }
-    .software-cta {
-      display: inline-flex; align-items: center; color: var(--ink);
-      font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 999px;
-      border: 1px solid rgba(240,169,59,.4); background: rgba(240,169,59,.08);
-      text-decoration: none; white-space: nowrap;
-      transition: background .18s ease, border-color .18s ease;
+    .sw-head h3 { margin-top: 10px; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -.03em; }
+    .sw-head p { margin-top: 11px; font-size: 14px; line-height: 1.65; color: var(--muted); max-width: 52ch; }
+    .sw-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .sw-t {
+      padding: 15px 12px; text-align: center; border-radius: 13px;
+      border: 1px solid rgba(255,255,255,.09); background: rgba(0,0,0,.28);
     }
-    .software-cta:hover { background: rgba(240,169,59,.14); border-color: rgba(240,169,59,.6); }
+    .sw-t strong {
+      display: block; font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--muted-2);
+    }
+    .sw-p {
+      display: block; margin-top: 7px; font-family: var(--font-display);
+      font-size: 21px; font-weight: 700; letter-spacing: -.02em; color: var(--ink);
+      white-space: nowrap;
+    }
+    .sw-p em { font-style: normal; font-size: .55em; color: var(--muted-2); }
+    .sw-foot { grid-column: 2; display: grid; gap: 10px; justify-items: center; }
+    .sw-foot .cta { width: 100%; }
+    .sw-ask {
+      font-size: 12.5px; color: var(--muted-2); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.16); padding-bottom: 1px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .sw-ask:hover { color: var(--ink); border-color: rgba(255,255,255,.4); }
+    @media (max-width: 900px) {
+      .software-block { grid-template-columns: 1fr; }
+      .sw-foot { grid-column: 1; justify-items: stretch; }
+      .sw-foot .cta { justify-content: center; }
+      .sw-ask { text-align: center; }
+    }
     .pricing-fineprint { margin: 22px 4px 0; font-size: 13px; color: var(--muted-2); }
 
     /* ============ why clarify ============ */
@@ -1373,8 +1401,6 @@
 
       .offer { padding: 24px 22px; border-radius: 18px; gap: 14px; }
       .price .number { font-size: 36px; }
-      .software-strip { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
-      .software-cta { justify-content: center; }
       .free-strip { grid-template-columns: 1fr; gap: 20px; padding: 22px 20px; }
       .fs-side { justify-items: stretch; }
       .fs-side .price { justify-content: center; }
@@ -1416,9 +1442,9 @@
       <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
         <a href="#coverage">Search</a>
         <a href="#ai-visibility">AI Answers</a>
-        <a href="#ai-build">AI Builds</a>
         <a href="#method">Method</a>
         <a href="#pricing">Pricing</a>
+        <a href="#ai-build">AI Builds</a>
         <a href="#faq">FAQ</a>
       </nav>
 
@@ -1701,75 +1727,6 @@
       </div>
     </section>
 
-    <!-- ============ AI BUILD (second practice) ============ -->
-    <section class="band tinted" id="ai-build">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div class="lede">
-            <span class="mono-label">AI Solutions — the second practice</span>
-            <h2>Machines decide how you're found. Now they can <span class="ital">do the work too</span>.</h2>
-          </div>
-          <p>Same operator, same flat-fee terms, other side of the same problem. Search is about being legible to machines. This is about putting them to work inside the business.</p>
-        </div>
-
-        <div class="build-grid reveal stagger">
-          <article class="build-card">
-            <span class="build-idx" aria-hidden="true">01</span>
-            <h3>Kill the repeated task.</h3>
-            <p>The report someone rebuilds every Monday. The inbox triaged by hand. If it follows rules, it can run itself.</p>
-          </article>
-          <article class="build-card">
-            <span class="build-idx" aria-hidden="true">02</span>
-            <h3>Make your data answer questions.</h3>
-            <p>An assistant that actually knows your pricing, your policies, your history — instead of guessing like a generic chatbot.</p>
-          </article>
-          <article class="build-card">
-            <span class="build-idx" aria-hidden="true">03</span>
-            <h3>Put a tool in your team's hands.</h3>
-            <p>Internal apps built around how you already work. Clarify's own monitor started exactly this way.</p>
-          </article>
-        </div>
-
-        <p class="build-also reveal">Also built: <span>quote drafts from a photo</span><span>missed-call text-back</span><span>invoice chasing</span><span>review replies for approval</span><span>inventory reorder alerts</span><span>onboarding paperwork</span></p>
-
-        <figure class="mock reveal" aria-labelledby="mockCap">
-          <div class="mock-bar" aria-hidden="true">
-            <span class="mock-dots"><i></i><i></i><i></i></span>
-            <span class="mock-title">Lakeview Family Dental — Ops Copilot</span>
-            <span class="mock-live">live</span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-stats">
-              <div class="ms"><strong>11<em>hrs</em></strong><span>Saved this week</span></div>
-              <div class="ms"><strong>94<em>%</em></strong><span>Calls handled first try</span></div>
-              <div class="ms"><strong>2<em>min</em></strong><span>Average reply time</span></div>
-            </div>
-            <ul class="mock-feed">
-              <li><span class="mf-t">09:14</span><span class="mf-d">Missed call from a new patient — texted back, booked <b>Tue 3:00pm</b></span><span class="mf-tag done">auto</span></li>
-              <li><span class="mf-t">09:02</span><span class="mf-d">Insurance question answered from your own coverage doc</span><span class="mf-tag done">auto</span></li>
-              <li><span class="mf-t">08:47</span><span class="mf-d">New 4★ review — reply drafted in your voice</span><span class="mf-tag wait">needs you</span></li>
-              <li><span class="mf-t">08:31</span><span class="mf-d">Weekly production report built and emailed to the front desk</span><span class="mf-tag done">auto</span></li>
-              <li><span class="mf-t">08:05</span><span class="mf-d">Two unpaid balances over 30 days — reminders queued</span><span class="mf-tag wait">needs you</span></li>
-            </ul>
-          </div>
-          <figcaption id="mockCap" class="mock-cap">Illustration, not a real client. Yours would be built around the jobs your team actually repeats — and <strong>nothing sends without your say-so</strong> until you decide it should.</figcaption>
-        </figure>
-
-        <div class="build-strip reveal">
-          <div class="bs-main">
-            <span class="bs-kicker">How it starts</span>
-            <p><strong>A free scoping call, then a fixed price before any work begins.</strong> If automation isn't worth it for your case, you'll be told that — it's a faster answer than a proposal.</p>
-          </div>
-          <div class="bs-side">
-            <span class="bs-price"><span class="from">Builds from</span>$1,500</span>
-            <a class="cta mag" href="#contact" data-offer="AI Solutions — Build">Scope a build →</a>
-          </div>
-        </div>
-
-        <p class="build-honest">Worth saying plainly: this is newer ground than the search practice, and it is priced per build rather than off a menu. What carries over is the method — read-only access first, a written diagnosis, a fixed scope, and you owning whatever gets built.</p>
-      </div>
-    </section>
-
     <!-- ============ METHOD ============ -->
     <section class="band" id="method">
       <div class="shell">
@@ -1945,15 +1902,93 @@
           <p class="compare-note">Prices follow the channel you picked above. Nothing here is a bundle — each rung stands alone, and the Leak Check never gets re-billed inside the audit.</p>
         </div>
 
-        <div class="software-strip reveal">
-          <div>
-            <span class="kicker">Prefer to run paid yourself?</span>
-            <p>Clarify's software monitors your Google Ads account and flags the leaks — you bring the judgment and do the fixing. A big step up from flying blind, though not a substitute for hands-on management. <strong>Starter $149/mo · Growth $399/mo · Pro $699/mo.</strong> 14-day trial.</p>
+        <div class="software-block reveal" id="software">
+          <div class="sw-head">
+            <span class="sw-kicker">Or run it yourself</span>
+            <h3>The same leak detection, <span class="ital">as software</span>.</h3>
+            <p>Clarify's monitor watches your Google Ads account and flags waste, tracking breaks and query drift as they appear. You bring the judgment and make the calls — a long way from flying blind, and honestly not the same as someone doing the work for you.</p>
           </div>
-          <a class="software-cta" href="#contact" data-offer="Clarify Software">See software plans →</a>
+          <div class="sw-tiers">
+            <div class="sw-t"><strong>Starter</strong><span class="sw-p">$149<em>/mo</em></span></div>
+            <div class="sw-t"><strong>Growth</strong><span class="sw-p">$399<em>/mo</em></span></div>
+            <div class="sw-t"><strong>Pro</strong><span class="sw-p">$699<em>/mo</em></span></div>
+          </div>
+          <div class="sw-foot">
+            <a class="cta mag" href="https://clarify-saas.netlify.app" target="_blank" rel="noopener">Start the 14-day trial →</a>
+            <a class="sw-ask" href="#contact" data-offer="Clarify Software">Not sure which tier? Ask →</a>
+          </div>
         </div>
 
         <p class="pricing-fineprint">The leak check suits accounts spending around $1,500+/mo, or sites with organic traffic worth defending. Dashboards from $299. You own the code and the data.</p>
+      </div>
+    </section>
+
+    <!-- ============ AI BUILD (second practice) ============ -->
+    <section class="band tinted" id="ai-build">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="lede">
+            <span class="mono-label">AI Solutions — the second practice</span>
+            <h2>Machines decide how you're found. Now they can <span class="ital">do the work too</span>.</h2>
+          </div>
+          <p>Same operator, same flat-fee terms, other side of the same problem. Search is about being legible to machines. This is about putting them to work inside the business.</p>
+        </div>
+
+        <div class="build-grid reveal stagger">
+          <article class="build-card">
+            <span class="build-idx" aria-hidden="true">01</span>
+            <h3>Kill the repeated task.</h3>
+            <p>The report someone rebuilds every Monday. The inbox triaged by hand. If it follows rules, it can run itself.</p>
+          </article>
+          <article class="build-card">
+            <span class="build-idx" aria-hidden="true">02</span>
+            <h3>Make your data answer questions.</h3>
+            <p>An assistant that actually knows your pricing, your policies, your history — instead of guessing like a generic chatbot.</p>
+          </article>
+          <article class="build-card">
+            <span class="build-idx" aria-hidden="true">03</span>
+            <h3>Put a tool in your team's hands.</h3>
+            <p>Internal apps built around how you already work. Clarify's own monitor started exactly this way.</p>
+          </article>
+        </div>
+
+        <p class="build-also reveal">Also built: <span>quote drafts from a photo</span><span>missed-call text-back</span><span>invoice chasing</span><span>review replies for approval</span><span>inventory reorder alerts</span><span>onboarding paperwork</span></p>
+
+        <figure class="mock reveal" aria-labelledby="mockCap">
+          <div class="mock-bar" aria-hidden="true">
+            <span class="mock-dots"><i></i><i></i><i></i></span>
+            <span class="mock-title">Lakeview Family Dental — Ops Copilot</span>
+            <span class="mock-live">live</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-stats">
+              <div class="ms"><strong>11<em>hrs</em></strong><span>Saved this week</span></div>
+              <div class="ms"><strong>94<em>%</em></strong><span>Calls handled first try</span></div>
+              <div class="ms"><strong>2<em>min</em></strong><span>Average reply time</span></div>
+            </div>
+            <ul class="mock-feed">
+              <li><span class="mf-t">09:14</span><span class="mf-d">Missed call from a new patient — texted back, booked <b>Tue 3:00pm</b></span><span class="mf-tag done">auto</span></li>
+              <li><span class="mf-t">09:02</span><span class="mf-d">Insurance question answered from your own coverage doc</span><span class="mf-tag done">auto</span></li>
+              <li><span class="mf-t">08:47</span><span class="mf-d">New 4★ review — reply drafted in your voice</span><span class="mf-tag wait">needs you</span></li>
+              <li><span class="mf-t">08:31</span><span class="mf-d">Weekly production report built and emailed to the front desk</span><span class="mf-tag done">auto</span></li>
+              <li><span class="mf-t">08:05</span><span class="mf-d">Two unpaid balances over 30 days — reminders queued</span><span class="mf-tag wait">needs you</span></li>
+            </ul>
+          </div>
+          <figcaption id="mockCap" class="mock-cap">Illustration, not a real client. Yours would be built around the jobs your team actually repeats — and <strong>nothing sends without your say-so</strong> until you decide it should.</figcaption>
+        </figure>
+
+        <div class="build-strip reveal">
+          <div class="bs-main">
+            <span class="bs-kicker">How it starts</span>
+            <p><strong>A free scoping call, then a fixed price before any work begins.</strong> If automation isn't worth it for your case, you'll be told that — it's a faster answer than a proposal.</p>
+          </div>
+          <div class="bs-side">
+            <span class="bs-price"><span class="from">Builds from</span>$1,500</span>
+            <a class="cta mag" href="#contact" data-offer="AI Solutions — Build">Scope a build →</a>
+          </div>
+        </div>
+
+        <p class="build-honest">Worth saying plainly: this is newer ground than the search practice, and it is priced per build rather than off a menu. What carries over is the method — read-only access first, a written diagnosis, a fixed scope, and you owning whatever gets built.</p>
       </div>
     </section>
 
