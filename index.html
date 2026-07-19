@@ -1525,9 +1525,15 @@
       .offer { padding: 24px 22px; border-radius: 18px; gap: 14px; }
       .price .number { font-size: 36px; }
       .free-strip { grid-template-columns: 1fr; gap: 20px; padding: 22px 20px; }
-      .fs-side { justify-items: stretch; }
+      /* the divider is for the two-column desktop layout; stacked it renders
+         as a stray stub. Keep the price large here too — it is the main CTA. */
+      .fs-side {
+        justify-items: stretch; border-left: 0; padding-left: 0;
+        border-top: 1px solid rgba(255,255,255,.08); padding-top: 20px;
+      }
       .fs-side .price { justify-content: center; }
-      .fs-side .price .number { font-size: 40px; }
+      .fs-side .price .number { font-size: 68px; }
+      .fs-side .price .currency { font-size: 22px; }
       .fs-list { gap: 7px 16px; }
 
       .why-grid, .faq-grid, .contact-grid { gap: 28px; }
