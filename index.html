@@ -150,6 +150,9 @@
       --amber-soft: #f7ca7d;
       --mint: #4fd694;
       --mint-soft: #96e9c0;
+      --blue: #4d7fe6;
+      --blue-soft: #a6c2f7;
+      --blue-rgb: 77,127,230;
       --iris: #9a8cff;
       --iris-soft: #c4bcff;
       --iris-rgb: 154,140,255;
@@ -607,37 +610,71 @@
     #ai-visibility h2 .ital { color: var(--iris-soft); }
     .ai-grid { display: grid; grid-template-columns: .96fr 1.04fr; gap: 40px; align-items: start; }
 
-    .ai-stack { display: grid; gap: 12px; }
-    .ai-layer {
-      position: relative; overflow: hidden;
-      display: grid; gap: 6px;
-      padding: 18px 20px 18px 22px;
-      border: 1px solid var(--line); border-radius: 16px;
-      background: var(--surface);
+    /* a results page, drawn rather than described — the AI answer sits on top,
+       ads under it, rankings under that, all feeding the answer */
+    .serp {
+      border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(154,140,255,.07), rgba(12,13,19,.9));
+      display: grid; align-content: start;
     }
-    .ai-layer::before {
-      content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
-      background: var(--ai-acc, var(--line-strong));
+    .serp-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.3);
     }
-    .ai-layer.l-ai   { --ai-acc: var(--iris); border-color: rgba(154,140,255,.4); background: linear-gradient(100deg, rgba(154,140,255,.1), var(--surface) 62%); }
-    .ai-layer.l-paid { --ai-acc: var(--amber); }
-    .ai-layer.l-org  { --ai-acc: var(--mint); }
-    .ai-layer-tag {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
-      letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2);
+    .serp-dots { display: flex; gap: 5px; }
+    .serp-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.13); }
+    .serp-q {
+      display: inline-flex; align-items: center; gap: 7px; flex: 1;
+      padding: 6px 12px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04);
+      font-family: var(--font-mono); font-size: 10.5px; color: var(--muted);
     }
-    .ai-layer.l-ai   .ai-layer-tag { color: var(--iris-soft); }
-    .ai-layer.l-paid .ai-layer-tag { color: var(--amber-soft); }
-    .ai-layer.l-org  .ai-layer-tag { color: var(--mint-soft); }
-    .ai-layer-tag .new {
-      margin-left: auto; font-size: 8.5px; letter-spacing: .12em;
-      padding: 3px 8px; border-radius: 999px;
-      color: var(--iris-soft); border: 1px solid rgba(154,140,255,.5);
-      background: rgba(154,140,255,.1);
+    .serp-q svg { opacity: .5; flex-shrink: 0; }
+
+    .serp-row {
+      position: relative; display: grid; gap: 7px;
+      padding: 15px 16px 15px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.055);
     }
-    .ai-layer strong { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -.01em; }
-    .ai-layer p { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+    .serp-row:last-child { border-bottom: 0; }
+    .serp-row::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--row-acc);
+    }
+    .serp-row.r-ai   { --row-acc: var(--iris);  background: rgba(154,140,255,.08); }
+    .serp-row.r-paid { --row-acc: var(--amber); }
+    .serp-row.r-org  { --row-acc: var(--mint); }
+
+    .serp-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--row-acc);
+    }
+    .serp-new {
+      font-size: 8px; padding: 2px 7px; border-radius: 999px;
+      border: 1px solid rgba(154,140,255,.5); background: rgba(154,140,255,.12);
+    }
+    .serp-ai-copy { font-size: 12.5px; line-height: 1.55; color: var(--ink); }
+    .serp-ai-copy .cite {
+      color: var(--iris-soft);
+      border-bottom: 1px dotted rgba(154,140,255,.6);
+    }
+    .serp-cites { display: flex; align-items: center; gap: 6px; }
+    .serp-cites i {
+      width: 15px; height: 15px; border-radius: 4px;
+      background: rgba(154,140,255,.28); border: 1px solid rgba(154,140,255,.45);
+    }
+    .serp-cites em {
+      font-style: normal; font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-2);
+    }
+    .serp-url { font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); }
+    .serp-title { height: 9px; width: 58%; border-radius: 99px; background: var(--row-acc); opacity: .8; }
+    .serp-line { height: 5px; width: var(--w, 80%); border-radius: 99px; background: rgba(244,242,234,.12); }
+    .serp-note {
+      margin-top: 3px; font-size: 11.5px; line-height: 1.45; color: var(--muted-2);
+    }
 
     .ai-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .ai-card {
@@ -703,7 +740,8 @@
 
     /* ============ pricing ============ */
     #pricing { --acc: var(--amber); --acc-soft: var(--amber-soft); --acc-rgb: 240,169,59; }
-    #pricing[data-ch="organic"], #pricing[data-ch="both"] { --acc: var(--mint); --acc-soft: var(--mint-soft); --acc-rgb: 79,214,148; }
+    #pricing[data-ch="organic"] { --acc: var(--mint); --acc-soft: var(--mint-soft); --acc-rgb: 79,214,148; }
+    #pricing[data-ch="both"] { --acc: var(--blue); --acc-soft: var(--blue-soft); --acc-rgb: var(--blue-rgb); }
 
     .seg-wrap { display: grid; justify-items: center; gap: 12px; margin-bottom: 44px; }
     .seg {
@@ -725,8 +763,8 @@
     }
     #pricing[data-ch="organic"] .seg-thumb { background: rgba(79,214,148,.14); border-color: rgba(79,214,148,.5); }
     #pricing[data-ch="both"] .seg-thumb {
-      background: linear-gradient(90deg, rgba(240,169,59,.18), rgba(79,214,148,.18));
-      border-color: rgba(150,233,192,.45);
+      background: rgba(77,127,230,.2);
+      border-color: rgba(77,127,230,.62);
     }
     .seg-btn {
       position: relative; z-index: 1;
@@ -744,6 +782,7 @@
       border: 1px solid rgba(150,233,192,.5); color: var(--mint-soft);
       letter-spacing: .08em;
     }
+    #pricing[data-ch="both"] .seg-save { border-color: rgba(166,194,247,.6); color: var(--blue-soft); }
     .seg-caption { font-size: 13px; color: var(--muted-2); text-align: center; }
     .seg-caption strong { color: var(--muted); font-weight: 600; }
 
@@ -795,7 +834,7 @@
     .price .currency { font-size: 18px; color: var(--muted-2); }
     .price .number { font-family: var(--font-display); font-size: 44px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
     #pricing[data-ch="both"] .price .number {
-      background: linear-gradient(100deg, var(--amber-soft), var(--mint-soft));
+      background: linear-gradient(100deg, var(--blue-soft), #cfe0fb);
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
     .price .period { font-size: 15px; color: var(--muted-2); }
@@ -866,9 +905,17 @@
       letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
       margin-right: 9px;
     }
-    .fs-side { display: grid; justify-items: center; gap: 11px; text-align: center; }
-    .fs-side .price { padding-top: 0; }
-    .fs-side .price .number { font-size: 50px; }
+    /* the free offer is the page's main CTA — give it real presence and centre
+       it against the whole card rather than letting it float top-right */
+    .fs-side {
+      align-self: center; display: grid; justify-items: center; gap: 18px;
+      text-align: center; padding-left: clamp(0px, 2vw, 28px);
+      border-left: 1px solid rgba(255,255,255,.08);
+    }
+    .fs-side .price { padding-top: 0; justify-content: center; }
+    .fs-side .price .currency { font-size: 26px; }
+    .fs-side .price .number { font-size: clamp(72px, 8vw, 104px); line-height: .92; }
+    .fs-side .cta { font-size: 15px; padding: 17px 30px; min-height: 54px; }
     .fs-note {
       font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
       text-transform: uppercase; color: var(--muted-2);
@@ -1081,17 +1128,15 @@
     .sw-p em { font-style: normal; font-size: .55em; color: var(--muted-2); }
     .sw-foot { grid-column: 2; display: grid; gap: 10px; justify-items: center; }
     .sw-foot .cta { width: 100%; }
-    .sw-ask {
-      font-size: 12.5px; color: var(--muted-2); text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,.16); padding-bottom: 1px;
-      transition: color .2s ease, border-color .2s ease;
+    .sw-ask-note {
+      font-size: 12px; line-height: 1.55; color: var(--muted-2);
+      text-align: center; max-width: 34ch;
     }
-    .sw-ask:hover { color: var(--ink); border-color: rgba(255,255,255,.4); }
     @media (max-width: 900px) {
       .software-block { grid-template-columns: 1fr; }
       .sw-foot { grid-column: 1; justify-items: stretch; }
       .sw-foot .cta { justify-content: center; }
-      .sw-ask { text-align: center; }
+      .sw-ask-note { max-width: none; }
     }
     .pricing-fineprint { margin: 22px 4px 0; font-size: 13px; color: var(--muted-2); }
 
@@ -1678,21 +1723,34 @@
         </div>
 
         <div class="ai-grid reveal stagger">
-          <aside class="ai-stack" aria-label="How the results page now stacks">
-            <div class="ai-layer l-ai">
-              <span class="ai-layer-tag">The answer <span class="new">New top</span></span>
-              <strong>AI answer &amp; Overview</strong>
-              <p>A synthesized answer that cites a handful of sources — often before anyone scrolls.</p>
+          <aside class="serp" aria-label="How one results page now stacks: an AI answer on top, ads below it, then rankings">
+            <div class="serp-bar" aria-hidden="true">
+              <span class="serp-dots"><i></i><i></i><i></i></span>
+              <span class="serp-q"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>best family dentist near me</span>
             </div>
-            <div class="ai-layer l-paid">
-              <span class="ai-layer-tag">Paid — the clicks you buy</span>
-              <strong>Search ads</strong>
-              <p>Still the fastest way to buy intent, sitting right below the answer.</p>
+
+            <div class="serp-row r-ai">
+              <span class="serp-tag">AI answer<span class="serp-new">new top</span></span>
+              <p class="serp-ai-copy">Three practices stand out for family care in the area, based on <span class="cite">reviews</span>, <span class="cite">published hours</span> and <span class="cite">service pages</span>…</p>
+              <span class="serp-cites"><i></i><i></i><i></i><em>3 sources cited</em></span>
+              <span class="serp-note">Answered before anyone scrolls</span>
             </div>
-            <div class="ai-layer l-org">
-              <span class="ai-layer-tag">Organic — the clicks you earn</span>
-              <strong>Ranked results</strong>
-              <p>The listings that feed the answer above and earn the clicks it doesn't.</p>
+
+            <div class="serp-row r-paid">
+              <span class="serp-tag">Sponsored</span>
+              <span class="serp-url">competitor-dental.com</span>
+              <span class="serp-title"></span>
+              <span class="serp-line" style="--w:74%"></span>
+              <span class="serp-note">The clicks you buy</span>
+            </div>
+
+            <div class="serp-row r-org">
+              <span class="serp-tag">#1 Organic</span>
+              <span class="serp-url">yourpractice.com</span>
+              <span class="serp-title"></span>
+              <span class="serp-line" style="--w:88%"></span>
+              <span class="serp-line" style="--w:52%"></span>
+              <span class="serp-note">The clicks you earn — and what the answer above is built from</span>
             </div>
           </aside>
 
@@ -1861,7 +1919,7 @@
         </div>
 
         <div class="compare-wrap reveal">
-          <p class="compare-lead">Where each rung stops. <span>Free tells you <em>if</em>. The audit tells you <em>why</em>. Cleanup <em>fixes</em> it. Management <em>keeps</em> it fixed.</span></p>
+          <p class="compare-lead">What you actually get. <span>Free tells you <em>if</em> you're leaking. The audit tells you <em>why</em>. Cleanup <em>fixes</em> it. Management <em>keeps</em> it fixed.</span></p>
           <div class="compare-scroll" tabindex="0" role="region" aria-label="Compare what each engagement includes">
             <table class="compare">
               <thead>
@@ -1874,27 +1932,27 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><th scope="row">You walk away with</th>
+                <tr><th scope="row">You end up with</th>
                   <td>A number</td><td>A diagnosis</td><td>A fixed account</td><td>A managed account</td></tr>
-                <tr><th scope="row">Channels covered</th>
-                  <td><span class="no">One</span></td><td>Your choice</td><td>Your choice</td><td>Your choice</td></tr>
+                <tr><th scope="row">How much of search it looks at</th>
+                  <td><span class="no">One channel — you pick</span></td><td>Paid, organic, or both</td><td>Paid, organic, or both</td><td>Paid, organic, or both</td></tr>
                 <tr><th scope="row">Turnaround</th>
                   <td>3 days</td><td>48h</td><td>Under a week</td><td>Ongoing</td></tr>
-                <tr><th scope="row">Wasted spend found</th>
+                <tr><th scope="row">Finds what's leaking</th>
                   <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-                <tr><th scope="row">Scored, campaign by campaign</th>
+                <tr><th scope="row">Scores every campaign, not just the account</th>
                   <td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-                <tr><th scope="row">Prioritized fix list</th>
+                <tr><th scope="row">Tells you what to fix first</th>
                   <td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-                <tr><th scope="row">90-day roadmap</th>
+                <tr><th scope="row">A 90-day plan you could hand to anyone</th>
                   <td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-                <tr><th scope="row">Fixes actually shipped</th>
+                <tr><th scope="row">Clarify makes the changes for you</th>
                   <td class="n">—</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
-                <tr><th scope="row">Change log</th>
+                <tr><th scope="row">Written record of every change</th>
                   <td class="n">—</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
-                <tr><th scope="row">Ongoing optimization</th>
+                <tr><th scope="row">Keeps working on it every week</th>
                   <td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
-                <tr><th scope="row">Commitment</th>
+                <tr><th scope="row">What you're committing to</th>
                   <td>None</td><td>One-time</td><td>One-time</td><td>Cancel anytime</td></tr>
               </tbody>
             </table>
@@ -1914,8 +1972,8 @@
             <div class="sw-t"><strong>Pro</strong><span class="sw-p">$699<em>/mo</em></span></div>
           </div>
           <div class="sw-foot">
-            <a class="cta mag" href="https://clarify-saas.netlify.app" target="_blank" rel="noopener">Start the 14-day trial →</a>
-            <a class="sw-ask" href="#contact" data-offer="Clarify Software">Not sure which tier? Ask →</a>
+            <a class="cta mag" href="#contact" data-offer="Clarify Software — Onboarding">Schedule an onboarding call →</a>
+            <span class="sw-ask-note">The tool is new, so Clarify sets every account up personally — 14-day trial starts after.</span>
           </div>
         </div>
 
@@ -2163,7 +2221,7 @@
                   <option>AI Search Visibility</option>
                   <option>AI Solutions — Build</option>
                   <option>Custom Reporting &amp; Data Tools</option>
-                  <option>Clarify Software</option>
+                  <option>Clarify Software — Onboarding</option>
                   <option>Not sure yet</option>
                 </select>
                 <span class="field-error" data-error-for="lf-service"></span>
