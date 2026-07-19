@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Answer engines are explicitly welcome — being cited is the point.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: http://clarifysearch.com/sitemap.xml
