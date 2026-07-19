@@ -27,16 +27,34 @@ curl -sS -A "Mozilla/5.0 Chrome/131.0" "https://clarifysearch.com/?cb=$RANDOM" |
    is on, and `http://` 301s to `https://`. All URLs here and in `index.html`,
    `robots.txt` and `sitemap.xml` point at `https://clarifysearch.com`.
 
-2. **Lead notifications.** The form posts to the `submit-lead` Supabase Edge
-   Function, which writes to `inbound_leads` in the clarify-outreach project.
-   Nothing emails you when a lead lands — you have to open the CRM. Worth wiring
-   a database webhook or an email send inside the function.
+2. ~~Lead notifications~~ **Done (2026-07-18).** `submit-lead` emails
+   clarifypaidsearch@gmail.com via Resend on every lead, with `reply_to` set to
+   the sender so you can reply directly. Verified delivering. The lead saves
+   first and a mail failure is logged, never shown to the visitor as a failure.
+   The older `inbound-lead` function is retired to a 410 stub — it accepted
+   POSTs from any origin with no rate limit. Restore from the Supabase
+   dashboard if ever needed.
 
-3. **`inbound_leads` row-level security.** The `anon` role can `SELECT` and
-   `UPDATE` every row, and the CRM's anon key is public in its unprotected
-   Netlify bundle. Migrate the CRM's reads to its signed-in session token, then
-   restrict those policies to `authenticated`. Do not tighten the policies
-   first — that breaks the CRM.
+3. **`inbound_leads` row-level security — last one open.** The `anon` role can
+   still `SELECT` and `UPDATE` every row. The blocker is gone: the CRM now sends
+   its session token (`src/lib/supabase.js` uses `sessionToken || anon`), so the
+   policies can finally be narrowed. Before running it, confirm the deployed
+   CRM at clarify-outreach.netlify.app is on a build that includes that helper,
+   then:
+
+   ```sql
+   drop policy "anon can read leads"   on public.inbound_leads;
+   drop policy "anon can update leads" on public.inbound_leads;
+   create policy "authenticated read leads"   on public.inbound_leads
+     for select to authenticated using (true);
+   create policy "authenticated update leads" on public.inbound_leads
+     for update to authenticated using (true);
+   ```
+
+   Keep the `anon can insert leads` policy — it is what lets the public form
+   write. Verify afterwards by loading the CRM's Inbound view; if it goes empty,
+   the deployed bundle predates the session-token helper, so roll the policies
+   back and redeploy the CRM first.
 
 ## Conventions
 
