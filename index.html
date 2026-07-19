@@ -913,6 +913,87 @@
       letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2);
     }
     .build-honest { margin-top: 20px; font-size: 13px; line-height: 1.6; color: var(--muted-2); max-width: 82ch; }
+
+    /* short-form extra examples — breadth without another wall of prose */
+    .build-also {
+      margin-top: 20px; display: flex; flex-wrap: wrap; gap: 9px; align-items: center;
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted-2);
+    }
+    .build-also span {
+      padding: 6px 12px; border-radius: 999px; text-transform: none; letter-spacing: .02em;
+      font-family: var(--font-body); font-size: 12.5px; color: var(--muted);
+      border: 1px solid rgba(var(--iris-rgb), .28); background: rgba(var(--iris-rgb), .06);
+    }
+
+    /* the mock: what a build actually looks like once it is running */
+    .mock {
+      margin: 26px 0 0; border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(var(--iris-rgb), .3);
+      background: linear-gradient(180deg, rgba(var(--iris-rgb), .09), rgba(12,13,19,.96));
+      box-shadow: 0 40px 90px rgba(0,0,0,.45);
+    }
+    .mock-bar {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.28);
+    }
+    .mock-dots { display: flex; gap: 6px; }
+    .mock-dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.14); }
+    .mock-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--muted); }
+    .mock-live {
+      margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 9.5px; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--mint-soft);
+    }
+    .mock-live::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--mint); box-shadow: 0 0 0 0 rgba(79,214,148,.6);
+      animation: pulse 2.4s ease-out infinite;
+    }
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 7px rgba(79,214,148,0); }
+      100% { box-shadow: 0 0 0 0 rgba(79,214,148,0); }
+    }
+    .mock-body { padding: 22px; display: grid; gap: 20px; }
+    .mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .ms {
+      padding: 16px 18px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03);
+    }
+    .ms strong {
+      display: block; font-family: var(--font-display); font-size: 30px;
+      font-weight: 700; letter-spacing: -.03em; color: var(--iris-soft);
+    }
+    .ms strong em { font-style: normal; font-size: .45em; color: var(--muted-2); margin-left: 3px; }
+    .ms span { display: block; margin-top: 4px; font-size: 12px; color: var(--muted-2); }
+    .mock-feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .mock-feed li {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;
+      padding: 11px 12px; border-radius: 10px;
+      font-size: 13.5px; color: var(--muted);
+    }
+    .mock-feed li:nth-child(odd) { background: rgba(255,255,255,.022); }
+    .mf-t { font-family: var(--font-mono); font-size: 11px; color: var(--muted-2); }
+    .mf-d b { color: var(--ink); font-weight: 600; }
+    .mf-tag {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      padding: 4px 9px; border-radius: 999px; white-space: nowrap;
+    }
+    .mf-tag.done { color: var(--mint-soft); border: 1px solid rgba(79,214,148,.34); }
+    .mf-tag.wait { color: var(--amber-soft); border: 1px solid rgba(240,169,59,.36); }
+    .mock-cap {
+      padding: 14px 22px 18px; font-size: 12.5px; line-height: 1.6;
+      color: var(--muted-2); border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .mock-cap strong { color: var(--muted); }
+    @media (max-width: 760px) {
+      .mock-stats { grid-template-columns: 1fr; }
+      .mock-feed li { grid-template-columns: auto 1fr; row-gap: 6px; }
+      .mf-tag { grid-column: 2; justify-self: start; }
+      .mock-title { font-size: 10px; }
+    }
     @media (max-width: 1080px) { .build-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; } }
     @media (max-width: 760px) {
       .build-strip { grid-template-columns: 1fr; gap: 18px; padding: 22px 20px; }
@@ -1518,7 +1599,7 @@
             <span class="mono-label">Coverage — what you buy</span>
             <h2>Three surfaces. <span class="ital">Two you buy.</span></h2>
           </div>
-          <p>Your business can appear in three places on one results page: the AI answer, the ads, and the rankings. <strong>You buy two of them</strong> — paid and organic. The third is earned from the same work, which is why it isn't sold separately. Pick a side or run both; either way it's one keyword map, one measurement setup, one person.</p>
+          <p>Your business can appear in three places on one results page: the AI answer, the ads, and the rankings. <strong>You buy two of them</strong> — paid and organic. The third is earned from the same work, which is why it isn't sold separately. Pick a side or run both.</p>
         </div>
 
         <div class="cov-grid reveal stagger">
@@ -1649,6 +1730,31 @@
           </article>
         </div>
 
+        <p class="build-also reveal">Also built: <span>quote drafts from a photo</span><span>missed-call text-back</span><span>invoice chasing</span><span>review replies for approval</span><span>inventory reorder alerts</span><span>onboarding paperwork</span></p>
+
+        <figure class="mock reveal" aria-labelledby="mockCap">
+          <div class="mock-bar" aria-hidden="true">
+            <span class="mock-dots"><i></i><i></i><i></i></span>
+            <span class="mock-title">Lakeview Family Dental — Ops Copilot</span>
+            <span class="mock-live">live</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-stats">
+              <div class="ms"><strong>11<em>hrs</em></strong><span>Saved this week</span></div>
+              <div class="ms"><strong>94<em>%</em></strong><span>Calls handled first try</span></div>
+              <div class="ms"><strong>2<em>min</em></strong><span>Average reply time</span></div>
+            </div>
+            <ul class="mock-feed">
+              <li><span class="mf-t">09:14</span><span class="mf-d">Missed call from a new patient — texted back, booked <b>Tue 3:00pm</b></span><span class="mf-tag done">auto</span></li>
+              <li><span class="mf-t">09:02</span><span class="mf-d">Insurance question answered from your own coverage doc</span><span class="mf-tag done">auto</span></li>
+              <li><span class="mf-t">08:47</span><span class="mf-d">New 4★ review — reply drafted in your voice</span><span class="mf-tag wait">needs you</span></li>
+              <li><span class="mf-t">08:31</span><span class="mf-d">Weekly production report built and emailed to the front desk</span><span class="mf-tag done">auto</span></li>
+              <li><span class="mf-t">08:05</span><span class="mf-d">Two unpaid balances over 30 days — reminders queued</span><span class="mf-tag wait">needs you</span></li>
+            </ul>
+          </div>
+          <figcaption id="mockCap" class="mock-cap">Illustration, not a real client. Yours would be built around the jobs your team actually repeats — and <strong>nothing sends without your say-so</strong> until you decide it should.</figcaption>
+        </figure>
+
         <div class="build-strip reveal">
           <div class="bs-main">
             <span class="bs-kicker">How it starts</span>
@@ -1742,7 +1848,6 @@
           </div>
           <div class="fs-side">
             <div class="price" id="price-free"><span class="currency">$</span><span class="number">0</span><span class="period"></span></div>
-            <p class="fs-note" id="fsNote">3 business days · 5 a week</p>
             <a class="cta mag" href="#contact" id="cta-free" data-offer="Free Leak Check — Paid Search">Claim a leak check →</a>
           </div>
         </div>
@@ -1848,9 +1953,7 @@
           <a class="software-cta" href="#contact" data-offer="Clarify Software">See software plans →</a>
         </div>
 
-        <p class="pricing-fineprint">The free leak check is worth running if you're spending about $1,500+/mo on Google Ads, or you have organic traffic worth defending. Below that it usually finds too little to justify your time or Clarify's — the audit is the better starting point. Five a week is a real capacity limit, not a countdown timer.</p>
-        <p class="pricing-fineprint">AI Search Visibility — structured data, entity clarity, and answer-engine monitoring — is built into organic and combined engagements as part of the holistic approach, not billed separately.</p>
-        <p class="pricing-fineprint">Custom reporting &amp; data tools: Sheets dashboards from $299 · custom apps from $1,500. You own the code and the data.</p>
+        <p class="pricing-fineprint">The leak check suits accounts spending around $1,500+/mo, or sites with organic traffic worth defending. Dashboards from $299. You own the code and the data.</p>
       </div>
     </section>
 
@@ -1939,15 +2042,15 @@
         <div class="contact-copy reveal">
           <span class="mono-label">Start free</span>
           <h2>Send the account. Get the <span class="ital">clarity</span>.</h2>
-          <p>Tell Clarify a little about how you show up in search — ads, rankings, or AI answers — and what feels broken. Ask for the free leak check and you'll get a number back, not a sales call. Reply within one business day, no obligation.</p>
+          <p>Tell Clarify how you show up in search and what feels broken. Ask for the leak check and you'll get a number back, not a sales call. <strong>Reply within one business day</strong>, no obligation.</p>
           <ol class="next-steps">
             <li>
               <span class="num">1</span>
-              <span><strong>You send the details.</strong> Business, website, budget range, and which channel — paid, organic, or both.</span>
+              <span><strong>You send the details.</strong> A minute of typing, no call to book.</span>
             </li>
             <li>
               <span class="num">2</span>
-              <span><strong>Clarify replies within one business day.</strong> Clear scope, right starting point — including whether the free check is worth running for you.</span>
+              <span><strong>You get a reply, not a pitch.</strong> Clear scope, the right starting point, and whether the free check is even worth running for you.</span>
             </li>
             <li>
               <span class="num">3</span>
@@ -2045,7 +2148,7 @@
           <div class="form-success" role="status" aria-live="polite">
             <div class="check" aria-hidden="true">✓</div>
             <h3>Request received.</h3>
-            <p>Thanks — it's in. Clarify replies within one business day with next steps. If you'd rather add anything, mail <a href="#contact" data-email data-email-text data-subject="Clarify Search Request">clarifypaidsearch [at] gmail.com</a>.</p>
+            <p>Thanks — it's in. You'll hear back with next steps. If you'd rather add anything, mail <a href="#contact" data-email data-email-text data-subject="Clarify Search Request">clarifypaidsearch [at] gmail.com</a>.</p>
           </div>
         </div>
       </div>
@@ -2345,7 +2448,6 @@
           feats: ['Overlap — ads bidding on terms you already rank for', 'Wasted spend, estimated from your real search terms', 'Conversion tracking: pass, fail, or actively misleading'],
           stopLabel: 'Where it stops',
           stop: 'no fix list, no roadmap, no campaign-by-campaign scoring. Those take a day of work rather than twenty minutes — that is the audit.',
-          note: '3 business days · 5 a week',
           offer: 'Free Leak Check — Paid Search'
         },
         organic: {
@@ -2353,7 +2455,6 @@
           feats: ['Striking distance — queries ranking 5–20 you could own', 'Money pages that rank but cannot convert', 'Indexation and crawl red flags on pages that matter'],
           stopLabel: 'Where it stops',
           stop: 'no fix list, no roadmap, no page-by-page scoring, and no AI-answer readiness review. That is the audit.',
-          note: '3 business days · 5 a week',
           offer: 'Free Leak Check — Organic Search'
         },
         both: {
@@ -2361,7 +2462,6 @@
           feats: ['Pick paid — overlap, wasted spend, tracking', 'Or pick organic — striking distance, money pages, indexation', 'Either way: one number, three business days'],
           stopLabel: 'Why the audit exists',
           stop: 'only the combined audit reads both channels against each other. That overlap analysis is usually where the money actually is.',
-          note: '3 business days · one channel',
           offer: 'Free Leak Check — Paid Search'
         }
       };
@@ -2404,7 +2504,6 @@
           return '<li class="fl-in" style="--i:' + i + '">' + f + '</li>';
         }).join('');
         document.getElementById('fsStop').innerHTML = '<b>' + data.stopLabel + '</b> — ' + data.stop;
-        document.getElementById('fsNote').textContent = data.note;
         document.getElementById('cta-free').setAttribute('data-offer', data.offer);
       }
 
