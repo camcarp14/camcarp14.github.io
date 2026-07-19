@@ -8,16 +8,16 @@
   <meta property="og:title" content="Clarify Search — Paid &amp; Organic Search Audits, Cleanups &amp; Management" />
   <meta property="og:description" content="Own more of the results page — the clicks you buy, the ones you earn, and the AI answers that now sit on top. Start with a free leak check: three checks, one number, no call." />
   <meta property="og:type" content="website" />
-  <!-- NOTE: these URLs are http:// because the apex has no TLS cert yet. After
-       "Enforce HTTPS" is enabled in GitHub Pages settings, swap http:// for
-       https:// here, in the JSON-LD below, and in sitemap.xml + robots.txt. -->
-  <meta property="og:url" content="http://clarifysearch.com/" />
+  <!-- Canonical origin is https://clarifysearch.com (Enforce HTTPS is on and
+       http:// 301s here). Keep og:url, canonical, the JSON-LD url/@id,
+       robots.txt and sitemap.xml pointing at the same origin. -->
+  <meta property="og:url" content="https://clarifysearch.com/" />
   <meta property="og:site_name" content="Clarify Search" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Clarify Search — Paid &amp; Organic Search Audits" />
   <meta name="twitter:description" content="Own more of the results page — the clicks you buy, the ones you earn, and the AI answers that now sit on top. Start with a free leak check." />
-  <link rel="canonical" href="http://clarifysearch.com/" />
+  <link rel="canonical" href="https://clarifysearch.com/" />
   <title>Clarify Search — Paid &amp; Organic Search Audits, Cleanups &amp; Management</title>
 
   <!-- Entity + offer markup. A business that sells structured-data work should
@@ -27,9 +27,9 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "http://clarifysearch.com/#business",
+    "@id": "https://clarifysearch.com/#business",
     "name": "Clarify Search",
-    "url": "http://clarifysearch.com/",
+    "url": "https://clarifysearch.com/",
     "description": "Paid and organic search audits, cleanups, and month-to-month management. Clarify audits how a business shows up in Google — ads, rankings, and AI answers — then fixes what is leaking.",
     "slogan": "Own more of the results page.",
     "areaServed": { "@type": "Country", "name": "United States" },

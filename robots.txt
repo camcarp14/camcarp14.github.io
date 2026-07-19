@@ -17,4 +17,4 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: http://clarifysearch.com/sitemap.xml
+Sitemap: https://clarifysearch.com/sitemap.xml

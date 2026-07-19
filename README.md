@@ -16,19 +16,16 @@ Push to `main`. Pages republishes in roughly 40–90 seconds. Verify with a
 cache-buster, because CDN caching will otherwise show you the old page:
 
 ```sh
-curl -sS -A "Mozilla/5.0 Chrome/131.0" "http://clarifysearch.com/?cb=$RANDOM" | grep "something you changed"
+curl -sS -A "Mozilla/5.0 Chrome/131.0" "https://clarifysearch.com/?cb=$RANDOM" | grep "something you changed"
 ```
 
 ## Open items
 
-1. **HTTPS is not enabled.** DNS is correct (all four GitHub Pages A records
-   resolve) but no TLS certificate has been provisioned, so `https://clarifysearch.com`
-   fails and browsers mark the site "Not secure" while it collects names and
-   emails. Fix in **Settings → Pages**: clear the custom domain, save, re-enter
-   `clarifysearch.com`, save, wait for the certificate, then tick **Enforce HTTPS**.
-   Afterwards replace `http://` with `https://` in the head of `index.html`
-   (meta tags, `<link rel="canonical">`, and the JSON-LD `url`/`@id`), in
-   `robots.txt`, and in `sitemap.xml`. A comment in the head marks the spots.
+(1 is resolved, kept for history.)
+
+1. ~~HTTPS~~ **Done (2026-07-18).** A certificate is provisioned, Enforce HTTPS
+   is on, and `http://` 301s to `https://`. All URLs here and in `index.html`,
+   `robots.txt` and `sitemap.xml` point at `https://clarifysearch.com`.
 
 2. **Lead notifications.** The form posts to the `submit-lead` Supabase Edge
    Function, which writes to `inbound_leads` in the clarify-outreach project.
