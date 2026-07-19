@@ -86,6 +86,20 @@
         },
         {
           "@type": "Offer",
+          "name": "AI Solutions — Build",
+          "description": "Custom AI builds inside the business: automating repeated tasks, assistants grounded in your own data, and internal tools. Scoped per build after a free scoping call, fixed price before work starts.",
+          "price": "1500",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "1500",
+            "priceCurrency": "USD",
+            "valueAddedTaxIncluded": false,
+            "description": "Starting price; builds are scoped and fixed-quoted individually."
+          }
+        },
+        {
+          "@type": "Offer",
           "name": "Monthly Management — Paid Search",
           "description": "Weekly query and negatives work, budget and bid optimization, monthly summary. Month-to-month, cancel anytime.",
           "price": "750",
@@ -861,6 +875,95 @@
     }
     .fs-side .cta { width: 100%; }
 
+    /* ============ AI build — second practice. Iris, so it reads as a
+       sibling to search rather than another paid/organic channel. ============ */
+    #ai-build { --acc: var(--iris); --acc-soft: var(--iris-soft); --acc-rgb: var(--iris-rgb); }
+    .build-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .build-card {
+      position: relative; overflow: hidden;
+      padding: 28px 26px 26px; border-radius: 20px;
+      border: 1px solid rgba(var(--iris-rgb), .22);
+      background: linear-gradient(180deg, rgba(var(--iris-rgb), .07), rgba(255,255,255,.02));
+      transition: border-color .25s ease, transform .25s var(--e-out);
+    }
+    .build-card:hover { border-color: rgba(var(--iris-rgb), .48); transform: translateY(-3px); }
+    .build-idx {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: .2em; color: var(--iris-soft);
+    }
+    .build-card h3 { margin-top: 12px; font-size: 19px; letter-spacing: -.02em; }
+    .build-card p { margin-top: 9px; font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+    .build-strip {
+      margin-top: 20px; padding: 26px 30px; border-radius: 20px;
+      display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
+      border: 1px solid rgba(var(--iris-rgb), .3);
+      background: linear-gradient(100deg, rgba(var(--iris-rgb), .1), rgba(var(--iris-rgb), .03));
+    }
+    .bs-kicker {
+      font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--iris-soft);
+    }
+    .build-strip p { margin-top: 7px; font-size: 14.5px; line-height: 1.6; color: var(--muted); max-width: 62ch; }
+    .build-strip p strong { color: var(--ink); font-weight: 600; }
+    .bs-side { display: grid; justify-items: center; gap: 12px; }
+    .bs-price { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
+    .bs-price .from {
+      display: block; font-family: var(--font-mono); font-size: 9.5px; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2);
+    }
+    .build-honest { margin-top: 20px; font-size: 13px; line-height: 1.6; color: var(--muted-2); max-width: 82ch; }
+    @media (max-width: 1080px) { .build-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; } }
+    @media (max-width: 760px) {
+      .build-strip { grid-template-columns: 1fr; gap: 18px; padding: 22px 20px; }
+      .bs-side { justify-items: stretch; }
+      .bs-side .cta { justify-content: center; }
+    }
+
+    /* ---- tier comparison: the one view that makes the ladder legible ---- */
+    .compare-wrap { margin-top: 26px; }
+    .compare-lead {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(17px, 2vw, 22px); letter-spacing: -.02em; margin-bottom: 6px;
+    }
+    .compare-lead span { display: block; font-family: var(--font-body); font-weight: 400; font-size: 14.5px; color: var(--muted); margin-top: 7px; }
+    .compare-lead em { font-style: normal; color: var(--acc-soft); }
+    .compare-scroll {
+      margin-top: 18px; overflow-x: auto; overscroll-behavior-x: contain;
+      border: 1px solid var(--line); border-radius: 18px; background: var(--surface);
+    }
+    .compare-scroll:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+    .compare { width: 100%; border-collapse: collapse; min-width: 680px; }
+    .compare th, .compare td { padding: 13px 16px; text-align: left; font-size: 13.5px; vertical-align: middle; }
+    .compare thead th { padding-top: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line-strong); }
+    .ct-h { display: block; font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -.015em; color: var(--ink); }
+    .ct-p {
+      display: block; margin-top: 5px;
+      font-family: var(--font-mono); font-size: 11.5px; font-weight: 600;
+      letter-spacing: .06em; color: var(--acc-soft);
+    }
+    .ct-p.ct-free { color: var(--mint-soft); }
+    .compare tbody th {
+      font-weight: 500; color: var(--muted); white-space: nowrap;
+      position: sticky; left: 0; z-index: 1;
+      background: linear-gradient(90deg, #0f1016 88%, rgba(15,16,22,0));
+    }
+    .compare tbody tr + tr th, .compare tbody tr + tr td { border-top: 1px solid rgba(255,255,255,.055); }
+    .compare tbody td { color: var(--ink); }
+    .compare td.y { color: var(--acc); font-size: 15px; }
+    .compare td.n { color: var(--muted-2); }
+    .compare td .no { color: var(--muted-2); }
+    /* the column you are most likely to buy */
+    .compare thead th:nth-child(3), .compare tbody td:nth-child(3) { background: rgba(255,255,255,.028); }
+    .compare-note { margin-top: 14px; font-size: 13px; color: var(--muted-2); }
+    @media (max-width: 760px) {
+      .compare-scroll::after {
+        content: "Scroll →"; display: block; padding: 8px 16px 12px;
+        font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em;
+        text-transform: uppercase; color: var(--muted-2);
+      }
+    }
+
     .software-strip {
       display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
       margin-top: 26px; padding: 26px 30px;
@@ -1230,9 +1333,9 @@
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
-        <a href="#diagnosis">Diagnosis</a>
-        <a href="#coverage">Coverage</a>
+        <a href="#coverage">Search</a>
         <a href="#ai-visibility">AI Answers</a>
+        <a href="#ai-build">AI Builds</a>
         <a href="#method">Method</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -1517,6 +1620,50 @@
       </div>
     </section>
 
+    <!-- ============ AI BUILD (second practice) ============ -->
+    <section class="band tinted" id="ai-build">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="lede">
+            <span class="mono-label">AI Solutions — the second practice</span>
+            <h2>Machines decide how you're found. Now they can <span class="ital">do the work too</span>.</h2>
+          </div>
+          <p>Same operator, same flat-fee terms, other side of the same problem. Search is about being legible to machines. This is about putting them to work inside the business.</p>
+        </div>
+
+        <div class="build-grid reveal stagger">
+          <article class="build-card">
+            <span class="build-idx" aria-hidden="true">01</span>
+            <h3>Kill the repeated task.</h3>
+            <p>The report someone rebuilds every Monday. The inbox triaged by hand. If it follows rules, it can run itself.</p>
+          </article>
+          <article class="build-card">
+            <span class="build-idx" aria-hidden="true">02</span>
+            <h3>Make your data answer questions.</h3>
+            <p>An assistant that actually knows your pricing, your policies, your history — instead of guessing like a generic chatbot.</p>
+          </article>
+          <article class="build-card">
+            <span class="build-idx" aria-hidden="true">03</span>
+            <h3>Put a tool in your team's hands.</h3>
+            <p>Internal apps built around how you already work. Clarify's own monitor started exactly this way.</p>
+          </article>
+        </div>
+
+        <div class="build-strip reveal">
+          <div class="bs-main">
+            <span class="bs-kicker">How it starts</span>
+            <p><strong>A free scoping call, then a fixed price before any work begins.</strong> If automation isn't worth it for your case, you'll be told that — it's a faster answer than a proposal.</p>
+          </div>
+          <div class="bs-side">
+            <span class="bs-price"><span class="from">Builds from</span>$1,500</span>
+            <a class="cta mag" href="#contact" data-offer="AI Solutions — Build">Scope a build →</a>
+          </div>
+        </div>
+
+        <p class="build-honest">Worth saying plainly: this is newer ground than the search practice, and it is priced per build rather than off a menu. What carries over is the method — read-only access first, a written diagnosis, a fixed scope, and you owning whatever gets built.</p>
+      </div>
+    </section>
+
     <!-- ============ METHOD ============ -->
     <section class="band" id="method">
       <div class="shell">
@@ -1651,6 +1798,48 @@
           </article>
         </div>
 
+        <div class="compare-wrap reveal">
+          <p class="compare-lead">Where each rung stops. <span>Free tells you <em>if</em>. The audit tells you <em>why</em>. Cleanup <em>fixes</em> it. Management <em>keeps</em> it fixed.</span></p>
+          <div class="compare-scroll" tabindex="0" role="region" aria-label="Compare what each engagement includes">
+            <table class="compare">
+              <thead>
+                <tr>
+                  <th scope="col"><span class="ct-h">&nbsp;</span></th>
+                  <th scope="col"><span class="ct-h">Leak Check</span><span class="ct-p ct-free">Free</span></th>
+                  <th scope="col"><span class="ct-h">Audit</span><span class="ct-p" data-cmp="audit">$299</span></th>
+                  <th scope="col"><span class="ct-h">+ Cleanup</span><span class="ct-p" data-cmp="cleanup">$599</span></th>
+                  <th scope="col"><span class="ct-h">Management</span><span class="ct-p" data-cmp="mgmt">$750/mo</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">You walk away with</th>
+                  <td>A number</td><td>A diagnosis</td><td>A fixed account</td><td>A managed account</td></tr>
+                <tr><th scope="row">Channels covered</th>
+                  <td><span class="no">One</span></td><td>Your choice</td><td>Your choice</td><td>Your choice</td></tr>
+                <tr><th scope="row">Turnaround</th>
+                  <td>3 days</td><td>48h</td><td>Under a week</td><td>Ongoing</td></tr>
+                <tr><th scope="row">Wasted spend found</th>
+                  <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+                <tr><th scope="row">Scored, campaign by campaign</th>
+                  <td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+                <tr><th scope="row">Prioritized fix list</th>
+                  <td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+                <tr><th scope="row">90-day roadmap</th>
+                  <td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+                <tr><th scope="row">Fixes actually shipped</th>
+                  <td class="n">—</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+                <tr><th scope="row">Change log</th>
+                  <td class="n">—</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+                <tr><th scope="row">Ongoing optimization</th>
+                  <td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+                <tr><th scope="row">Commitment</th>
+                  <td>None</td><td>One-time</td><td>One-time</td><td>Cancel anytime</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="compare-note">Prices follow the channel you picked above. Nothing here is a bundle — each rung stands alone, and the Leak Check never gets re-billed inside the audit.</p>
+        </div>
+
         <div class="software-strip reveal">
           <div>
             <span class="kicker">Prefer to run paid yourself?</span>
@@ -1689,8 +1878,8 @@
             <p>Built from the standards of managing complex search accounts: clear structure, careful QA, consistent optimization, business-first recommendations.</p>
           </article>
           <article class="why-card">
-            <h3>Search. Every surface. Nothing else.</h3>
-            <p>No social, email, web design, or "growth" bundles. The entire offer is the results page — the ads you buy, the rankings you earn, and the AI answers that now sit above both.</p>
+            <h3>Two practices. One thesis.</h3>
+            <p>Machines decide whether customers find you, and machines can do your work. Clarify does those two things — search and AI builds — and still no social, email, web design, or "growth" bundles.</p>
           </article>
         </div>
       </div>
@@ -1834,6 +2023,7 @@
                   <option>Monthly Management — Organic Search</option>
                   <option>Monthly Management — Both Channels</option>
                   <option>AI Search Visibility</option>
+                  <option>AI Solutions — Build</option>
                   <option>Custom Reporting &amp; Data Tools</option>
                   <option>Clarify Software</option>
                   <option>Not sure yet</option>
@@ -1867,6 +2057,7 @@
       <div>© <span id="year">2026</span> Clarify Search. Chicago-based. Available across the US.</div>
       <div class="footer-links">
         <a href="#pricing">Pricing</a>
+        <a href="#ai-build">AI Builds</a>
         <a href="#faq">FAQ</a>
         <a href="#contact" data-email data-subject="Clarify Search Question">Contact</a>
       </div>
@@ -2200,6 +2391,11 @@
         }).join('');
 
         ctaEl.setAttribute('data-offer', TIERS[tierKey] + ' — ' + CH_LABEL[ch]);
+
+        // keep the comparison header in step with the cards, so the two can
+        // never disagree about what a tier costs
+        var cmpEl = document.querySelector('[data-cmp="' + tierKey + '"]');
+        if (cmpEl) cmpEl.textContent = '$' + data.price + data.period;
       }
 
       function renderFree(data) {
