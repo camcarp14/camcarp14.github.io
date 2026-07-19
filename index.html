@@ -1111,21 +1111,22 @@
     }
     .sw-head h3 { margin-top: 10px; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -.03em; }
     .sw-head p { margin-top: 11px; font-size: 14px; line-height: 1.65; color: var(--muted); max-width: 52ch; }
-    .sw-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .sw-t {
-      padding: 15px 12px; text-align: center; border-radius: 13px;
-      border: 1px solid rgba(255,255,255,.09); background: rgba(0,0,0,.28);
+    .sw-price {
+      display: grid; justify-items: center; gap: 8px; text-align: center;
+      padding: 22px 20px; border-radius: 16px;
+      border: 1px solid rgba(240,169,59,.26); background: rgba(0,0,0,.3);
     }
-    .sw-t strong {
-      display: block; font-family: var(--font-mono); font-size: 10px; font-weight: 600;
-      letter-spacing: .16em; text-transform: uppercase; color: var(--muted-2);
+    .sw-amount {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(44px, 5vw, 58px); letter-spacing: -.03em;
+      line-height: 1; color: var(--ink); white-space: nowrap;
     }
-    .sw-p {
-      display: block; margin-top: 7px; font-family: var(--font-display);
-      font-size: 21px; font-weight: 700; letter-spacing: -.02em; color: var(--ink);
-      white-space: nowrap;
+    .sw-cur { font-size: .42em; color: var(--muted-2); margin-right: 2px; vertical-align: super; }
+    .sw-amount em { font-style: normal; font-size: .34em; color: var(--muted-2); margin-left: 2px; }
+    .sw-terms {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted-2); line-height: 1.6;
     }
-    .sw-p em { font-style: normal; font-size: .55em; color: var(--muted-2); }
     .sw-foot { grid-column: 2; display: grid; gap: 10px; justify-items: center; }
     .sw-foot .cta { width: 100%; }
     .sw-ask-note {
@@ -1934,10 +1935,10 @@
               <tbody>
                 <tr><th scope="row">You end up with</th>
                   <td>A number</td><td>A diagnosis</td><td>A fixed account</td><td>A managed account</td></tr>
-                <tr><th scope="row">How much of search it looks at</th>
-                  <td><span class="no">One channel — you pick</span></td><td>Paid, organic, or both</td><td>Paid, organic, or both</td><td>Paid, organic, or both</td></tr>
-                <tr><th scope="row">Turnaround</th>
-                  <td>3 days</td><td>48h</td><td>Under a week</td><td>Ongoing</td></tr>
+                <tr data-row="scope"><th scope="row">How much of search it looks at</th>
+                  <td></td><td></td><td></td><td></td></tr>
+                <tr data-row="turnaround"><th scope="row">Turnaround</th>
+                  <td></td><td></td><td></td><td></td></tr>
                 <tr><th scope="row">Finds what's leaking</th>
                   <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
                 <tr><th scope="row">Scores every campaign, not just the account</th>
@@ -1966,10 +1967,9 @@
             <h3>The same leak detection, <span class="ital">as software</span>.</h3>
             <p>Clarify's monitor watches your Google Ads account and flags waste, tracking breaks and query drift as they appear. You bring the judgment and make the calls — a long way from flying blind, and honestly not the same as someone doing the work for you.</p>
           </div>
-          <div class="sw-tiers">
-            <div class="sw-t"><strong>Starter</strong><span class="sw-p">$149<em>/mo</em></span></div>
-            <div class="sw-t"><strong>Growth</strong><span class="sw-p">$399<em>/mo</em></span></div>
-            <div class="sw-t"><strong>Pro</strong><span class="sw-p">$699<em>/mo</em></span></div>
+          <div class="sw-price">
+            <span class="sw-amount"><span class="sw-cur">$</span>149<em>/mo</em></span>
+            <span class="sw-terms">One plan · one Google Ads account · cancel anytime</span>
           </div>
           <div class="sw-foot">
             <a class="cta mag" href="#contact" data-offer="Clarify Software — Onboarding">Schedule an onboarding call →</a>
@@ -2591,6 +2591,43 @@
         if (cmpEl) cmpEl.textContent = '$' + data.price + data.period;
       }
 
+      /* The comparison table has to agree with the tab above it. Saying
+         "paid, organic, or both" while Paid Search is selected reads as a
+         different page talking. Turnaround differs per channel too — the
+         organic audit targets 72h, not 48h. */
+      var COMPARE = {
+        paid: {
+          scope: ['Paid search', 'Paid search', 'Paid search', 'Paid search'],
+          turnaround: ['3 days', '48h', 'Under a week', 'Ongoing']
+        },
+        organic: {
+          scope: ['Organic search', 'Organic search', 'Organic search', 'Organic search'],
+          turnaround: ['3 days', '72h', '1–2 weeks', 'Ongoing']
+        },
+        both: {
+          // the free check stays single-channel here — that limit is the
+          // whole argument for the combined audit
+          scope: ['One channel — you pick', 'Paid + organic', 'Paid + organic', 'Paid + organic'],
+          turnaround: ['3 days', '72h', '1–2 weeks', 'Ongoing']
+        }
+      };
+
+      function renderCompare(ch) {
+        var data = COMPARE[ch];
+        Object.keys(data).forEach(function (rowKey) {
+          var row = document.querySelector('[data-row="' + rowKey + '"]');
+          if (!row) return;
+          var cells = row.querySelectorAll('td');
+          data[rowKey].forEach(function (val, i) {
+            if (!cells[i]) return;
+            // the free column is a limit, not a feature — keep it muted
+            cells[i].innerHTML = (i === 0 && rowKey === 'scope')
+              ? '<span class="no">' + val + '</span>'
+              : val;
+          });
+        });
+      }
+
       function renderFree(data) {
         document.getElementById('fsIntro').innerHTML = data.intro;
         document.getElementById('fsFeats').innerHTML = data.feats.map(function (f, i) {
@@ -2612,6 +2649,7 @@
         });
         ['audit', 'cleanup', 'mgmt'].forEach(function (t) { renderTier(t, PRICING[ch][t], ch); });
         renderFree(FREE[ch]);
+        renderCompare(ch);
         segCaption.textContent = CAPTIONS[ch];
         segLive.textContent = 'Showing ' + CH_LABEL[ch].toLowerCase() + ' pricing.';
       }
